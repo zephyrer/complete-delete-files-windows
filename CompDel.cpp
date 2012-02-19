@@ -8,6 +8,7 @@
 #include "DlgConfig.h"
 #include "DlgConfirm.h"
 #include "DlgHelpDoc.h"
+#include "CheckWinVer.h"
 
 #include "InstFunc.h"
 
@@ -98,7 +99,7 @@ BOOL CCompDelApp::ProcessCommandline()
 			::MkHkcuInstReg();		// インストールフラグの書き込み
 			if(dlgInst.m_UNIN == 0)
 			{	// レジストリのアンインストールメニューを作成
-				if(CheckWinNT()) ::MkHkcuUninstMnu();	// WinNT 系列のとき HKCU
+				if(IsWinNT()) ::MkHkcuUninstMnu();	// WinNT 系列のとき HKCU
 				else  ::MkHklmUninstMnu();	// Win95 系列のとき HKLM
 			}
 			else
@@ -231,21 +232,3 @@ BOOL CCompDelApp::ProcessCommandline()
 	return TRUE;
 }
 
-// ************************************************************
-// WindowsNT 系列と Windows 95 系列の判定
-// WinNT 系列のとき TRUE
-// ************************************************************
-BOOL CCompDelApp::CheckWinNT()
-{
-	OSVERSIONINFO ver;
-
-	// OSバージョン
-	ver.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
-	::GetVersionEx((LPOSVERSIONINFO)&ver);
-
-
-	if(ver.dwPlatformId == VER_PLATFORM_WIN32_NT)
-		return TRUE;
-
-	return FALSE;
-}

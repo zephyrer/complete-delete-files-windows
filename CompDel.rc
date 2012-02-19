@@ -87,15 +87,15 @@ BEGIN
                     60,260,8
 END
 
-IDD_DLG_ABOUT DIALOG DISCARDABLE  0, 0, 274, 79
+IDD_DLG_ABOUT DIALOG DISCARDABLE  0, 0, 275, 89
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "CompleteDelete - 完全削除 - バージョン情報"
 FONT 9, "ＭＳ Ｐゴシック"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,10,10,20,20
-    LTEXT           "CompleteDelete (完全削除) for Windows （Multi Language）\n\n\tVersion 1.2 (Freeware / フリーウエア）\n\t(C) 1999-2002 INOUE. Hirokazu\n\tinoue-h@oasis.email.ne.jp\thttp://inoue-h.connect.to/",
-                    IDC_STATIC,44,8,211,45
-    DEFPUSHBUTTON   "OK",IDOK,215,60,50,14
+    LTEXT           "CompleteDelete (完全削除) for Windows （Multi Language）\n\n\tVersion 1.3 (Freeware / フリーウエア）\n\t(C) 1999-2002 INOUE. Hirokazu\n\thttp://www.ne.jp/asahi/oasis/inoue-h/\n\thttp://inoue-h.connect.to/",
+                    IDC_STATIC,44,8,211,57
+    DEFPUSHBUTTON   "OK",IDOK,215,70,50,14
 END
 
 IDD_DLG_CONFF DIALOG DISCARDABLE  0, 0, 274, 79
@@ -131,7 +131,7 @@ END
 IDD_DLG_PROPDEL DIALOGEX 0, 0, 254, 239
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "削除方法"
-FONT 9, "ＭＳ Ｐゴシック"
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
 BEGIN
     CONTROL         "ファイルの日付（作成、更新、参照）を変更してから消去する （推奨）\r\n   Change File Timestamp",
                     IDC_C_DATE,"Button",BS_AUTOCHECKBOX | BS_MULTILINE,15,10,
@@ -247,8 +247,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,2,0,1
- PRODUCTVERSION 1,2,0,1
+ FILEVERSION 1,3,0,1
+ PRODUCTVERSION 1,3,0,1
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x21L
@@ -266,14 +266,14 @@ BEGIN
             VALUE "Comments", "This Program is Free Ware\0"
             VALUE "CompanyName", "hi soft\0"
             VALUE "FileDescription", "CompleteDelete for Windows  (Multi Lunguage Pack)\0"
-            VALUE "FileVersion", "1.2\0"
+            VALUE "FileVersion", "1.3\0"
             VALUE "InternalName", "CompleteDelete for Windows 95/98/Me/NT/2000/XP\0"
             VALUE "LegalCopyright", "Copyright (C) 1999-2002 INOUE. Hirokazu\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "CompDel.EXE\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "完全削除（CompleteDelete） for Windows 95/98/NT/2000 Japanese\0"
-            VALUE "ProductVersion", "version 1.2\0"
+            VALUE "ProductVersion", "version 1.3\0"
             VALUE "SpecialBuild", "Made with Microsoft Visual C++ 6.0\0"
         END
     END
@@ -305,9 +305,9 @@ BEGIN
     IDD_DLG_ABOUT, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 267
+        RIGHTMARGIN, 268
         TOPMARGIN, 7
-        BOTTOMMARGIN, 72
+        BOTTOMMARGIN, 82
     END
 
     IDD_DLG_CONFF, DIALOG
@@ -415,15 +415,15 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 // Dialog
 //
 
-IDD_DLG_ABOUT DIALOG DISCARDABLE  0, 0, 274, 79
+IDD_DLG_ABOUT DIALOG DISCARDABLE  0, 0, 275, 89
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "CompleteDelete - Version Information"
 FONT 9, "Arial"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,10,10,20,20
-    LTEXT           "CompleteDelete for Windows (Multi Language Version)\n\n\tVersion 1.2 (Freeware)\n\t(C) 1999-2002 INOUE. Hirokazu\n\tinoue-h@oasis.email.ne.jp\thttp://inoue-h.connect.to/",
-                    IDC_STATIC,44,8,211,45
-    DEFPUSHBUTTON   "OK",IDOK,215,60,50,14
+    LTEXT           "CompleteDelete for Windows (Multi Language Version)\n\n\tVersion 1.3 (Freeware)\n\t(C) 1999-2002 INOUE. Hirokazu\n\thttp://www.ne.jp/asahi/oasis/inoue-h/\n\thttp://inoue-h.connect.to/",
+                    IDC_STATIC,44,8,211,57
+    DEFPUSHBUTTON   "OK",IDOK,215,70,50,14
 END
 
 IDD_DLG_CONFF DIALOG DISCARDABLE  0, 0, 274, 79
@@ -490,7 +490,7 @@ END
 IDD_DLG_PROPDEL DIALOGEX 0, 0, 254, 239
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "General"
-FONT 9, "Arial"
+FONT 9, "Arial", 0, 0, 0x1
 BEGIN
     CONTROL         "Change File Timestamp (Create, Write, Refer) before delete (Default)",
                     IDC_C_DATE,"Button",BS_AUTOCHECKBOX | BS_MULTILINE,15,10,
@@ -587,9 +587,9 @@ BEGIN
     IDD_DLG_ABOUT, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 267
+        RIGHTMARGIN, 268
         TOPMARGIN, 7
-        BOTTOMMARGIN, 72
+        BOTTOMMARGIN, 82
     END
 
     IDD_DLG_CONFF, DIALOG

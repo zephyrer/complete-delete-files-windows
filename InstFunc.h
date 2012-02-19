@@ -3,7 +3,7 @@
 //
 // ************************************************************
 
-BOOL MkHklmLnk(void);		// レジストリにショートカット (HKLM, HKCU バージョン)
+BOOL MkHklmLnk(void);		// レジストリにショートカット (HKLM, HKCU バージョン) (/startスイッチ付き）
 BOOL MkHkcuLnk(void);
 BOOL RmHklmLnk(void);
 BOOL RmHkcuLnk(void);

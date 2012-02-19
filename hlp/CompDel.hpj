@@ -72,6 +72,3 @@ HIDR_MAINFRAME					= AFX_HIDP_default
 [MAP]
 #include ..\..\..\..\..\..\vs\VC98\MFC\include\afxhelp.hm
 #include <CompDel.hm>
-
-[WINDOWS]
-main="CompDel Žg—p‚ÌŽèˆø‚«",(63,40,763,700),20740,(r14876671),(r12632256),f6

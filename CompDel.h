@@ -22,7 +22,6 @@
 class CCompDelApp : public CWinApp
 {
 public:
-	BOOL CheckWinNT(void);
 	CString sLogStr;
 	CCompDelApp();
 
