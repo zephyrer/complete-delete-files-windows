@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="shift_jis"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="7.10"
+	Name="CompDel"
+	SccProjectName=""
+	SccLocalPath=""
+	Keyword="MFCProj">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory=".\Debug"
+			IntermediateDirectory=".\Debug"
+			ConfigurationType="1"
+			UseOfMFC="2"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="3"
+				PrecompiledHeaderThrough="stdafx.h"
+				PrecompiledHeaderFile=".\Debug/CompDel.pch"
+				AssemblerListingLocation=".\Debug/"
+				ObjectFile=".\Debug/"
+				ProgramDataBaseFileName=".\Debug/"
+				BrowseInformation="1"
+				WarningLevel="3"
+				SuppressStartupBanner="TRUE"
+				DebugInformationFormat="4"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/subsystem:windows,4.0"
+				AdditionalDependencies="htmlhelp.lib"
+				OutputFile=".\Debug/CompDel.exe"
+				LinkIncremental="1"
+				SuppressStartupBanner="TRUE"
+				GenerateDebugInformation="TRUE"
+				ProgramDatabaseFile=".\Debug/CompDel.pdb"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="TRUE"
+				SuppressStartupBanner="TRUE"
+				TargetEnvironment="1"
+				TypeLibraryName=".\Debug/CompDel.tlb"
+				HeaderFileName=""/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="1041"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory=".\Release"
+			IntermediateDirectory=".\Release"
+			ConfigurationType="1"
+			UseOfMFC="2"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				InlineFunctionExpansion="1"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
+				StringPooling="TRUE"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="TRUE"
+				UsePrecompiledHeader="3"
+				PrecompiledHeaderThrough="stdafx.h"
+				PrecompiledHeaderFile=".\Release/CompDel.pch"
+				AssemblerListingLocation=".\Release/"
+				ObjectFile=".\Release/"
+				ProgramDataBaseFileName=".\Release/"
+				WarningLevel="3"
+				SuppressStartupBanner="TRUE"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="htmlhelp.lib"
+				OutputFile=".\Release/CompDel.exe"
+				LinkIncremental="1"
+				SuppressStartupBanner="TRUE"
+				ProgramDatabaseFile=".\Release/CompDel.pdb"
+				SubSystem="2"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="NDEBUG"
+				MkTypLibCompatible="TRUE"
+				SuppressStartupBanner="TRUE"
+				TargetEnvironment="1"
+				TypeLibraryName=".\Release/CompDel.tlb"
+				HeaderFileName=""/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="1041"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="ソース ファイル"
+			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx">
+			<File
+				RelativePath="CheckWinVer.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="CompDel.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="CompDel.rc">
+			</File>
+			<File
+				RelativePath="DlgAbout.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="DlgConfig.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="DlgConfirm.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="DlgHelpDoc.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="DlgNorm.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="Fileman.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="InstFunc.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="PharseCmdline.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="StdAfx.cpp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"
+						UsePrecompiledHeader="1"
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="1"/>
+				</FileConfiguration>
+			</File>
+		</Filter>
+		<Filter
+			Name="ヘッダー ファイル"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd">
+			<File
+				RelativePath="CheckWinVer.h">
+			</File>
+			<File
+				RelativePath="CompDel.h">
+			</File>
+			<File
+				RelativePath="DlgAbout.h">
+			</File>
+			<File
+				RelativePath="DlgConfig.h">
+			</File>
+			<File
+				RelativePath="DlgConfirm.h">
+			</File>
+			<File
+				RelativePath="DlgHelpDoc.h">
+			</File>
+			<File
+				RelativePath="DlgNorm.h">
+			</File>
+			<File
+				RelativePath="Fileman.h">
+			</File>
+			<File
+				RelativePath="InstFunc.h">
+			</File>
+			<File
+				RelativePath="PharseCmdline.h">
+			</File>
+			<File
+				RelativePath=".\Resource.h">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="ヘルプ コンパイラ用のマップ ファイルを生成しています..."
+						CommandLine="echo // 生成されたマップ ファイルです。次で使用されます。CompDel.HHP. &gt; &quot;hlp\HTMLDefines.h&quot;
+echo. &gt; &quot;hlp\HTMLDefines.h&quot;
+echo // コマンド (ID_* and IDM_*) &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+makehm /h ID_,HID_,0x10000 IDM_,HIDM_,0x10000 &quot;$(InputFileName)&quot; &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+echo. &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+echo // プロンプト (IDP_*) &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+makehm /h IDP_,HIDP_,0x30000 &quot;$(InputFileName)&quot; &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+echo. &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+echo // リソース (IDR_*) &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+makehm /h IDR_,HIDR_,0x20000 &quot;$(InputFileName)&quot; &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+echo. &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+echo // ダイアログ (IDD_*) &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+makehm /h IDD_,HIDD_,0x20000 &quot;$(InputFileName)&quot; &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+echo. &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+echo // フレーム コントロール (IDW_*) &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+makehm /h /a afxhh.h IDW_,HIDW_,0x50000 &quot;$(InputFileName)&quot; &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+"
+						Outputs="hlp\HTMLDefines.h"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="ヘルプ コンパイラ用のマップ ファイルを生成しています..."
+						CommandLine="echo // 生成されたマップ ファイルです。次で使用されます。CompDel.HHP. &gt; &quot;hlp\HTMLDefines.h&quot;
+echo. &gt; &quot;hlp\HTMLDefines.h&quot;
+echo // コマンド (ID_* and IDM_*) &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+makehm /h ID_,HID_,0x10000 IDM_,HIDM_,0x10000 &quot;$(InputFileName)&quot; &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+echo. &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+echo // プロンプト (IDP_*) &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+makehm /h IDP_,HIDP_,0x30000 &quot;$(InputFileName)&quot; &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+echo. &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+echo // リソース (IDR_*) &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+makehm /h IDR_,HIDR_,0x20000 &quot;$(InputFileName)&quot; &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+echo. &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+echo // ダイアログ (IDD_*) &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+makehm /h IDD_,HIDD_,0x20000 &quot;$(InputFileName)&quot; &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+echo. &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+echo // フレーム コントロール (IDW_*) &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+makehm /h /a afxhh.h IDW_,HIDW_,0x50000 &quot;$(InputFileName)&quot; &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
+"
+						Outputs="hlp\HTMLDefines.h"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="StdAfx.h">
+			</File>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
+			<File
+				RelativePath="hlp\CompDel.hm">
+			</File>
+			<File
+				RelativePath="res\CompDel.ico">
+			</File>
+			<File
+				RelativePath="res\CompDel.rc2">
+			</File>
+			<File
+				RelativePath="res\ico_inst.ico">
+			</File>
+			<File
+				RelativePath="res\trashcan2000-1.ico">
+			</File>
+			<File
+				RelativePath="res\trashcan2000-2.ico">
+			</File>
+			<File
+				RelativePath="res\trashcan2000-compdel.ico">
+			</File>
+			<File
+				RelativePath="res\trashcan2000.ico">
+			</File>
+			<File
+				RelativePath="res\trashcan95-1.ico">
+			</File>
+			<File
+				RelativePath="res\trashcan95-2.ico">
+			</File>
+			<File
+				RelativePath="res\trashcanvista-1.ico">
+			</File>
+			<File
+				RelativePath="res\trashcanvista-2.ico">
+			</File>
+			<File
+				RelativePath="res\trashcanvista.ico">
+			</File>
+		</Filter>
+		<Filter
+			Name="HTML ヘルプ ファイル"
+			Filter="hhp;hhc;hhk;gif;jpg">
+			<File
+				RelativePath=".\hlp-html\CompDel.hhc">
+			</File>
+			<File
+				RelativePath=".\hlp-html\CompDel.hhk">
+			</File>
+			<File
+				RelativePath=".\hlp\CompDel.hhp">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="ヘルプ ファイルを作成しています..."
+						CommandLine="start /wait hhc &quot;hlp\CompDel.hhp&quot;
+if not exist &quot;hlp\CompDel.chm&quot; goto :HelpError
+copy &quot;hlp\CompDel.chm&quot; &quot;$(OutDir)\CompDel.chm&quot;
+goto :HelpDone
+:HelpError
+echo hlp\CompDel.hhp(1) : error:ヘルプ ファイルを作成中に問題が発生しました。
+echo.
+:HelpDone
+echo.
+"
+						AdditionalDependencies="hlp\HTMLDefines.h;hlp\index.html;hlp\001-intro.html;hlp\002-delete.html;hlp\003-ntfs.html;hlp\004-install.html;hlp\005-config.html;hlp\005-1-config.html;hlp\005-2-config.html;hlp\005-3-config.html;hlp\005-4-config.html;hlp\005-5-config.html;hlp\006-howto.html;hlp\007-uninstall.html;hlp\008-error.html;hlp\009-other.html;hlp\010-copyright.html"
+						Outputs="$(OutDir)\$(ProjectName).chm"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="ヘルプ ファイルを作成しています..."
+						CommandLine="start /wait hhc &quot;hlp\CompDel.hhp&quot;
+if not exist &quot;hlp\CompDel.chm&quot; goto :HelpError
+copy &quot;hlp\CompDel.chm&quot; &quot;$(OutDir)\CompDel.chm&quot;
+goto :HelpDone
+:HelpError
+echo hlp\CompDel.hhp(1) : error:ヘルプ ファイルを作成中に問題が発生しました。
+echo.
+:HelpDone
+echo.
+"
+						AdditionalDependencies="hlp\HTMLDefines.h;hlp\index.html;hlp\001-intro.html;hlp\002-delete.html;hlp\003-ntfs.html;hlp\004-install.html;hlp\005-config.html;hlp\005-1-config.html;hlp\005-2-config.html;hlp\005-3-config.html;hlp\005-4-config.html;hlp\005-5-config.html;hlp\006-howto.html;hlp\007-uninstall.html;hlp\008-error.html;hlp\009-other.html;hlp\010-copyright.html"
+						Outputs="$(OutDir)\$(ProjectName).chm"/>
+				</FileConfiguration>
+			</File>
+		</Filter>
+		<Filter
+			Name="HTMLヘルプトピック"
+			Filter="htm;html">
+			<File
+				RelativePath=".\hlp\001-intro.html">
+			</File>
+			<File
+				RelativePath=".\hlp\002-delete.html">
+			</File>
+			<File
+				RelativePath=".\hlp\003-ntfs.html">
+			</File>
+			<File
+				RelativePath=".\hlp\004-install.html">
+			</File>
+			<File
+				RelativePath=".\hlp\005-1-config.html">
+			</File>
+			<File
+				RelativePath=".\hlp\005-2-config.html">
+			</File>
+			<File
+				RelativePath=".\hlp\005-3-config.html">
+			</File>
+			<File
+				RelativePath=".\hlp\005-4-config.html">
+			</File>
+			<File
+				RelativePath=".\hlp\005-5-config.html">
+			</File>
+			<File
+				RelativePath=".\hlp\005-config.html">
+			</File>
+			<File
+				RelativePath=".\hlp\006-howto.html">
+			</File>
+			<File
+				RelativePath=".\hlp\007-uninstall.html">
+			</File>
+			<File
+				RelativePath=".\hlp\008-error.html">
+			</File>
+			<File
+				RelativePath=".\hlp\009-other.html">
+			</File>
+			<File
+				RelativePath=".\hlp\010-copyright.html">
+			</File>
+			<File
+				RelativePath=".\hlp\index.html">
+			</File>
+		</Filter>
+		<File
+			RelativePath="ReadMe.txt">
+		</File>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

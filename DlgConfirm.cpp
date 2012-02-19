@@ -105,6 +105,5 @@ void CDlgInstall::OnInsthlp()
 {
 	// TODO: この位置にコントロール通知ハンドラ用のコードを追加してください
 		this->SendMessage(WM_HELP);
-
 }
 

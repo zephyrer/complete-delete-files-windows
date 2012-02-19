@@ -1,36 +1,97 @@
-body{
+body {
 	background-color: white;
-	font-family: "ÇlÇr ÇoÉSÉVÉbÉN", "MS P Gothic", "IPA PÉSÉVÉbÉN", "IPAPGothic", "ÇlÇr ÉSÉVÉbÉN", sans-serif;
+/*	background-image: url(pics/title-background.jpg);
+	background-attachment: scroll;
+	background-repeat: no-repeat;
+	background-position: right top;*/
+	font-family: sans-serif;
 	font-size: 10pt;
-	margin-left: 5px;
-	margin-right: 5px;
-	margin-top: 0px;
+	margin: 0 5px 5px 5px;
+	padding: 0;
 }
 
-.pagehead{
+/* âÊñ è„ïî É^ÉCÉgÉãçs TABLE */
+.pagehead {
+	margin: 0;
+	padding: 0;
+}
+
+.pagehead table {
+	width: 100%;
+	height: 40px;
+	padding: 0;
+	margin: 0;
+	border-collapse: collapse;
 	font-size: 16pt;
 	letter-spacing: 1px;
-	margin-left: 15px;
+	background-color: #7b9add;
 }
 
 
 .pagemain{
-	margin-left: 5px;
-	margin-right: 5px;
+	margin: 0 5px 0 5px;
+	padding: 0;
 }
 
-h1{
+.pagemain p {
+	margin-left: 25px;
+}
+
+.pagemain table {
+	padding: 0;
+	margin: 0 0 0 30px;
+	border-collapse: collapse;
+	border: 1px solid #000000;
+}
+.pagemain th {
+	border-collapse: collapse;
+	border: 1px solid #000000;
+}
+.pagemain td {
+	border-collapse: collapse;
+	border: 1px solid #000000;
+}
+
+h1 {
 	font-size: 11pt;
 	font-weight: bold;
 }
-
-h2{
+h2 {
 	font-size: 10pt;
 	font-weight: bold;
 	margin-left: 15px;
+}
+h3 {
+	font-size: 10pt;
+	font-weight: bold;
+	margin-left: 20px;
 }
 
 
 .doc-indent20{
 	margin-left: 25px;
+}
+
+img {
+	border: 0;
+}
+
+pre, div.code {
+    font-family: monospace;
+    line-height: 1.2em;
+    border: 1px solid #a7a7a7;
+    padding: 5px 10px;
+    margin: 10px 10px 10px 30px;
+    background-color: #e5e5e5;
+    white-space: pre;
+}
+
+code {
+    font-family: monospace;
+    border: 1px solid #a7a7a7;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: #e5e5e5;
 }

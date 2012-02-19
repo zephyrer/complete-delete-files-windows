@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+// Microsoft Visual C++ generated resource script.
 //
 #include "resource.h"
 
@@ -27,18 +27,18 @@ LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE DISCARDABLE 
+1 TEXTINCLUDE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE DISCARDABLE 
+2 TEXTINCLUDE 
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE DISCARDABLE 
+3 TEXTINCLUDE 
 BEGIN
     "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
     "#define _AFX_NO_OLE_RESOURCES\r\n"
@@ -66,46 +66,48 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDR_MAINFRAME           ICON    DISCARDABLE     "res\\CompDel.ico"
-IDI_ICO_INST            ICON    DISCARDABLE     "res\\ico_inst.ico"
-IDI_ICO_VI1             ICON    DISCARDABLE     "res\\trashcanvista-2.ico"
-IDI_ICO_2K2             ICON    DISCARDABLE     "res\\trashcan2000-2.ico"
-IDI_ICO_952             ICON    DISCARDABLE     "res\\trashcan95-1.ico"
-IDI_ICO_951             ICON    DISCARDABLE     "res\\trashcan95-2.ico"
-IDI_ICO_VI2             ICON    DISCARDABLE     "res\\trashcanvista-1.ico"
-IDI_ICO_2K1             ICON    DISCARDABLE     "res\\trashcan2000-1.ico"
+IDR_MAINFRAME           ICON                    "res\\CompDel.ico"
+IDI_ICO_INST            ICON                    "res\\ico_inst.ico"
+IDI_ICO_VI1             ICON                    "res\\trashcanvista-2.ico"
+IDI_ICO_2K2             ICON                    "res\\trashcan2000-2.ico"
+IDI_ICO_952             ICON                    "res\\trashcan95-1.ico"
+IDI_ICO_951             ICON                    "res\\trashcan95-2.ico"
+IDI_ICO_VI2             ICON                    "res\\trashcanvista-1.ico"
+IDI_ICO_2K1             ICON                    "res\\trashcan2000-1.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Dialog
 //
 
-IDD_DLG_NORMAL DIALOG DISCARDABLE  0, 0, 274, 79
-STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+IDD_DLG_NORMAL DIALOGEX 0, 0, 274, 79
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
 CAPTION "ファイルの完全削除中 / CompleteDelete Working ..."
-FONT 9, "ＭＳ Ｐゴシック"
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x0
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,10,10,20,20
     LTEXT           "",IDC_LFNAME,40,10,220,25
     LTEXT           "削除中 ...",IDC_STATIC,35,40,55,10
-    LTEXT           "",IDC_MES,115,40,125,10
+    LTEXT           "",IDC_MES,90,39,125,10
     CONTROL         "Progress1",IDC_PRGRESS,"msctls_progress32",WS_BORDER,5,
                     60,260,8
+    LTEXT           "",IDC_SIZE_TICK,219,39,42,9
 END
 
-IDD_DLG_ABOUT DIALOG DISCARDABLE  0, 0, 275, 89
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+IDD_DLG_ABOUT DIALOGEX 0, 0, 275, 89
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "CompleteDelete - 完全削除 - バージョン情報"
-FONT 9, "ＭＳ Ｐゴシック"
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x0
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,10,10,20,20
-    LTEXT           "CompleteDelete (完全削除) for Windows （Multi Language）\n\n\tVersion 1.37 (Free Software / フリーソフトウエア）\n\t(C) 1999-2007 INOUE. Hirokazu\n\thttp://oasis.halfmoon.jp/\n\thttp://www.vector.co.jp/vpack/browse/person/an001911.html",
+    LTEXT           "CompleteDelete (完全削除) for Windows （Multi Language）\n\n\tVersion 1.38 (GNU GPL フリーソフトウエア）\n\t(C) 1999-2012 INOUE. Hirokazu\n\thttp://oasis.halfmoon.jp/\n",
                     IDC_STATIC,44,8,211,57
     DEFPUSHBUTTON   "OK",IDOK,215,70,50,14
 END
 
-IDD_DLG_CONFF DIALOG DISCARDABLE  0, 0, 274, 79
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+IDD_DLG_CONFF DIALOG  0, 0, 274, 79
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "完全削除の確認 / CompleteDelete confirmation"
 FONT 9, "ＭＳ Ｐゴシック"
 BEGIN
@@ -115,8 +117,8 @@ BEGIN
     PUSHBUTTON      "キャンセル(&C)",IDCANCEL,215,60,50,14
 END
 
-IDD_DLG_PROPDISP DIALOG DISCARDABLE  0, 0, 254, 239
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_DLG_PROPDISP DIALOG  0, 0, 254, 239
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "表示モード"
 FONT 9, "ＭＳ Ｐゴシック"
 BEGIN
@@ -135,7 +137,7 @@ BEGIN
 END
 
 IDD_DLG_PROPDEL DIALOGEX 0, 0, 254, 239
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "基本設定"
 FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
 BEGIN
@@ -146,8 +148,8 @@ BEGIN
     CONTROL         "データをランダム値で上書きする （推奨） (with Random Char)",
                     IDC_R1_RND,"Button",BS_AUTORADIOBUTTON,15,35,225,9
     CONTROL         "DOD 5220.22-M < 8-306 Magnetic Disk METHOD D >",
-                    IDC_R1_DOD,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,15,
-                    50,225,9
+                    IDC_R1_DOD,"Button",BS_AUTORADIOBUTTON | NOT WS_VISIBLE | 
+                    WS_DISABLED,15,50,225,9
     EDITTEXT        IDC_EDIT_NTIMES,15,65,40,15,ES_AUTOHSCROLL | ES_NUMBER | 
                     NOT WS_BORDER | NOT WS_TABSTOP,WS_EX_STATICEDGE
     LTEXT           "回       上書き回数 (1から50)  (Overwrite Times)",
@@ -170,8 +172,8 @@ BEGIN
                     IDC_R3_SNAME,"Button",BS_AUTORADIOBUTTON,15,215,225,10
 END
 
-IDD_DLG_PROPOTHER DIALOG DISCARDABLE  0, 0, 254, 239
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_DLG_PROPOTHER DIALOG  0, 0, 254, 239
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "詳細設定 3"
 FONT 9, "ＭＳ Ｐゴシック"
 BEGIN
@@ -197,8 +199,8 @@ BEGIN
                     WS_TABSTOP
 END
 
-IDD_DLG_INSTALL DIALOG DISCARDABLE  0, 0, 259, 169
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+IDD_DLG_INSTALL DIALOG  0, 0, 259, 169
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "完全削除のインストール / CompleteDelete Install"
 FONT 9, "ＭＳ Ｐゴシック"
 BEGIN
@@ -226,8 +228,8 @@ BEGIN
     PUSHBUTTON      "ヘルプ(&H)",IDC_INSTHLP,205,150,50,14,NOT WS_TABSTOP
 END
 
-IDD_DLG_HELPDOC DIALOG DISCARDABLE  0, 0, 289, 255
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+IDD_DLG_HELPDOC DIALOG  0, 0, 289, 255
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "完全削除 メッセージ / CompleteDelete Message Viewer"
 FONT 9, "ＭＳ Ｐゴシック"
 BEGIN
@@ -237,7 +239,7 @@ BEGIN
 END
 
 IDD_DLG_PROPDEL2 DIALOGEX 0, 0, 255, 239
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "詳細設定 1"
 FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
 BEGIN
@@ -253,19 +255,19 @@ BEGIN
     LTEXT           "Bytes (0～65536 Bytes) (標準は 0)",IDC_STATIC,75,55,165,
                     15,SS_CENTERIMAGE
     GROUPBOX        "DOD 5220.22-M で用いる指定文字  fill char",IDC_STATIC,
-                    10,80,235,30,WS_DISABLED
+                    10,80,235,30,NOT WS_VISIBLE | WS_DISABLED
     EDITTEXT        IDC_EDIT_DODCHAR,15,90,55,15,ES_AUTOHSCROLL | ES_NUMBER | 
-                    WS_DISABLED | NOT WS_BORDER | NOT WS_TABSTOP,
-                    WS_EX_STATICEDGE
+                    NOT WS_VISIBLE | WS_DISABLED | NOT WS_BORDER | NOT 
+                    WS_TABSTOP,WS_EX_STATICEDGE
     LTEXT           " (0～255の10進数) (標準 65 'A')",IDC_STATIC,75,90,165,
-                    15,SS_CENTERIMAGE | WS_DISABLED
+                    15,SS_CENTERIMAGE | NOT WS_VISIBLE | WS_DISABLED
     CONTROL         "全処理終了後、ファイルを残して終了（削除しない）  Leave file, not remove",
                     IDC_C_NOTREMOVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,
                     120,235,15
 END
 
 IDD_DLG_PROPDEL3 DIALOGEX 0, 0, 255, 239
-STYLE WS_CHILD | WS_CAPTION
+STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "詳細設定 2"
 FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
 BEGIN
@@ -305,15 +307,14 @@ BEGIN
 END
 
 
-#ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
 //
 // Version
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,3,7,0
- PRODUCTVERSION 1,3,7,0
+ FILEVERSION 1,3,8,0
+ PRODUCTVERSION 1,3,8,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x21L
@@ -328,18 +329,16 @@ BEGIN
     BEGIN
         BLOCK "041104b0"
         BEGIN
-            VALUE "Comments", "This Program is Free Ware\0"
-            VALUE "CompanyName", "hi soft\0"
-            VALUE "FileDescription", "CompleteDelete for Windows  (Multi Language Pack)\0"
-            VALUE "FileVersion", "1.37\0"
-            VALUE "InternalName", "CompleteDelete for Windows 95/98/Me/NT/2000/XP/Vista\0"
-            VALUE "LegalCopyright", "Copyright (C) 1999-2007 INOUE. Hirokazu\0"
-            VALUE "LegalTrademarks", "\0"
-            VALUE "OriginalFilename", "CompDel.EXE\0"
-            VALUE "PrivateBuild", "\0"
-            VALUE "ProductName", "完全削除（CompleteDelete） for Windows 95/98/NT/2000/XP/Vista\0"
-            VALUE "ProductVersion", "version 1.37\0"
-            VALUE "SpecialBuild", "Made with Microsoft Visual C++ 6.0\0"
+            VALUE "Comments", "This Program is Free Ware"
+            VALUE "CompanyName", "hi soft"
+            VALUE "FileDescription", "CompleteDelete for Windows  (Multi Language Pack)"
+            VALUE "FileVersion", "1.38"
+            VALUE "InternalName", "CompleteDelete for Windows 95/98/Me/NT/2000/XP/Vista/7"
+            VALUE "LegalCopyright", "Copyright (C) 1999-2012 INOUE. Hirokazu"
+            VALUE "OriginalFilename", "CompDel.EXE"
+            VALUE "ProductName", "完全削除（CompleteDelete） for Windows 95/98/NT/2000/XP/Vista/7"
+            VALUE "ProductVersion", "version 1.38"
+            VALUE "SpecialBuild", "Made with Microsoft Visual C++ 7.0"
         END
     END
     BLOCK "VarFileInfo"
@@ -348,8 +347,6 @@ BEGIN
     END
 END
 
-#endif    // !_MAC
-
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -357,7 +354,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO DISCARDABLE 
+GUIDELINES DESIGNINFO 
 BEGIN
     IDD_DLG_NORMAL, DIALOG
     BEGIN
@@ -423,7 +420,7 @@ END
 // String Table
 //
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     AFX_IDS_APP_TITLE       "compdel"
     AFX_STR_UNINST_CPLNAME  "完全削除"
@@ -443,7 +440,7 @@ BEGIN
     AFX_STR_LOG_COMPLETE    "\r\n終了 (成功 %d 個, 失敗+対象外 %d 個)\r\n"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     AFX_STR_LOG_SUCCESS     "成功 : %s\r\n"
     AFX_STR_LOG_FAIL        "失敗 (code=%d) : %s\r\n"
@@ -451,7 +448,7 @@ BEGIN
     AFX_STR_LOG_INIT2       "上書:%s, 上書回数:%d, サイズ変更:%s, "
     AFX_STR_LOG_INIT3       "リネーム:"
     AFX_STR_LOG_INIT4       "%d 個のファイルの消去を開始\r\n-----------------------------\r\n\r\n"
-    AFX_STR_DLG_EXCLUDE     "ファイル '%s'\nこのファイルは完全削除対象外です\r\n\r\n(フォルダなどは指定できません）"
+    AFX_STR_DLG_EXCLUDE     "ファイル '%s'\nこのファイルは完全削除対象外です\r\n\r\n(フォルダ、オフラインファイル、スパースファイルなどに該当）"
     AFX_STR_LOG_EXCLUDE     "対象外 : %s\r\n"
     AFX_STR_DLG_PRGRS       "%d/%d 処理中 (エラー %d 件)"
     AFX_STR_ERR_0           "ファイル属性が得られない"
@@ -463,7 +460,7 @@ BEGIN
     AFX_STR_ERR_6           "ファイルの日付が変更できない"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     AFX_STR_ERR_7           "ファイルを削除できない"
     AFX_STR_ERR_8           "ダミーファイルを作成できない"
@@ -483,12 +480,17 @@ BEGIN
     AFX_STR_MES_CANCEL      "削除処理がキャンセルされました\r\n"
 END
 
+STRINGTABLE 
+BEGIN
+    AFX_STR_ERR_10          "2GBytesを超えるファイルは扱えません"
+END
+
 #endif    // 日本語 resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// 英語 (ｱﾒﾘｶ) resources
+// 英語 (米国) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 #ifdef _WIN32
@@ -501,19 +503,19 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 // Dialog
 //
 
-IDD_DLG_ABOUT DIALOG DISCARDABLE  0, 0, 275, 89
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+IDD_DLG_ABOUT DIALOGEX 0, 0, 275, 89
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "CompleteDelete - Version Information"
-FONT 9, "Arial"
+FONT 9, "Arial", 0, 0, 0x0
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,10,10,20,20
-    LTEXT           "CompleteDelete for Windows (Multi Language Version)\n\n\tVersion 1.37 (Free Software)\n\t(C) 1999-2007 INOUE. Hirokazu\n\thttp://oasis.halfmoon.jp/\n\thttp://www.vector.co.jp/vpack/browse/person/an001911.html",
+    LTEXT           "CompleteDelete for Windows (Multi Language Version)\n\n\tVersion 1.38 (GNU GPL Free Software)\n\t(C) 1999-2012 INOUE. Hirokazu\n\thttp://oasis.halfmoon.jp/\n",
                     IDC_STATIC,44,8,211,57
     DEFPUSHBUTTON   "OK",IDOK,215,70,50,14
 END
 
-IDD_DLG_CONFF DIALOG DISCARDABLE  0, 0, 274, 79
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+IDD_DLG_CONFF DIALOG  0, 0, 274, 79
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "CompleteDelete confirmation"
 FONT 9, "Arial"
 BEGIN
@@ -523,8 +525,8 @@ BEGIN
     PUSHBUTTON      "Cancel(&C)",IDCANCEL,215,60,50,14
 END
 
-IDD_DLG_HELPDOC DIALOG DISCARDABLE  0, 0, 290, 234
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+IDD_DLG_HELPDOC DIALOG  0, 0, 290, 234
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "CompleteDelete Message Viewer"
 FONT 9, "Arial"
 BEGIN
@@ -533,8 +535,8 @@ BEGIN
     DEFPUSHBUTTON   "OK(&K)",IDOK,225,215,60,15
 END
 
-IDD_DLG_INSTALL DIALOG DISCARDABLE  0, 0, 259, 169
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+IDD_DLG_INSTALL DIALOG  0, 0, 259, 169
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "CompleteDelete Install"
 FONT 9, "Arial"
 BEGIN
@@ -561,21 +563,23 @@ BEGIN
     PUSHBUTTON      "Help(&H)",IDC_INSTHLP,205,150,50,14,NOT WS_TABSTOP
 END
 
-IDD_DLG_NORMAL DIALOG DISCARDABLE  0, 0, 274, 79
-STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+IDD_DLG_NORMAL DIALOGEX 0, 0, 274, 79
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
 CAPTION "CompleteDelete Working Progress"
-FONT 9, "Arial"
+FONT 9, "Arial", 0, 0, 0x0
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,10,10,20,20
     LTEXT           "",IDC_LFNAME,40,10,220,25
     LTEXT           "Deleting ...",IDC_STATIC,35,40,55,10
-    LTEXT           "",IDC_MES,115,40,125,10
+    LTEXT           "",IDC_MES,90,39,125,10
     CONTROL         "Progress1",IDC_PRGRESS,"msctls_progress32",WS_BORDER,5,
                     60,260,8
+    LTEXT           "",IDC_SIZE_TICK,219,39,45,10
 END
 
 IDD_DLG_PROPDEL DIALOGEX 0, 0, 254, 239
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "General"
 FONT 9, "Arial", 0, 0, 0x1
 BEGIN
@@ -606,8 +610,8 @@ BEGIN
                     IDC_R3_SNAME,"Button",BS_AUTORADIOBUTTON,15,205,225,10
 END
 
-IDD_DLG_PROPDISP DIALOG DISCARDABLE  0, 0, 254, 239
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_DLG_PROPDISP DIALOG  0, 0, 254, 239
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Display"
 FONT 9, "Arial"
 BEGIN
@@ -624,8 +628,8 @@ BEGIN
                     215,10
 END
 
-IDD_DLG_PROPOTHER DIALOG DISCARDABLE  0, 0, 254, 239
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+IDD_DLG_PROPOTHER DIALOG  0, 0, 254, 239
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Detail 3/3"
 FONT 9, "Arial"
 BEGIN
@@ -652,7 +656,7 @@ BEGIN
 END
 
 IDD_DLG_PROPDEL2 DIALOGEX 0, 0, 255, 239
-STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Detail 1/3"
 FONT 9, "Arial", 0, 0, 0x1
 BEGIN
@@ -679,7 +683,7 @@ BEGIN
 END
 
 IDD_DLG_PROPDEL3 DIALOGEX 0, 0, 255, 239
-STYLE WS_CHILD | WS_CAPTION
+STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "Detail 2/3"
 FONT 9, "Arial", 0, 0, 0x1
 BEGIN
@@ -722,7 +726,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO DISCARDABLE 
+GUIDELINES DESIGNINFO 
 BEGIN
     IDD_DLG_ABOUT, DIALOG
     BEGIN
@@ -788,7 +792,7 @@ END
 // String Table
 //
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     AFX_IDS_APP_TITLE       "compdel"
     AFX_STR_UNINST_CPLNAME  "CompleteDelete"
@@ -808,7 +812,7 @@ BEGIN
     AFX_STR_LOG_COMPLETE    "\r\nComplete (OK %d,  NG+Exclude %d)\r\n"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     AFX_STR_LOG_SUCCESS     "OK : %s\r\n"
     AFX_STR_LOG_FAIL        "NG (code=%d) : %s\r\n"
@@ -816,7 +820,7 @@ BEGIN
     AFX_STR_LOG_INIT2       "OverWrite:%s (%d times), Truncate Size:%s, "
     AFX_STR_LOG_INIT3       "ChangeName:"
     AFX_STR_LOG_INIT4       "Process begining ( %d files in queue)\r\n-----------------------------\r\n\r\n"
-    AFX_STR_DLG_EXCLUDE     "'%s'\nExclude this file\r\n\r\n(If you select FOLDER. It is not possible to delete)"
+    AFX_STR_DLG_EXCLUDE     "'%s'\nExclude this file\r\n\r\n(folder, temporary file, sparse file)"
     AFX_STR_LOG_EXCLUDE     "Exclude : %s\r\n"
     AFX_STR_DLG_PRGRS       "processing %d/%d (%d errors)"
     AFX_STR_ERR_0           "Fail to get Attributes"
@@ -828,7 +832,7 @@ BEGIN
     AFX_STR_ERR_6           "Fail to Change Date"
 END
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE 
 BEGIN
     AFX_STR_ERR_7           "Fail to Delete"
     AFX_STR_ERR_8           "Fail to Make Dummy File"
@@ -848,7 +852,12 @@ BEGIN
     AFX_STR_MES_CANCEL      "Delete task is cencelled by user\r\n"
 END
 
-#endif    // 英語 (ｱﾒﾘｶ) resources
+STRINGTABLE 
+BEGIN
+    AFX_STR_ERR_10          "File Exceed 2Gbytes"
+END
+
+#endif    // 英語 (米国) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

@@ -9,6 +9,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
+#include "DlgNorm.h"
 class CFileman  
 {
 public:
@@ -48,11 +49,10 @@ private:
 	BOOL PharsePath();
 protected:
 	BOOL DummyfileProcess();
-	int nErrTrace;
 	void ConfirmMsgbox(CString mes);
 	CString OldPath;
 	unsigned int GenerateRandom(unsigned int min, unsigned int max);
-	BOOL DeleteOneFile();
+	int DeleteOneFile(CDlgNorm *dlg);
 	int nFiles;
 	CString sFname;
 	CString sPath;

@@ -1,5 +1,5 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Developer Studio generated include file.
+// Microsoft Visual C++ generated include file.
 // Used by CompDel.rc
 //
 #define IDC_INSTHLP                     3
@@ -78,6 +78,7 @@
 #define IDC_BTN_QEXEC                   1054
 #define IDC_BTN_QFILE_BROWSE2           1055
 #define IDC_C_NOTREMOVE                 1056
+#define IDC_SIZE_TICK                   1058
 #define AFX_STR_UNINST_CPLNAME          57345
 #define AFX_STR_LINK_UNINST             57346
 #define AFX_STR_LINK_STARTUP            57347
@@ -125,14 +126,15 @@
 #define AFX_STR_ERR_ANTICACHE           57389
 #define AFX_STR_ERR_HELP                57390
 #define AFX_STR_MES_CANCEL              57391
+#define AFX_STR_ERR_10                  57392
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        164
+#define _APS_NEXT_RESOURCE_VALUE        166
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1057
+#define _APS_NEXT_CONTROL_VALUE         1059
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

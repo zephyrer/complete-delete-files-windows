@@ -111,7 +111,8 @@ BOOL CFileman::PharsePath()
 	// 消去対象外のファイル・フォルダ
 	if((dwFileAttr & FILE_ATTRIBUTE_TEMPORARY)||
 			(dwFileAttr & FILE_ATTRIBUTE_OFFLINE) ||
-			(dwFileAttr & FILE_ATTRIBUTE_DIRECTORY))
+			(dwFileAttr & FILE_ATTRIBUTE_DIRECTORY) ||
+			(dwFileAttr & FILE_ATTRIBUTE_SPARSE_FILE))
 		return FALSE;
 
 	return TRUE;
@@ -235,6 +236,8 @@ BOOL CFileman::DeleteMain(LPCSTR buf)
 			sAfxMsg.LoadString(AFX_STR_DLG_PRGRS);	// 「%d/%d 処理中 (エラー %d 件)」
 			dlgMes.Format((LPCSTR)sAfxMsg, i, nFiles, errN);
 			dlg->SetDlgItemText(IDC_MES, dlgMes);
+			// ダイアログの処理済バイト数表示
+			dlg->SetDlgItemText(IDC_SIZE_TICK, "");
 			// ダイアログのプログレスコントロール
 			dlg->m_Progress.SetPos((i*100)/nFiles);
 			// ダイアログをアップデート
@@ -248,12 +251,12 @@ BOOL CFileman::DeleteMain(LPCSTR buf)
 			sOrgFnameLog = GetFullPath();
 		}
 		// ファイル削除
-		nErrTrace = 0;
-		if(!DeleteOneFile())
+		int result_code = DeleteOneFile(dlg);
+		if(result_code != -1)
 		{
 			if(!n_NDispE)
 			{
-				switch(nErrTrace)
+				switch(result_code)
 				{
 					// ****************** 多言語対応 デバックメッセージのロード ******************
 					case 0 : sAfxMsg.LoadString(AFX_STR_ERR_0);break;	// ファイル属性が得られない
@@ -266,6 +269,7 @@ BOOL CFileman::DeleteMain(LPCSTR buf)
 					case 7 : sAfxMsg.LoadString(AFX_STR_ERR_7);break;	// ファイルを削除できない
 					case 8 : sAfxMsg.LoadString(AFX_STR_ERR_8);break;	// ダミーファイルを作成できない
 					case 9 : sAfxMsg.LoadString(AFX_STR_ERR_9);break;	// ダミーファイルを削除できない
+					case 10 : sAfxMsg.LoadString(AFX_STR_ERR_10);break;	// ファイルサイズ2GB制限
 					default : sAfxMsg.LoadString(AFX_STR_ERR_N);break;	// 未確認のエラー
 				}
 				// ****************** 多言語対応 デバックメッセージのロード ******************
@@ -278,7 +282,7 @@ BOOL CFileman::DeleteMain(LPCSTR buf)
 			{	// ログの記録
 				// ****************** 多言語対応 デバックメッセージのロード ******************
 				sAfxMsg.LoadString(AFX_STR_LOG_FAIL);	// 「失敗 (code=%d) : %s\r\n」
-				sTmp.Format((LPCSTR)sAfxMsg, nErrTrace, sOrgFnameLog);
+				sTmp.Format((LPCSTR)sAfxMsg, result_code, sOrgFnameLog);
 				*sLogStr += sTmp;
 			}
 		}
@@ -297,7 +301,7 @@ BOOL CFileman::DeleteMain(LPCSTR buf)
 		// ダイアログ表示のときの、見やすいための待ち時間
 		if(!n_NDispN) ::Sleep(1000/nFiles);
 	}
-	// ダミーファイルを書き込む（ファイル毎モード）
+	// ダミーファイルを書き込む（最後に1回）
 	if(n_Dummy) DummyfileProcess();
 	// ダイアログの消去
 	if(!n_NDispN)
@@ -325,16 +329,14 @@ char *dmyFnameExt[] = {"DLL","DAT","OCX","DRV","CAB","VBX","EXE","CAB","TMP","X3
 // ファイルの削除（完全削除）メイン関数
 // 引数 : SetFullPath() で設定されたファイルを削除する（1ファイル）
 //
-// 戻り値 ： TRUE:成功, FALSE:失敗
+// 戻り値 ： -1:成功, 0～n:失敗（結果コード）
 // ************************************************************
-BOOL CFileman::DeleteOneFile()
+int CFileman::DeleteOneFile(CDlgNorm *dlg)
 {
 	CFile fp;				// ファイル
 	CFileStatus fStatus;	// ファイル情報取得、日付変更に使用
 	char buf[2050];			// 書き込みデータのバッファ
-	long li;				// ファイルポインタとして使用 (2,147,483,647 バイトまで対応可能)
-	int si;					// int ループカウンタ用
-	nErrTrace = 0;
+	int nErrTrace = 0;
 	CString sAfxMsg;		// 多言語対応用 メッセージをリソースより読み込む
 
 	srand( (unsigned)time( NULL ));
@@ -343,11 +345,19 @@ BOOL CFileman::DeleteOneFile()
 
 	try
 	{
+		if(!CFile::GetStatus(GetFullPath(), fStatus))
+			throw 0;	// 強制的に例外処理に移る（エラーの戻り値で関数を抜ける）
+		//****************************
+		// ファイルサイズチェック（VC++ 2003制限、2GBytes以下）
+		//****************************
+		if(fStatus.m_size > (LONG)2147000000 || fStatus.m_size < 0)
+		{
+			nErrTrace = 10;
+			throw 0;	// 強制的に例外処理に移る（エラーの戻り値で関数を抜ける）
+		}
 		//****************************
 		// 属性変更（全属性を解除)
 		//****************************
-		if(!CFile::GetStatus(GetFullPath(), fStatus))
-			return FALSE;	// 失敗
 		nErrTrace = 1;
 		// リードオンリー、システム、隠し属性を消去
 		fStatus.m_attribute = fStatus.m_attribute & (~(0x01 | 0x02 | 0x04));
@@ -360,7 +370,7 @@ BOOL CFileman::DeleteOneFile()
 		// 属性変更（全属性を解除)ここまで
 // データ上書き
 		if(!CFile::GetStatus(GetFullPath(), fStatus))
-			return FALSE;	// 失敗
+			throw 0;	// 強制的に例外処理に移る（エラーの戻り値で関数を抜ける）
 		// 毎回オープンして、クローズするのは、強制書き込みさせるため
 
 		//****************************
@@ -370,21 +380,22 @@ BOOL CFileman::DeleteOneFile()
 		for(int i=0; i<n_nOvwr; i++)
 		{	// i回繰り返して上書きする
 			if(!fp.Open(GetFullPath(), CFile::modeReadWrite|CFile::shareExclusive|CFile::typeBinary, NULL))
-				return FALSE;
+				throw 0;	// 強制的に例外処理に移る（エラーの戻り値で関数を抜ける）
 			nErrTrace = 3;
-/********* 以前のルーチン 2002/08/11 変更
-			for(li=0; li<(fStatus.m_size/2048)+1; li++)
+			// 50MBytesを超えるファイルは、処理バイト数をダイアログに表示
+			if(fStatus.m_size > (long)50*1024*1024)
 			{
-				for(int j=0; j<2048; j++)
-					buf[j] = (unsigned char)rand();
-				fp.Write(buf, 2048);
+				sAfxMsg.Format("%ld/%ldMB", 0, fStatus.m_size/1024/1024);
+				dlg->SetDlgItemText(IDC_SIZE_TICK, sAfxMsg);
+				// ダイアログをアップデート
+				dlg->RedrawWindow();
+				dlg->UpdateWindow();
 			}
-***********/
 			if(!n_rNull)
 			{	// 書き込みバッファをゼロクリア
 				for(int j=0; j<(int)n_BufferSize; j++) buf[j] = 0x0;
 			}
-			for(li=0; li<fStatus.m_size; li+=n_BufferSize)
+			for(long li=0, n_Tick=50*1024*1024; li<fStatus.m_size; li+=n_BufferSize)
 			{
 				if(n_rNull)
 				{	// 書き込みバッファの内容を乱数文字列に
@@ -394,7 +405,19 @@ BOOL CFileman::DeleteOneFile()
 				if(fStatus.m_size - li >= (long)n_BufferSize)
 					fp.Write(buf, n_BufferSize);	// バッファサイズまで書き込み
 				else
-					fp.Write(buf, fStatus.m_size - li);	// 残りのサイズを書き込み
+					fp.Write(buf, (UINT)(fStatus.m_size - li));	// 残りのサイズを書き込み
+
+				// 50MBytesごとに処理バイト数をダイアログに表示
+				if(li>n_Tick)
+				{
+					sAfxMsg.Format("%ld/%ldMB", n_Tick/1024/1024, fStatus.m_size/1024/1024);
+					dlg->SetDlgItemText(IDC_SIZE_TICK, sAfxMsg);
+					// ダイアログをアップデート
+					dlg->RedrawWindow();
+					dlg->UpdateWindow();
+					n_Tick += (long)(50*1024*1024);
+				}
+
 			}
 
 			fp.Flush();
@@ -420,7 +443,7 @@ BOOL CFileman::DeleteOneFile()
 
 		// バッファを強制的にフラッシュさせるため、ダミーデータを書き込む
 		if(!fp.Open(GetFullPath(), CFile::modeReadWrite|CFile::shareExclusive|CFile::typeBinary, NULL))
-			return FALSE;
+			throw 0;	// 強制的に例外処理に移る（エラーの戻り値で関数を抜ける）
 		fp.Write("X", 1);		// 先頭一文字 「X」を書き込む
 		fp.Flush();
 		fp.Close();
@@ -436,7 +459,7 @@ BOOL CFileman::DeleteOneFile()
 		if(n_Overrun)
 		{
 			if(!fp.Open(GetFullPath(), CFile::modeReadWrite|CFile::shareExclusive|CFile::typeBinary, NULL))
-				return FALSE;
+				throw 0;	// 強制的に例外処理に移る（エラーの戻り値で関数を抜ける）
 			fp.Seek(0, CFile::end);		// ファイルの末尾へ
 			if(!n_rNull)
 			{	// 書き込みバッファをゼロクリア
@@ -448,7 +471,7 @@ BOOL CFileman::DeleteOneFile()
 					buf[j] = (unsigned char)rand();
 			}
 			// 書き込み
-			for(li=0; li<n_Overrun; li+=2048)
+			for(long li=0; li<n_Overrun; li+=2048)
 			{
 				if(n_Overrun - li >= 2048L)
 					fp.Write(buf, 2048);	// バッファサイズまで書き込み
@@ -469,7 +492,7 @@ BOOL CFileman::DeleteOneFile()
 		if(n_rZLen)
 		{
 			if(!fp.Open(GetFullPath(), CFile::modeCreate|CFile::modeReadWrite|CFile::shareExclusive|CFile::typeBinary, NULL))
-				return FALSE;
+				throw 0;	// 強制的に例外処理に移る（エラーの戻り値で関数を抜ける）
 			fp.Flush();
 			fp.Close();
 			// ****************** 多言語対応 デバックメッセージのロードと表示 ******************
@@ -491,6 +514,7 @@ BOOL CFileman::DeleteOneFile()
 				WIN32_FIND_DATA pFind;
 				HANDLE hFind;
 				strcpy(sNewLFName, GetLFName());
+				int si;
 				for(si=0; (unsigned char)sNewLFName[si]; si++)
 					if(sNewLFName[si] == '.') break;
 				if(si<7)
@@ -562,7 +586,7 @@ BOOL CFileman::DeleteOneFile()
 		if(n_Date)
 		{
 			if(!CFile::GetStatus(GetFullPath(), fStatus))
-				return FALSE;	// 失敗
+				throw 0;	// 強制的に例外処理に移る（エラーの戻り値で関数を抜ける）
 			CTime dummyTime(1998,1,1,0,0,2);
 			fStatus.m_ctime = fStatus.m_atime = fStatus.m_mtime = dummyTime;
 			CFile::SetStatus(GetFullPath(), fStatus); // 失敗は例外がスローされる
@@ -591,10 +615,15 @@ BOOL CFileman::DeleteOneFile()
 		{
 			::MessageBox(NULL, "File I/O Error (Hardware Error)", "Error", MB_OK|MB_ICONSTOP|MB_TOPMOST);
 		}
-		fp.Close();		// 一応クローズする Ver1.36
-		return FALSE;
+		if (fp.m_hFile != CFile::hFileNull){ fp.Close(); }		// ファイルが開いていれば、閉じる
+		return(nErrTrace);
 	}
-	return TRUE;
+	catch(...)
+	{	// その他のエラーすべてを受け付ける
+		if (fp.m_hFile != CFile::hFileNull){ fp.Close(); }		// ファイルが開いていれば、閉じる
+		return(nErrTrace);
+	}
+	return(-1);
 }
 
 // ************************************************************
@@ -686,7 +715,7 @@ BOOL CFileman::DummyfileProcess()
 		// ****************** 多言語対応 デバックメッセージのロードと表示 ******************
 		sAfxMsg.LoadString(AFX_STR_DBG_MKDUMMY);	// 「ダミーファイルを作成」
 		ConfirmMsgbox((LPCSTR)sAfxMsg);
-		nErrTrace = 9;
+
 		// ダミーファイル消去
 		for(i=0; i<n_nFiles; i++)
 		{
@@ -697,7 +726,7 @@ BOOL CFileman::DummyfileProcess()
 		// ****************** 多言語対応 デバックメッセージのロードと表示 ******************
 		sAfxMsg.LoadString(AFX_STR_DBG_DLDUMMY);	// 「ダミーファイルを消去」
 		ConfirmMsgbox((LPCSTR)sAfxMsg);
-		nErrTrace = 10;
+
 		// 撹乱ファイルを多数作成する ここまで
 		if(n_Log)
 		{	// ログの記録 （成功時）
@@ -787,7 +816,6 @@ BOOL CFileman::AntiCacheTempWrite(const char *fname)
 		{	// 2回繰り返して上書きする
 			if(!fp.Open(f_path_buffer, CFile::modeCreate|CFile::modeWrite|CFile::shareExclusive|CFile::typeBinary, NULL))
 				return FALSE;
-			nErrTrace = 3;
 			for(li=0; li<tempsize; li+=2048)
 			{
 				// 書き込みバッファの内容を乱数文字列に

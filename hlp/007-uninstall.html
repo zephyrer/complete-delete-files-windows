@@ -1,47 +1,36 @@
-<html>
-
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
-<meta http-equiv="Content-Language" content="ja">
-<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
-<meta name="ProgId" content="FrontPage.Editor.Document">
-<title>�A���C���X�g�[��</title>
-<link rel="stylesheet" type="text/css" href="main.css">
-</head>
-
-<body>
-
-<img border="0" src="pics/bg-blue-shade.png" width="100%" height="40">
-<div style="position:absolute; top:0px; left:0px;">
-	<table class="pagehead" border="0" width="95%" cellspacing="0" cellpadding="0" height="40">
-		<tr>
-			<td valign="middle" width="35"><img border="0" src="pics/ico-trashcan95-1.png"
-				align="middle" width="32" height="32"></td>
-			<td valign="middle">&nbsp;<span class="pagemain">�A���C���X�g�[��</span></td>
-			<td valign="middle" width="80">
-				<p align="center"><a href="index.html"><img border="0" src="pics/ico-home.png"
-				width="61" height="18"></a></p>
-			</td>
-		</tr>
-	</table>
-</div>
-<span class="pagemain">
-<h1>�A���C���X�g�[���̕��@</h1>
-<h2>����</h2>
-<p class="doc-indent20">�X�^�[�g���j���[�܂��̓R���g���[���p�l���́u�A�v���P�[�V�����̒ǉ��ƍ폜�v�ɍ��ꂽ�u���S�폜�A���C���X�g�[���v���j���[����A���C���X�g�[���ł��܂��B</p>
-<p class="doc-indent20"><img border="0" src="pics/dlg-uninstall.png" width="312" height="180"></p>
-<p class="doc-indent20">�A���C���X�g�[�������I����A�v���O�����{�̂���уw���v�t�@�C�����폜���Ă��������B 
-�i�t�@�C���{�͎̂����I�ɂ͍폜����܂���j</p>
-<h2>�蓮</h2>
-<p class="doc-indent20">���̃��W�X�g�����폜���܂�<br>
-HKCU\Software\hi soft\compdel �L�[����єz���ɂ���L�[�A�f�[�^�S��<br>
-HKCU\Software\hi_soft �̒��ɂ��� compdel �Ƃ����X�g�����O</p>
-<p class="doc-indent20">�A�v���P�[�V�����̒ǉ��ƍ폜�ɓo�^�����ꍇ</p>
-<p class="doc-indent20">HKCU\Software\Microsoft\Windows\CurrentVersion\Uninstall �̒��ɂ��� 
-compdel �Ƃ����L�[ �iWindows95�n���ł� HKLM\... ������j</p>
-<p class="doc-indent20">�f�X�N�g�b�v����уX�^�[�g���j���[�ɓo�^���ꂽ�V���[�g�J�b�g���폜</p>
-</span>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" lang="ja" xml:lang="ja" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="ja" http-equiv="Content-Language" />
+    <title>アンインストール</title>
+    <link href="main.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="pagehead">
+      <table class="pagetitle">
+        <tbody>
+          <tr>
+            <td><img alt="" height="32" src="pics/ico-trashcan95-1.png" width="32" /></td>
+            <td width="100%">アンインストール</td>
+            <td align="right"><a href="index.html" style="float: right;"><img alt="" height="18" src="pics/ico-home.png" width="61" /></a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pagemain">
+		<h1>アンインストールの方法</h1>
+		<h2>自動</h2>
+		<p>スタートメニューまたはコントロールパネルの「アプリケーションの追加と削除」に作られた「完全削除アンインストール」メニューからアンインストールできます。</p>
+		<p><img alt="dlg-uninstall." height="180" src="pics/dlg-uninstall.png" width="312" /></p>
+		<p>アンインストール処理終了後、プログラム本体およびヘルプファイルを削除してください。 （ファイル本体は自動的には削除されません）</p>
+		<h2>手動</h2>
+		<p>次のレジストリを削除します<br /> HKCU\Software\hi soft\compdel キーおよび配下にあるキー、データ全て<br /> HKCU\Software\hi_soft の中にある compdel というストリング</p>
+		<p>アプリケーションの追加と削除に登録した場合</p>
+		<p>HKCU\Software\Microsoft\Windows\CurrentVersion\Uninstall の中にある compdel というキー （Windows95系統では HKLM\... を見る）</p>
+		<p>デスクトップおよびスタートメニューに登録されたショートカットを削除</p>
+		<h2>アンインストール ショートカット メニューの再作成</h2>
+		<p>スタートメニューに登録されていたアンインストール ショートカット メニューを、<a href="005-5-config.html">機能設定 ： 詳細設定３</a>で再作成することが出来ます。</p>
+	</div>
 </body>
-
 </html>

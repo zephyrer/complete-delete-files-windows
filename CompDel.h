@@ -32,8 +32,8 @@ public:
 	//{{AFX_VIRTUAL(CCompDelApp)
 	public:
 	virtual BOOL InitInstance();
-	virtual void WinHelp(DWORD dwData, UINT nCmd = HELP_CONTEXT);
-	//}}AFX_VIRTUAL
+//	virtual void WinHelp(DWORD dwData, UINT nCmd = HELP_CONTEXT);
+//}}AFX_VIRTUAL
 
 // インプリメンテーション
 
