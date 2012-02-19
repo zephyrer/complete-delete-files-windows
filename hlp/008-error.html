@@ -1,0 +1,62 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Language" content="ja">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>エラーと対処方法</title>
+<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+
+<img border="0" src="pics/bg-blue-shade.png" width="100%" height="40">
+<div style="position:absolute; top:0px; left:0px;">
+	<table class="pagehead" border="0" width="95%" cellspacing="0" cellpadding="0" height="40">
+		<tr>
+			<td valign="middle" width="35"><img border="0" src="pics/ico-trashcan95-1.png"
+				align="middle" width="32" height="32"></td>
+			<td valign="middle">&nbsp;<span class="pagemain">エラーと対処方法</span></td>
+			<td valign="middle" width="80">
+				<p align="center"><a href="index.html"><img border="0" src="pics/ico-home.png"
+				width="61" height="18"></a></p>
+			</td>
+		</tr>
+	</table>
+</div>
+<span class="pagemain">
+<p class="doc-indent20">エラーが発生してファイルの完全削除がうまくいかなかった場合、次のようなダイアログを表示して警告を行います。</p>
+<p class="doc-indent20"><img border="0" src="pics/dlg-error1.png" width="312" height="239"></p>
+<h1>代表的なエラーと、その原因</h1>
+<h2>フォルダやシステム・ファイルを削除しようとしたとき</h2>
+<p class="doc-indent20">｢このファイルは削除対象外です｣</p>
+<p class="doc-indent20">フォルダや特殊ファイルを消去しようとしました。これらは安全のため削除できないようにしています。<br>
+当該ファイルに対する削除のプロセスは始まっていません。</p>
+<h2>削除処理中の次のようなエラー表示</h2>
+<p class="doc-indent20">「ファイル属性が得られない」<br>
+｢ファイル属性を変更できない｣<br>
+｢ファイルを開けない｣<br>
+｢ファイルに書き込めない｣<br>
+｢ファイルの長さを切り捨てられない｣<br>
+｢ファイル名が変えられない｣<br>
+｢ファイルの日付が変更できない｣<br>
+｢ファイルを削除できない｣</p>
+<p class="doc-indent20">これらは、削除対象ファイルが他のプログラムによって開かれている場合や、ファイルのフル･パスが長すぎる(階層の深すぎるフォルダに入っている)場合に起きます。<br>
+原因不明の場合は、｢機能設定｣の｢表示｣設定で、｢消去段階ごとに一旦停止し、ダイアログを表示する｣をＯＮにして原因を発見して下さい。</p>
+<h2>ディスク容量が少ない場合に考えられるエラー表示</h2>
+<p class="doc-indent20">｢ダミーファイルを作成できない｣<br>
+｢ダミーファイルを削除できない｣</p>
+<p class="doc-indent20">これらは、フロッピー･ディスクなどで、残り容量の少なくなったディスクで起こることがあります。ダミーファイルを作成するだけのフォルダ領域の容量がありませんので、｢機能設定｣の｢その他の設定｣で、ダミー･ファイルを作成させないようにしてください。</p>
+<h2>ドラッグ＆ドロップで一定数以上のファイルを削除しようとした場合のエラー表示</h2>
+<p class="doc-indent20"><img border="0" src="pics/dlg-error2.png" width="572" height="147"></p>
+<p class="doc-indent20">Windowsのドラッグ＆ドロップで落とすことのできるファイル数を越えています。指定するファイル数を減らして下さい。<br>
+このエラー表示は、エクスプローラが行っているもので、２５５文字を越えた引数をわたせない場合などに出ます。<br>
+（この問題に関しては、Explorer側の制限ですので、解決不可能です）</p>
+<p class="doc-indent20">なお、Windows Vista 
+では、一定数以上のファイルをドラッグ＆ドロップすることは出来ません。（完全削除プログラムには何も引き渡されない）</p>
+</span>
+
+</body>
+
+</html>

@@ -68,6 +68,12 @@ END
 // remains consistent on all systems.
 IDR_MAINFRAME           ICON    DISCARDABLE     "res\\CompDel.ico"
 IDI_ICO_INST            ICON    DISCARDABLE     "res\\ico_inst.ico"
+IDI_ICO_VI1             ICON    DISCARDABLE     "res\\trashcanvista-2.ico"
+IDI_ICO_2K2             ICON    DISCARDABLE     "res\\trashcan2000-2.ico"
+IDI_ICO_952             ICON    DISCARDABLE     "res\\trashcan95-1.ico"
+IDI_ICO_951             ICON    DISCARDABLE     "res\\trashcan95-2.ico"
+IDI_ICO_VI2             ICON    DISCARDABLE     "res\\trashcanvista-1.ico"
+IDI_ICO_2K1             ICON    DISCARDABLE     "res\\trashcan2000-1.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -93,7 +99,7 @@ CAPTION "CompleteDelete - 完全削除 - バージョン情報"
 FONT 9, "ＭＳ Ｐゴシック"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,10,10,20,20
-    LTEXT           "CompleteDelete (完全削除) for Windows （Multi Language）\n\n\tVersion 1.36c (Freeware / フリーウエア）\n\t(C) 1999-2005 INOUE. Hirokazu\n\thttp://www.ne.jp/asahi/oasis/inoue-h/\n\thttp://inoue-h.connect.to/",
+    LTEXT           "CompleteDelete (完全削除) for Windows （Multi Language）\n\n\tVersion 1.37 (Free Software / フリーソフトウエア）\n\t(C) 1999-2007 INOUE. Hirokazu\n\thttp://oasis.halfmoon.jp/\n\thttp://www.vector.co.jp/vpack/browse/person/an001911.html",
                     IDC_STATIC,44,8,211,57
     DEFPUSHBUTTON   "OK",IDOK,215,70,50,14
 END
@@ -209,7 +215,7 @@ BEGIN
                     IDC_INST_MENU,"Button",BS_AUTOCHECKBOX,15,80,240,15
     GROUPBOX        "アンインストール方法の設定  (Uninstall shortcut on ...?)",
                     IDC_STATIC,5,100,250,45
-    CONTROL         "アプリケーションの追加と削除に登録する (from &Control Panel)",
+    CONTROL         "プログラムの追加と削除に登録する (from &Control Panel)",
                     IDC_RADIO_UNIN,"Button",BS_AUTORADIOBUTTON | WS_GROUP,15,
                     110,215,15
     CONTROL         "スタートメニューに登録する （推奨） (from Start Men&u)",
@@ -306,8 +312,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,3,6,2
- PRODUCTVERSION 1,3,6,2
+ FILEVERSION 1,3,7,0
+ PRODUCTVERSION 1,3,7,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x21L
@@ -325,14 +331,14 @@ BEGIN
             VALUE "Comments", "This Program is Free Ware\0"
             VALUE "CompanyName", "hi soft\0"
             VALUE "FileDescription", "CompleteDelete for Windows  (Multi Language Pack)\0"
-            VALUE "FileVersion", "1.36c\0"
-            VALUE "InternalName", "CompleteDelete for Windows 95/98/Me/NT/2000/XP\0"
-            VALUE "LegalCopyright", "Copyright (C) 1999-2005 INOUE. Hirokazu\0"
+            VALUE "FileVersion", "1.37\0"
+            VALUE "InternalName", "CompleteDelete for Windows 95/98/Me/NT/2000/XP/Vista\0"
+            VALUE "LegalCopyright", "Copyright (C) 1999-2007 INOUE. Hirokazu\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "CompDel.EXE\0"
             VALUE "PrivateBuild", "\0"
-            VALUE "ProductName", "完全削除（CompleteDelete） for Windows 95/98/NT/2000/XP Japanese\0"
-            VALUE "ProductVersion", "version 1.36c\0"
+            VALUE "ProductName", "完全削除（CompleteDelete） for Windows 95/98/NT/2000/XP/Vista\0"
+            VALUE "ProductVersion", "version 1.37\0"
             VALUE "SpecialBuild", "Made with Microsoft Visual C++ 6.0\0"
         END
     END
@@ -473,6 +479,8 @@ BEGIN
     AFX_STR_DBG_OVERRUN     "ファイルのオーバーラン書き込み終了"
     AFX_STR_DBG_ANTICACHE   "空き領域追加削除用テンポラリファイルを作成"
     AFX_STR_ERR_ANTICACHE   "空き領域追加削除用テンポラリファイルを作成できません"
+    AFX_STR_ERR_HELP        "ヘルプファイルの表示ができません\r\n ファイル: %s\r\n コンテキストID: %04X"
+    AFX_STR_MES_CANCEL      "削除処理がキャンセルされました\r\n"
 END
 
 #endif    // 日本語 resources
@@ -499,7 +507,7 @@ CAPTION "CompleteDelete - Version Information"
 FONT 9, "Arial"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,10,10,20,20
-    LTEXT           "CompleteDelete for Windows (Multi Language Version)\n\n\tVersion 1.36c (Freeware)\n\t(C) 1999-2005 INOUE. Hirokazu\n\thttp://www.ne.jp/asahi/oasis/inoue-h/\n\thttp://inoue-h.connect.to/",
+    LTEXT           "CompleteDelete for Windows (Multi Language Version)\n\n\tVersion 1.37 (Free Software)\n\t(C) 1999-2007 INOUE. Hirokazu\n\thttp://oasis.halfmoon.jp/\n\thttp://www.vector.co.jp/vpack/browse/person/an001911.html",
                     IDC_STATIC,44,8,211,57
     DEFPUSHBUTTON   "OK",IDOK,215,70,50,14
 END
@@ -543,8 +551,9 @@ BEGIN
                     BS_AUTOCHECKBOX,15,80,240,15
     GROUPBOX        "Uninstall shortcut place selection",IDC_STATIC,5,100,
                     250,45
-    CONTROL         """Add and Remoe"" in &Control Panel",IDC_RADIO_UNIN,
-                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,15,110,215,15
+    CONTROL         """Add and Remove Program"" in &Control Panel",
+                    IDC_RADIO_UNIN,"Button",BS_AUTORADIOBUTTON | WS_GROUP,15,
+                    110,215,15
     CONTROL         "Make shortcut in Start Men&u",IDC_RADIO_UNIN2,"Button",
                     BS_AUTORADIOBUTTON,15,125,215,15
     DEFPUSHBUTTON   "OK(&K)",IDOK,95,150,50,14
@@ -835,6 +844,8 @@ BEGIN
     AFX_STR_DBG_OVERRUN     "Overrun write complete"
     AFX_STR_DBG_ANTICACHE   "Make Additional Wipe temporary file"
     AFX_STR_ERR_ANTICACHE   "Fail to make Anticache temporary file"
+    AFX_STR_ERR_HELP        "HTML Help file load error\r\n file: %s\r\n ID:%04X"
+    AFX_STR_MES_CANCEL      "Delete task is cencelled by user\r\n"
 END
 
 #endif    // 英語 (ｱﾒﾘｶ) resources

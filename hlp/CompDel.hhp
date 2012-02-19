@@ -1,0 +1,48 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=CompDel.chm
+Contents file=Table of Contents.hhc
+Default Window=WndMain
+Default topic=index.html
+Display compile progress=No
+Language=0x411 日本語
+
+[WINDOWS]
+WndMain="完全削除（CompleteDelete） ヘルプファイル","Table of Contents.hhc",,"index.html","index.html",,,,,0x2120,170,0x300e,[5,5,795,580],,,,,,,0
+
+
+[FILES]
+index.html
+001-intro.html
+004-install.html
+003-ntfs.html
+002-delete.html
+010-copyright.html
+005-2-config.html
+005-3-config.html
+005-4-config.html
+005-5-config.html
+005-config.html
+006-howto.html
+007-uninstall.html
+008-error.html
+009-other.html
+005-1-config.html
+
+[ALIAS]
+IDD_COMPDEL_DIALOG=index.html
+IDD_DLG_ABOUT=index.html
+IDD_DLG_CONFF=index.html
+IDD_DLG_HELPDOC=index.html
+IDD_DLG_INSTALL=004-install.html
+IDD_DLG_PROPDEL=005-1-config.html
+IDD_DLG_PROPDEL2=005-3-config.html
+IDD_DLG_PROPDEL3=005-4-config.html
+IDD_DLG_PROPDISP=005-2-config.html
+IDD_DLG_PROPOTHER=005-5-config.html
+
+[MAP]
+#include ..\resource.h
+
+[INFOTYPES]
+

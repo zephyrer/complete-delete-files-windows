@@ -12,6 +12,9 @@
 
 #include "InstFunc.h"
 
+#include <HtmlHelp.h>
+#include <stdlib.h>
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -95,6 +98,7 @@ BOOL CCompDelApp::ProcessCommandline()
 		dlgInst.m_DESKTOP = TRUE;
 		dlgInst.m_MENU = FALSE;
 		dlgInst.m_UNIN = 1;
+
 		if(dlgInst.DoModal() == IDOK)
 		{
 			::MkHkcuInstReg();		// インストールフラグの書き込み
@@ -321,4 +325,59 @@ BOOL CCompDelApp::QuickDeleteExec(CString sFileName)
 		dlgHelp.DoModal();
 	}
 	return TRUE;
+}
+
+// ************************************************************
+// ヘルプ表示関数（仮想関数をオーバーライド）
+// HTMLヘルプに対応させるために、アプリケーションの最上位クラスでオーバーライド
+// 
+// 引数 dwData : 下位8ビットに、resource.hで定義されたダイアログのIDが入る
+//      nCmd   : HELP_CONTEXT=1
+// ************************************************************
+void CCompDelApp::WinHelp(DWORD dwData, UINT nCmd) 
+{
+	// TODO: この位置に固有の処理を追加するか、または基本クラスを呼び出してください
+	
+//	既存の WinHelp 関数を無効にする
+//	CWinApp::WinHelp(dwData, nCmd);
+
+
+	// HELP_CONTEXT 以外は何もしない
+	if(nCmd != HELP_CONTEXT) return;
+
+	// HTMLヘルプのhWndハンドラ （失敗時はNULL）
+	HWND hWnd_Help;
+	// ヘルプファイルへの絶対パスを作るための、パス分解用一時文字列
+	char szChmPath[MAX_PATH], szAppPath[MAX_PATH];
+	char szDrive[_MAX_DRIVE];
+	char szDir[_MAX_DIR];
+	char szFname[_MAX_FNAME];
+	char szExt[_MAX_EXT];
+
+	CString sTmp, sAfxMsg;
+
+	// アプリケーション自身のパスを取得し、拡張子を chm に書き換える
+	// (HtmlHelp関数はカレントフォルダのヘルプファイルを取得しようとするため)
+	if(!::GetModuleFileName(NULL, szAppPath, MAX_PATH)) return;
+	::_splitpath(szAppPath, szDrive, szDir, szFname, szExt);
+	::_makepath(szChmPath, szDrive, szDir,szFname, ".chm");
+
+	// ヘルプの表示
+	if(this->m_pMainWnd == NULL)
+	{	// メインウインドウのハンドラが定義されていないとき
+		hWnd_Help = ::HtmlHelp(NULL, szChmPath, HH_HELP_CONTEXT, LOWORD(dwData));
+	}
+	else
+	{
+//		hWnd_Help = ::HtmlHelp(this->m_pMainWnd->m_hWnd, szChmPath, HH_DISPLAY_TOPIC, NULL);
+		hWnd_Help = ::HtmlHelp(this->m_pMainWnd->m_hWnd, szChmPath, HH_HELP_CONTEXT, LOWORD(dwData));
+	}
+
+	if(hWnd_Help == NULL)
+	{	// ヘルプファイルの起動に失敗した場合
+		sAfxMsg.LoadString(AFX_STR_ERR_HELP);	// 「ヘルプファイルの表示ができません\r\n ファイル: %s\r\n コンテキストID: %04X」
+
+		sTmp.Format(sAfxMsg, szChmPath, LOWORD(dwData));
+		this->m_pMainWnd->MessageBox(sTmp, "Help File Error", MB_ICONWARNING);
+	}
 }

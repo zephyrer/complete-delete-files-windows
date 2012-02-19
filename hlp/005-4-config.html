@@ -1,0 +1,54 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Language" content="ja">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>機能設定 ： 詳細設定２</title>
+<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+
+<img border="0" src="pics/bg-blue-shade.png" width="100%" height="40">
+<div style="position:absolute; top:0px; left:0px;">
+	<table class="pagehead" border="0" width="95%" cellspacing="0" cellpadding="0" height="40">
+		<tr>
+			<td valign="middle" width="35"><img border="0" src="pics/ico-trashcan95-1.png"
+				align="middle" width="32" height="32"></td>
+			<td valign="middle">&nbsp;機能設定 ： 詳細設定２</td>
+			<td valign="middle" width="80">
+				<p align="center"><a href="index.html"><img border="0" src="pics/ico-home.png"
+				width="61" height="18"></a></p>
+			</td>
+		</tr>
+	</table>
+</div>
+<span class="pagemain">
+<p class="doc-indent20"><img border="0" src="pics/dlg-conf4.png" width="474" height="450"></p>
+<h2>空き領域の追加削除</h2>
+<p class="doc-indent20">完全削除対象のファイルに対する処理とは別に、ダミーファイルを作ることにより現在ファイルに割り当てられていないディスクの空き領域の撹乱を行います。<br>
+このオプションを利用する理由は２つあります。<br>
+① 
+ネットワーク上のディスクに存在するファイルを完全削除したい場合など、ディスクキャッシュを無効化するだけの巨大なダミーファイルを作りたい場合。<br>
+② 
+自マシンの遅延書き込みキャッシュなどを無効化したいために、ディスクキャッシュを無効化したい場合。</p>
+<p class="doc-indent20"><img border="0" src="pics/ico-redsq.gif" width="12" height="12">通常はOFFで使用</p>
+<h2>ダミーファイル削除痕跡による復活妨害</h2>
+<p class="doc-indent20">フォルダに多数のダミーファイルを作成し、消去することにより、ファイル情報（ファイル名、サイズ、保存場所情報など）の残骸が完全に上書きされて使用不可能になることをねらったものです。</p>
+<h2>消去後、撹乱用のダミーファイルを作成し消去する</h2>
+<p class="doc-indent20">標準で４０個のダミーファイルを作成し、消去します。<br>
+<img border="0" src="pics/ico-redsq.gif" width="12" height="12">通常はＯＦＦで使用</p>
+<h2>同じフォルダのときは、最後の消去時にのみダミーファイルを作成する</h2>
+<p class="doc-indent20">低速なメディア（フロッピーディスクなどの取り外しできるものなど）を使用しているときにＯＮにしてください。処理速度が向上します。<br>
+<img border="0" src="pics/ico-redsq.gif" width="12" height="12">「ダミーファイル削除痕跡による復活妨害」をＯＮにする場合は、通常はＯＮで使用</p>
+<h2>ダミーファイルの数</h2>
+<p class="doc-indent20">作成するダミーファイルの数を入力します。そのフォルダに残っている削除痕跡ファイル数の２倍以上の値を指定すると、効果が上がります。なお、ＬＦＮファイル名は１ファイルで最低２エントリ使うため、「２倍以上の値」としています。<br>
+<img border="0" src="pics/ico-redsq.gif" width="12" height="12">通常は４０くらいで十分だと思われます</p>
+<p>　</p>
+</span>
+
+</body>
+
+</html>

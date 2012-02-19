@@ -1,0 +1,51 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Language" content="ja">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>ファイルの削除と“完全”削除の違い</title>
+<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+
+<img border="0" src="pics/bg-blue-shade.png" width="100%" height="40">
+<div style="position:absolute; top:0px; left:0px;">
+	<table class="pagehead" border="0" width="95%" cellspacing="0" cellpadding="0" height="40">
+		<tr>
+			<td valign="middle" width="35"><img border="0" src="pics/ico-trashcan95-1.png"
+				align="middle" width="32" height="32"></td>
+			<td valign="middle">&nbsp;ファイルの削除と“完全”削除の違い</td>
+			<td valign="middle" width="80">
+				<p align="center"><a href="index.html"><img border="0" src="pics/ico-home.png"
+				width="61" height="18"></a></p>
+			</td>
+		</tr>
+	</table>
+</div>
+<span class="pagemain">
+<h1>FATファイルシステム</h1>
+<p class="doc-indent20">MS-DOSやWindows95/98で採用されているFATファイルシステムの構造は次のようになっています。（なお、Windows95でのVFAT等の拡張の説明は省略しています）</p>
+<p class="doc-indent20"><img border="0" src="pics/fig-fat-list.png" width="577" height="165"></p>
+<p class="doc-indent20">フォルダ（DOSではディレクトリという）は、ディレクトリ属性の付いた特別なファイルで、上の図のような固定長リストによりファイルを管理しています。<br>
+一つのファイルを管理するために、ファイル名（DOSの8.3形式）、属性（読取専用、隠し、システム、ディレクトリ、ディスクラベルなど）、変更時間、変更日付、アロケーション･テーブルへのポインタ、ファイル･サイズ（バイト単位）、その他のデータを保持しています。</p>
+<h1>ファイル削除と復活</h1>
+<p class="doc-indent20">ファイルを消去すると、ファイル名の先頭に「無効」を示す１バイト(E5H)が書き込まれ、このファイルは消去されたと（オペレーティング･システムでは）認識します。同時に、ファイルのデータ領域を管理しているアロケーション・テーブルも初期化されます。（ゼロが代入される）</p>
+<p class="doc-indent20">この「無効」を宣告された削除済みファイルデータは、ファイル名の先頭１文字だけが欠落しているだけなので、削除されたファイルであっても先頭１文字を適当に決めてやれば復活できます。<br>
+また、アロケーション・テーブルの先頭は、この「無効」ファイル・リストに残っていますので、連続したファイル領域であれば復活できます。</p>
+<p class="doc-indent20">実際にファイルＦＩＬＥ１．ＴＸＴを復活する方法は…<br>
+削除済みのファイルより？ＩＬＥ１．ＴＸＴの先頭1文字をＦと変更します。<br>
+次にアロケーション・テーブルの先頭へのポインタが「００２」のときは、００２、００３、００４が一つながりのファイルであったと推測して、削除済みの０００を００３、００４、ＦＦＦに変更します。(なお、ファイルサイズがこの3つのクラスタより大きい場合は、空いているクラスタを探してリストをつなげてゆきます。)</p>
+<p class="doc-indent20"><img border="0" src="pics/fig-fat-links.png" width="577" height="165"></p>
+<h1>完全削除とは</h1>
+<p class="doc-indent20">完全削除は、次の2通りの方法で行われています。</p>
+<p class="doc-indent20">①ファイル・リストを意味の無いものに書き換える。（ファイル・サイズ、アロケーション・テーブルへのポインタを意味の無いデータとする処理）<br>
+②ファイル・データ（実際のファイルの内容で、表計算やワープロ文書）そのものを意味の無いデータに書き換えてから消去する。</p>
+<p class="doc-indent20">①により、どんなファイルが削除されたかわかりにくくし、仮に、アロケーション・テーブルへのポインタを他のファイルから推測したとしても、②の処理により意味の無いデータした取り出せないということになります。</p>
+</span>
+
+</body>
+
+</html>

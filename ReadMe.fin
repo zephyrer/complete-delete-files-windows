@@ -5,14 +5,14 @@
 
 .ce 2
 完全削除 (CompleteDelete)
-version 1.36c for Windows
+version 1.37 for Windows
 
 .ri 4
-http://www.ne.jp/asahi/oasis/inoue-h/
-http://inoue-h.connect.to/
+http://oasis.halfmoon.jp/
+http://www.vector.co.jp/vpack/browse/person/an001911.html
 
 .ri 1
-Copyright (C) 1999-2005 井上 博計
+Copyright (C) 1999-2007 井上 博計
 
 .hl 1
 .sp 12
@@ -47,7 +47,7 @@ Copyright (C) 1999-2005 井上 博計
 .sp 3
 １．動作環境
 .in 6
-Windows 95/98/Me/NT/2000/XP
+Windows 95/98/Me/NT/2000/XP/Vista
 FATファイル・システム
 NTFS (制限事項あり）
 特別なファイル保護機能を組み込んでいないこと
@@ -92,5 +92,5 @@ CompDel.exeを初めて実行すると、自動的にインストーラが起動します。
 
 
 .ri 1
-2005 / 06 / 22
+2007 / 01 / 21
 .hl 1

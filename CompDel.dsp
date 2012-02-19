@@ -40,6 +40,7 @@ RSC=rc.exe
 # PROP Use_Debug_Libraries 0
 # PROP Output_Dir "Release"
 # PROP Intermediate_Dir "Release"
+# PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
 # ADD CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Yu"stdafx.h" /FD /c
@@ -53,7 +54,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /machine:I386
-# ADD LINK32 /nologo /subsystem:windows /machine:I386
+# ADD LINK32 htmlhelp.lib /nologo /subsystem:windows /machine:I386
 
 !ELSEIF  "$(CFG)" == "CompDel - Win32 Debug"
 
@@ -80,7 +81,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 /nologo /debug /machine:I386 /pdbtype:sept /subsystem:windows,4.0
+# ADD LINK32 htmlhelp.lib /nologo /debug /machine:I386 /pdbtype:sept /subsystem:windows,4.0
 # SUBTRACT LINK32 /pdb:none
 
 !ENDIF 
@@ -99,55 +100,6 @@ SOURCE=.\CheckWinVer.cpp
 # Begin Source File
 
 SOURCE=.\CompDel.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\hlp\CompDel.hpj
-
-!IF  "$(CFG)" == "CompDel - Win32 Release"
-
-# PROP Ignore_Default_Tool 1
-# Begin Custom Build - ÕŸÃﬂ Ãß≤ŸÇçÏê¨ÇµÇƒÇ¢Ç‹Ç∑...
-OutDir=.\Release
-InputPath=.\hlp\CompDel.hpj
-InputName=CompDel
-
-"$(OutDir)\$(InputName).hlp" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	start /wait hcw /C /E /M "hlp\$(InputName).hpj" 
-	if errorlevel 1 goto :Error 
-	if not exist "hlp\$(InputName).hlp" goto :Error 
-	copy "hlp\$(InputName).hlp" $(OutDir) 
-	goto :done 
-	:Error 
-	echo hlp\$(InputName).hpj(1) : error: 
-	type "hlp\$(InputName).log" 
-	:done 
-	
-# End Custom Build
-
-!ELSEIF  "$(CFG)" == "CompDel - Win32 Debug"
-
-# PROP Ignore_Default_Tool 1
-# Begin Custom Build - ÕŸÃﬂ Ãß≤ŸÇçÏê¨ÇµÇƒÇ¢Ç‹Ç∑...
-OutDir=.\Debug
-InputPath=.\hlp\CompDel.hpj
-InputName=CompDel
-
-"$(OutDir)\$(InputName).hlp" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	start /wait hcw /C /E /M "hlp\$(InputName).hpj" 
-	if errorlevel 1 goto :Error 
-	if not exist "hlp\$(InputName).hlp" goto :Error 
-	copy "hlp\$(InputName).hlp" $(OutDir) 
-	goto :done 
-	:Error 
-	echo hlp\$(InputName).hpj(1) : error: 
-	type "hlp\$(InputName).log" 
-	:done 
-	
-# End Custom Build
-
-!ENDIF 
-
 # End Source File
 # Begin Source File
 
@@ -316,6 +268,42 @@ SOURCE=.\res\CompDel.rc2
 # Begin Source File
 
 SOURCE=.\res\ico_inst.ico
+# End Source File
+# Begin Source File
+
+SOURCE=".\res\trashcan2000-1.ico"
+# End Source File
+# Begin Source File
+
+SOURCE=".\res\trashcan2000-2.ico"
+# End Source File
+# Begin Source File
+
+SOURCE=".\res\trashcan2000-compdel.ico"
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\trashcan2000.ico
+# End Source File
+# Begin Source File
+
+SOURCE=".\res\trashcan95-1.ico"
+# End Source File
+# Begin Source File
+
+SOURCE=".\res\trashcan95-2.ico"
+# End Source File
+# Begin Source File
+
+SOURCE=".\res\trashcanvista-1.ico"
+# End Source File
+# Begin Source File
+
+SOURCE=".\res\trashcanvista-2.ico"
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\trashcanvista.ico
 # End Source File
 # End Group
 # Begin Group "Help Files"

@@ -1,0 +1,47 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Language" content="ja">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>機能設定 ： 詳細設定１</title>
+<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+
+<img border="0" src="pics/bg-blue-shade.png" width="100%" height="40">
+<div style="position:absolute; top:0px; left:0px;">
+	<table class="pagehead" border="0" width="95%" cellspacing="0" cellpadding="0" height="40">
+		<tr>
+			<td valign="middle" width="35"><img border="0" src="pics/ico-trashcan95-1.png"
+				align="middle" width="32" height="32"></td>
+			<td valign="middle">&nbsp;機能設定 ： 詳細設定１</td>
+			<td valign="middle" width="80">
+				<p align="center"><a href="index.html"><img border="0" src="pics/ico-home.png"
+				width="61" height="18"></a></p>
+			</td>
+		</tr>
+	</table>
+</div>
+<span class="pagemain">
+<p class="doc-indent20"><img border="0" src="pics/dlg-conf3.png" width="474" height="450"></p>
+<h2>書き込みバッファ</h2>
+<p class="doc-indent20">１回の書込み操作でディスクに書き込む（システムメモリ上の）バッファの大きさです。<br>
+通常の利用ではこの値を操作する必要性はありません。（小さな値にすると、ファイル全体の書き込みに必要なＡＰＩコールが多くなり、プログラムの速度が低下します。）<br>
+<img border="0" src="pics/ico-redsq.gif" width="12" height="12">通常は2048バイト</p>
+<h2>オーバーラン書き込みサイズ</h2>
+<p class="doc-indent20">ファイルに対する完全削除（上書き）処理が終了した後に、ファイルの大きさを超えて書き込みを行います。これによりデータ領域として認識されていないクラス他の残り部分に存在する（以前のデータかもしれない）領域を削除することが出来ます。<br>
+なお、ＮＴＦＳファイルシステムでＭＦＴに収まる小さなファイル（約２キロバイト程度以下と考えてください）の場合には、このオプションを指定することではＭＦＴの残り領域を埋めることは出来ません。（データ領域にデータを追いやる操作になるのみです）<br>
+ＦＡＴファイルシステムにおいては、この値を１クラスタサイズより大きくすると効果があります。</p>
+<p class="doc-indent20"><img border="0" src="pics/ico-redsq.gif" width="12" height="12">通常は0バイト</p>
+<h2>全処理終了後、ファイルを残して終了</h2>
+<p class="doc-indent20">デバッグ用のオプションです。<br>
+最終削除を行いません。<br>
+<img border="0" src="pics/ico-redsq.gif" width="12" height="12">通常はＯＦＦ</p>
+</span>
+
+</body>
+
+</html>

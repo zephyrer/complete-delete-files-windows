@@ -1,0 +1,107 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Language" content="ja">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>NTFSと完全削除</title>
+<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+
+<img border="0" src="pics/bg-blue-shade.png" width="100%" height="40">
+<div style="position:absolute; top:0px; left:0px;">
+	<table class="pagehead" border="0" width="95%" cellspacing="0" cellpadding="0" height="40">
+		<tr>
+			<td valign="middle" width="35"><img border="0" src="pics/ico-trashcan95-1.png"
+				align="middle" width="32" height="32"></td>
+			<td valign="middle">&nbsp;NTFSと完全削除</td>
+			<td valign="middle" width="80">
+				<p align="center"><a href="index.html"><img border="0" src="pics/ico-home.png"
+				width="61" height="18"></a></p>
+			</td>
+		</tr>
+	</table>
+</div>
+<span class="pagemain">
+<h1>NTFS（NTファイルシステム）での概略</h1>
+<h2>削除できるか、出来ないのか？ 簡単にまとめると…</h2>
+<p class="doc-indent20">OS自体による 暗号化ファイル → ×<br>
+OS自体による 圧縮ファイル → ×<br>
+1,000 バイト以下の小さなファイル → △<br>
+その他の一般的なファイル → ○</p>
+<h2>問題の回避方法</h2>
+<p class="doc-indent20">圧縮・暗号化をＯＦＦに → 
+エクスプローラでファイルのプロパティから該当のチェックをＯＦＦにする<br>
+1,000 
+バイト以下のファイルはダミーデータなどを付けて大きなファイルで保存</p>
+<h1>NTFS（NTファイルシステム）に関する既知の問題</h1>
+<p class="doc-indent20">NTFSの遅延書き込み（キャッシュ・システム）によりファイル名およびサイズの「完全削除」が出来ない可能性があります。（ファイル名の変更はOFFでお使いください）<br>
+また、「非常に効率的な遅延書き込み」が行われている場合、データ領域すら完全削除できない可能性もあります。</p>
+<p class="doc-indent20"><u>暫定的な対応措置</u><br>
+機能設定ダイアログの「詳細設定２」の「空き領域の追加削除」でディスクキャッシュ量より多いサイズの追加削除（ダミーファイル作成）を行ってください。</p>
+<p class="doc-indent20">暗号化ファイル（EFS)、スパース･ファイルは「完全削除」できません。これらのファイルにデータを書き込む場合、OSはファイルのコピーを自動的に作成し、そこに書き込むような仕様になっているからです。</p>
+<p class="doc-indent20">フォール･トレラント･ドライバを組み込んだ状態では、「完全削除」を行っても、全データが「バックアップされた」領域に残っている場合があります。</p>
+<p class="doc-indent20">複数ストリームを使ったファイルの場合、現在見えている（Explorerで通常扱っている）ストリームに対してのみ「完全削除」が行われます。特にMacintoshからNTFSを利用している場合に注意が必要です。</p>
+<p class="doc-indent20">MFTに収まる範囲のデータファイルに対する「完全削除」には対応していません。<br>
+原因は、MFTに収まる小さなファイルの最初の作成時に、MFTのミラー領域に作成されたミラー・データが削除後にも残るためです。（MFTのミラー領域は本プログラムでは操作しません）</p>
+<p class="doc-indent20"><u>暫定的な対応措置</u><br>
+小さなファイル（1000バイト未満と考えて差し支えありません）の作成時には、データの末尾などに「パディング」領域を設けて 
+MFT にデータが格納されるのを防いでください。たとえば、200バイトのテキストファイルなら、後ろに800個のスペース文字を追加するなど。</p>
+<h1>空き領域の削除 （Windows標準の機能）</h1>
+<p class="doc-indent20">Windows 2000/XP/Vista 
+は標準で空き領域の削除コマンドを実装しています。<br>
+コマンド・コンソール（cmd.exe）を開き、cipher.exe 
+を実行して空き領域を完全削除することが出来ます。</p>
+<p class="doc-indent20">【Windows で Cipher.exe 
+を使用して削除済みのデータを上書きする方法 ： <a
+href="http://support.microsoft.com/kb/315672/ja">http://support.microsoft.com/kb/315672/ja</a> 】</p>
+<h1>NTFS （NTファイルシステム）の概要</h1>
+<p class="doc-indent20">Windows NT/2000/XP で採用されている NTFS 
+の概要は、このヘルプファイルで記述できるほど簡単ではありません。<br>
+NTFSの簡単な紹介と、「完全削除」を行う場合に出てくる問題点について若干の説明をします。</p>
+<h2>NTFS の特徴</h2>
+<p class="doc-indent20">① メタ・データ（$MFT、$BOOT、$AttrDef …）によるディスク（ボリューム）管理<br>
+② ACL (アクセス制御リスト）によるアクセス制御<br>
+③ ジャーナル･ファイル･システムによるロールバック処理<br>
+④ RAID 0、RAID 1 の標準サポート<br>
+⑤ 暗号化の標準サポート<br>
+⑥ スパース･ファイルのサポート<br>
+⑦ フォール･トレラント･ファイルシステムのサポート（オプション）<br>
+⑧ FATより小さなクラスタサイズ<br>
+⑨ 小さなファイルをMFTのフリーエリアに入れることが可能<br>
+⑩ 1つのファイルに対する複数のストリームの利用（主にService For Macintosh）<br>
+その他いろいろ…</p>
+<h2>メタ・データ</h2>
+<p class="doc-indent20">NTFSでは、データ領域だけでなく、ディスク（NTFSの説明文ではボリュームと言う）自体の管理情報も含め、全てを「ファイル」として扱っている。その中で、ディスクの管理にかかわるファイルを特に「メタ･データ」と言っている。</p>
+<p class="doc-indent20"><img border="0" src="pics/fig-ntfs-metafile.png" width="435" height="273"></p>
+<h2>MFT</h2>
+<p class="doc-indent20">ボリューム上に存在するファイルは、全て「マスター･ファイル･テーブル（MFT)」によりリスト管理されている。<br>
+ヘッダには、最初のアトリビュートの位置とフリーエリアの先頭位置の情報などが含まれている。アトリビュートはファイル名、ボリューム名、セキュリティ記述子、データなどさまざまなものが定義されており、必要に応じて（必要な数だけ）使われる。</p>
+<p class="doc-indent20"><img border="0" src="pics/fig-ntfs-mft.png" width="545" height="183"></p>
+<p class="doc-indent20">アトリビュートは以下のようなものがあり、MFTでは、$FILE_NAME、$SECURITY_DESCRIPTERはほぼ常に存在している。</p>
+<p class="doc-indent20"><img border="0" src="pics/fig-ntfs-attr.png" width="279" height="273"></p>
+<p class="doc-indent20">各アトリビュートは、先頭にはヘッダ（MFTのヘッダとは違う）があり、その後にアトリビュートごとに定義されたデータが続いている。<br>
+参考例として、$FILE_NAME アトリビュートを下に示す。</p>
+<p class="doc-indent20"><img border="0" src="pics/fig-ntfs-filename.png" width="294" height="240"></p>
+<h2>ファイルの例</h2>
+<p class="doc-indent20">実際のファイルの格納は、これらの機構を使って下の図のように行われている。データサイズが小さなファイルの場合は、直接MFTのフリーエリアに$DATAアトリビュートを作りそこに格納する。（FATからの大きな進歩）</p>
+<p class="doc-indent20"><img border="0" src="pics/fig-ntfs-mft.png" width="545" height="183"></p>
+<h1>完全削除するにあたって、何が問題か</h1>
+<p class="doc-indent20">MFT内にデータが収まっている場合で、「完全削除」による上書きがMFT外に新しいデータアトリビュートを使って行われた場合、MFT内のデータが残存する可能性がある。（オーバーラン書き込みについての詳細設定を 
+Ver1.36 で実装し解決）<br>
+MFT外に存在するディレクトリ・ファイルに対しての名前変更が完全に行われない可能性がある。（長いファイル名は極力使わないようにすれば回避可能）</p>
+<p class="doc-indent20">圧縮ファイル、暗号化ファイル（EFS）、スパース･ファイルについては、コピーに対して変更作業を行い、元ファイルを消してコピーファイルを存続ファイルとするという処理がWindows内部で行われいる。これは、強固なエラー対策である反面、大量のコピーデータがディスク内に拡散していることになり、完全削除を行えない原因ともなる。</p>
+<p class="doc-indent20">つまり、「使用中の安全性と、消去の安全性は二律背反である」といえる。<br>
+この「コピー」を作られてしまうことに対処するためには、「デフラグAPI」というAPIを利用してハードディスクの特定クラスタのデータを上書きすると言う手があるが、「Administrator権限が必要」なのと、「何度も修正作業が加えられているファイルには、すでにコピーデータが存在している」ので、現在見えているファイルに対してのみの処理では「完全削除」することは出来ない。</p>
+<p class="doc-indent20">よって、圧縮、暗号、スパース・ファイルなどのテクノロジを用いたファイルを運用しているNTFSにおいては、「全空き領域に巨大なダミーファイルを作り、ダミーデータを書き込む」処理と、「MFTの空き領域を埋めるだけの大量の小さなダミーファイルを作成し消去する」という処理を行うことが最低限必要ではないだろうか。（ディスクのフォーマット時間でおわかりのとおり、現在の大容量ディスクでは、非常に長い時間がかかる）<br>
+で、ここまでやったとしても、究極の問題が残る。</p>
+<p class="doc-indent20">現在利用されているMFT内のフリースペースの残骸データ（おそらくそのMFTレコードを以前使っていたファイルのもの？）は、ダミーファイル等では消えないと言うことである。これには、ハードディスクの全MFTレコードを解析し、未使用フリーエリアを全て消去して回るという膨大な作業が必要で、その作業中にOSが勝手にディスクにアクセスに行かないように、ロックを掛けて作業すると言う、「OSの機能の一部として作業するに等しい」プログラムを作る必要があると言うことだ。</p>
+<p class="doc-indent20">これらの処理を行うためには、論理ディスクを直接扱う必要があります。通常、NT系列のワークステーションの利用はユーザ権限（アドミニストレータ権限で無い）で行いますので、論理ディスクに直接書き込むことが出来ません。また、ディスクを一時的にロックする必要があり、フリーウエアレベルでバグの無い完全な論理ディスクへのアクセス環境を提供することは（私としては）単価的に難しいので実装しません。</p>
+</span>
+
+</body>
+
+</html>

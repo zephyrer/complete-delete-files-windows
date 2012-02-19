@@ -16,6 +16,12 @@
 #define IDD_DLG_HELPDOC                 151
 #define IDD_DLG_PROPDEL2                152
 #define IDD_DLG_PROPDEL3                154
+#define IDI_ICO_VI1                     158
+#define IDI_ICO_2K2                     159
+#define IDI_ICO_952                     160
+#define IDI_ICO_951                     161
+#define IDI_ICO_VI2                     162
+#define IDI_ICO_2K1                     163
 #define IDC_C_NDISPN                    1002
 #define IDC_C_NDISPE                    1003
 #define IDC_C_DATE                      1004
@@ -117,12 +123,14 @@
 #define AFX_STR_DBG_OVERRUN             57387
 #define AFX_STR_DBG_ANTICACHE           57388
 #define AFX_STR_ERR_ANTICACHE           57389
+#define AFX_STR_ERR_HELP                57390
+#define AFX_STR_MES_CANCEL              57391
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        155
+#define _APS_NEXT_RESOURCE_VALUE        164
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1057
 #define _APS_NEXT_SYMED_VALUE           101

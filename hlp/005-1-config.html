@@ -1,0 +1,55 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Language" content="ja">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>機能設定 ： 基本設定</title>
+<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+
+<img border="0" src="pics/bg-blue-shade.png" width="100%" height="40">
+<div style="position:absolute; top:0px; left:0px;">
+	<table class="pagehead" border="0" width="95%" cellspacing="0" cellpadding="0" height="40">
+		<tr>
+			<td valign="middle" width="35"><img border="0" src="pics/ico-trashcan95-1.png"
+				align="middle" width="32" height="32"></td>
+			<td valign="middle">&nbsp;機能設定 ： 基本設定</td>
+			<td valign="middle" width="80">
+				<p align="center"><a href="index.html"><img border="0" src="pics/ico-home.png"
+				width="61" height="18"></a></p>
+			</td>
+		</tr>
+	</table>
+</div>
+<span class="pagemain">
+<p class="doc-indent20"><img border="0" src="pics/dlg-conf1.png" width="474" height="450"></p>
+<h2>上書き方法</h2>
+<p class="doc-indent20">ファイルの内容をどのように塗り消すかを指定します。「ヌル値で上書き」はすべてゼロ（数字のゼロでなく、文字コードのゼロ）で上書きします。「ランダム値で上書き」は乱数で上書きします。どちらも、ファイルのすべての領域に対して行われます。<br>
+<img border="0" src="pics/ico-redsq.gif" width="12" height="12">通常は「ランダム値」です。</p>
+<h2>上書き回数</h2>
+<p class="doc-indent20">ディスク表面の磁気記録は、前回の（削除してしまいたいデータ）磁化領域が若干残っていますので、１回上書き消去しただけでは高性能な解析をされた場合に記録を断片的に回復できる場合があります。そのためには、ランダム値で何回か上書きすることで対抗することができます。<br>
+データ領域全体を上書き（消去）する回数を指定します。合衆国政府仕様（DOD 
+5220.22-M）にあわせ２回としていますが、より高い安全性が必要な場合にのみこの値を増やしてください。<br>
+<img border="0" src="pics/ico-redsq.gif" width="12" height="12">通常は2回。<br>
+Ver 1.36beta より 5回を標準としています</p>
+<h2>ファイルの日付（作成、更新、参照）を変更してから消去する</h2>
+<p class="doc-indent20"><img border="0" src="pics/ico-redsq.gif" width="12" height="12">通常はＯＮで使用</p>
+<h2>ファイルサイズの変更</h2>
+<p class="doc-indent20">ファイルサイズを「ゼロ」として、アロケーション・テーブルへのポインタをゼロにします。また、ファイル・サイズの推測も防ぎます。<br>
+<img border="0" src="pics/ico-redsq.gif" width="12" height="12">通常は「ゼロにする」を選択してください。</p>
+<h2>ファイル名の変更</h2>
+<p class="doc-indent20">ファイル名は、ランダムに決定されます。現在のファイル名の文字数と同数のランダム文字の名前に変更されます。<br>
+たとえば「This is LFN file.txt」は「sHuIDulPLPnctJSu.cYS」とファイル名を変更し、ファイル名の解析を不可能にします。「Windowsファイル名に似せる」は、「This 
+is LFN file.txt」は「sHuIDulPLPnctJSu.cYS」と変更し、さらに「JAVAPRXY.OCX」と変更します。<br>
+なお、Windowsのファイルシステムでは、ファイル名変更は「新しいファイルエントリを作る」→「旧ファイルエントリを削除済みにする」という処理をしているため、「ファイル名の変更」では旧ファイル名を完全に消去できません。ファイル名を消去したい場合は、「その他の設定」の「ダミーファイル削除痕跡による復活妨害」を使用してください。</p>
+<p class="doc-indent20"><img border="0" src="pics/ico-redsq.gif" width="12" height="12">通常は「ランダムファイル名に変更」</p>
+<p>　</p>
+</span>
+
+</body>
+
+</html>

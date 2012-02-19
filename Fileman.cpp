@@ -152,7 +152,11 @@ BOOL CFileman::DeleteMain(LPCSTR buf)
 		tmpbuf.Format(sAfxMsg, nFiles);
 		dlgcnf.m_mes = tmpbuf;
 		if(!dlgcnf.DoModal())
+		{	// キャンセルの場合
+			sAfxMsg.LoadString(AFX_STR_MES_CANCEL);	// 「削除処理がキャンセルされました」
+			*sLogStr = (LPCSTR)sAfxMsg;
 			return TRUE;
+		}
 	}
 
 	// 「削除中 ...」ダイアログの作成
@@ -174,7 +178,7 @@ BOOL CFileman::DeleteMain(LPCSTR buf)
 		*sLogStr += sTmp;
 		// ****************** 多言語対応 デバックメッセージのロード ******************
 		sAfxMsg.LoadString(AFX_STR_LOG_INIT2);	// 「上書:%s, 上書回数:%d, サイズ変更:%s, 」
-		sTmp.Format((LPCSTR)sAfxMsg, n_rNull ? "NULL":"RND", n_nOvwr, n_rZLen ? "ON":"OFF");
+		sTmp.Format((LPCSTR)sAfxMsg, n_rNull ? "RND":"NULL", n_nOvwr, n_rZLen ? "ON":"OFF");
 		*sLogStr += sTmp;
 		// ****************** 多言語対応 デバックメッセージのロード ******************
 		sAfxMsg.LoadString(AFX_STR_LOG_INIT3);	// 「リネーム」

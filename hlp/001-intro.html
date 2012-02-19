@@ -1,0 +1,89 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Language" content="ja">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>完全削除（CompleteDelete）とは</title>
+<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+
+<img border="0" src="pics/bg-blue-shade.png" width="100%" height="40">
+<div style="position:absolute; top:0px; left:0px;">
+	<table class="pagehead" border="0" width="95%" cellspacing="0" cellpadding="0" height="40">
+		<tr>
+			<td valign="middle" width="35"><img border="0" src="pics/ico-trashcan95-1.png"
+				align="middle" width="32" height="32"></td>
+			<td valign="middle">&nbsp;完全削除（CompleteDelete）とは</td>
+			<td valign="middle" width="80">
+				<p align="center"><a href="index.html"><img border="0" src="pics/ico-home.png"
+				width="61" height="18"></a></p>
+			</td>
+		</tr>
+	</table>
+</div>
+<span class="pagemain">
+<h1>推奨動作環境</h1>
+<p class="doc-indent20">Windows 95/98/Me/NT4/2000/XP/Vista<br>
+FATファイル・システム （推奨）<br>
+NTFS（NTファイルシステム） (<a href="003-ntfs.html">問題点はこちらを参照</a>)<br>
+特別なファイル保護機能を組み込んでいないこと<br>
+削除するファイルの上書き、消去が出来る環境であること</p>
+<p class="doc-indent20">MFC42.DLL および MSVCRT.DLL 
+がシステムフォルダに存在すること（Visual C++ 6.0 対応版） 
+古いバージョンのDLLの場合、起動できません。</p>
+<p class="doc-indent20">このプログラムには、日本語と英語の２種類の設定が含まれています。日本語以外のWindowsで起動した場合、自動的に英語モードで動作します。（表示も内部処理も）</p>
+<h2>DOD 5220.22-M 対応について</h2>
+<p class="doc-indent20">アメリカ国防総省 国家産業セキュリティ適用マニュアル 
+(NISPOM) における Automated Information System Security の Clearing and Sanitization 
+に関しては現在のところ、対応していません。</p>
+<h1>このソフトの特徴</h1>
+<p class="doc-indent20">ファイル毎に完全削除ができる<br>
+Windows標準の操作性と、表示方法を導入し違和感がない<br>
+NT/2000/XP/Vista において、アドミニストレータ権限を必要としない</p>
+<h1>完全削除について</h1>
+<p class="doc-indent20">「間違って削除したファイルを復活することができる」<br>
+一見便利そうなこの言葉の裏側に、大きな危険が潜んでいます。<br>
+普通に削除しただけのファイルは、容易に復活できることもあります。</p>
+<p class="doc-indent20">Windows95/98/MeはMS-DOSのファイルシステム(FATファイルシステム)をベースに拡張されており、セキュリティーに対する考え方もたいそう低いものとなっています。抹殺してしまいたい「情報」を削除する場合、Windows標準の「削除」処理では不十分です。<br>
+また、Windows NT/2000/XP/Vista で利用されているNTFS（NTファイルシステム）も、NTにログオンせずに、DOS上から読み出すソフトウエアは存在していますし、暗号化されていないデータはディスク自体の解析に対してはまったく無防備です。</p>
+<p class="doc-indent20">そこで、｢完全削除(CompleteDel)｣を使用することにより、<b>より完全な形で</b>データファイルを削除することができます。<br>
+<a href="002-delete.html">ファイルの削除と“完全”削除の違いはこちらをご覧ください。</a></p>
+<p class="doc-indent20">なお、機密度の相当高いファイルを削除する場合、データ漏洩阻止の保証はできませんのでご注意ください。業務用には、専用ソフト等の使用をお勧めします。<br>
+また、機密情報の完全削除をより完璧に行う場合は、この｢完全削除(CompleteDelete)｣使用後に<b>Windowsの｢デフラグ｣を実行する、空き領域を完全消去するプログラムを実行する</b>など、ディスク内開放領域の撹乱も同時に行う事をお勧めします。</p>
+<h2>空き領域の削除 （Windows標準の機能）</h2>
+<p class="doc-indent20">Windows 2000/XP/Vista 
+は標準で空き領域の削除コマンドを実装しています。<br>
+コマンド・コンソール（cmd.exe）を開き、cipher.exe 
+を実行して空き領域を完全削除することが出来ます。</p>
+<p class="doc-indent20">【Windows で Cipher.exe 
+を使用して削除済みのデータを上書きする方法 ： <a
+href="http://support.microsoft.com/kb/315672/ja">http://support.microsoft.com/kb/315672/ja</a> 】</p>
+<h1>完全削除の方法</h1>
+<p class="doc-indent20">エクスプローラで削除したいファイル(複数可)を選択し、｢完全削除｣アイコンにドラッグ＆ドロップする。または、右クリック･メニューの｢送る｣を実行する。</p>
+<p class="doc-indent20"><a href="006-howto.html">完全削除の方法関する詳細情報はこちらをご覧ください。</a></p>
+<h1>完全削除が難しいファイルの例</h1>
+<p class="doc-indent20">このプログラムは標準的な構成のWindowsワークステーションを対象としており、ファイル保護装置またはソフトウエアが付加された環境下では「完全削除」を行えないことがあります。</p>
+<p class="doc-indent20">例 ：<br>
+ハードウエア的にファイルシステムの多重化をしている場合（ＨＤＤのミラーリングなど）<br>
+ファイル保護ソフトが働いている場合（フォール･トレラント･ドライバ等）<br>
+ネットワーク･ファイル･システム上のファイル</p>
+<p class="doc-indent20"><a href="003-ntfs.html">ＮＴＦＳにおいての問題点は、こちらです。（重要）</a></p>
+<p class="doc-indent20">容易に完全削除したい機密データは、ＦＡＴということでしょうか。</p>
+<h2>次のファイルは、完全削除できません</h2>
+<p class="doc-indent20">例 ：<br>
+上書きできないメディア上のファイル（ＤＶＤ－ＲＯＭ、ＤＶＤ±Ｒ・ＲＷ、ＣＤ－ＲＯＭ、ＣＤ－Ｒ・ＲＷなど）<br>
+</p>
+<h2>本ソフトが意味をなさない場合</h2>
+<p class="doc-indent20">例 ：<br>
+バックアップ・ファイルが容易にアクセスできる形で保管されている場合<br>
+ファイルの編集時に自動的にバックアップ・ファイルが作成されるソフトを利用している場合</p>
+<p>　</p>
+</span>
+
+</body>
+
+</html>
