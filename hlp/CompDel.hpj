@@ -72,5 +72,5 @@ HIDD_DLG_PROPOTHER				= CONFIG_DETAIL3
 HIDR_MAINFRAME					= AFX_HIDP_default
 
 [MAP]
-#include ..\..\..\..\..\..\vs\VC98\MFC\include\afxhelp.hm
 #include <CompDel.hm>
+#include G:\Program Files\Microsoft Visual Studio\VC98\MFC\Include\AFXHELP.HM

@@ -2,7 +2,7 @@
 
 [General Info]
 Version=1
-LastClass=CDlgPDel2
+LastClass=CDlgHelpDoc
 LastTemplate=CDialog
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "compdel.h"
@@ -22,32 +22,33 @@ Class10=CDlgHelpDoc
 Class11=CDlgNorm
 
 ResourceCount=20
-Resource1=IDD_DLG_PROPDEL
-Resource2=IDD_DLG_PROPDISP (âpåÍ (±“ÿ∂))
-Resource3=IDD_DLG_PROPDEL (âpåÍ (±“ÿ∂))
-Resource4=IDD_DLG_PROPDEL3 (âpåÍ (±“ÿ∂))
-Resource5=IDD_DLG_PROPOTHER
-Resource6=IDD_DLG_INSTALL (âpåÍ (±“ÿ∂))
-Resource7=IDD_DLG_NORMAL
-Resource8=IDD_DLG_HELPDOC (âpåÍ (±“ÿ∂))
-Resource9=IDD_DLG_PROPDEL2
-Resource10=IDD_DLG_CONFF (âpåÍ (±“ÿ∂))
-Resource11=IDD_DLG_PROPDEL3
-Resource12=IDD_DLG_INSTALL
-Resource13=IDD_DLG_ABOUT (âpåÍ (±“ÿ∂))
-Resource14=IDD_DLG_NORMAL (âpåÍ (±“ÿ∂))
-Resource15=IDD_DLG_CONFF
-Resource16=IDD_DLG_ABOUT
-Resource17=IDD_DLG_PROPDISP
-Resource18=IDD_DLG_HELPDOC
-Resource19=IDD_DLG_PROPOTHER (âpåÍ (±“ÿ∂))
-Resource20=IDD_DLG_PROPDEL2 (âpåÍ (±“ÿ∂))
+Resource1=IDD_DLG_ABOUT
+Resource2=IDD_DLG_INSTALL (âpåÍ (±“ÿ∂))
+Resource3=IDD_DLG_HELPDOC (âpåÍ (±“ÿ∂))
+Resource4=IDD_DLG_PROPDISP (âpåÍ (±“ÿ∂))
+Resource5=IDD_DLG_CONFF (âpåÍ (±“ÿ∂))
+Resource6=IDD_DLG_ABOUT (âpåÍ (±“ÿ∂))
+Resource7=IDD_DLG_PROPDEL
+Resource8=IDD_DLG_PROPDEL2
+Resource9=IDD_DLG_NORMAL (âpåÍ (±“ÿ∂))
+Resource10=IDD_DLG_PROPDEL3
+Resource11=IDD_DLG_INSTALL
+Resource12=IDD_DLG_PROPDISP
+Resource13=IDD_DLG_HELPDOC
+Resource14=IDD_DLG_CONFF
+Resource15=IDD_DLG_PROPOTHER (âpåÍ (±“ÿ∂))
+Resource16=IDD_DLG_PROPDEL (âpåÍ (±“ÿ∂))
+Resource17=IDD_DLG_NORMAL
+Resource18=IDD_DLG_PROPDEL2 (âpåÍ (±“ÿ∂))
+Resource19=IDD_DLG_PROPOTHER
+Resource20=IDD_DLG_PROPDEL3 (âpåÍ (±“ÿ∂))
 
 [CLS:CCompDelApp]
 Type=0
 BaseClass=CWinApp
 HeaderFile=CompDel.h
 ImplementationFile=CompDel.cpp
+LastObject=CCompDelApp
 
 [CLS:CDlgAbout]
 Type=0

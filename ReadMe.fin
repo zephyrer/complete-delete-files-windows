@@ -5,14 +5,14 @@
 
 .ce 2
 完全削除 (CompleteDelete)
-version 1.36beta for Windows
+version 1.36c for Windows
 
 .ri 4
 http://www.ne.jp/asahi/oasis/inoue-h/
 http://inoue-h.connect.to/
 
 .ri 1
-Copyright (C) 1999-2002 井上 博計
+Copyright (C) 1999-2005 井上 博計
 
 .hl 1
 .sp 12
@@ -92,5 +92,5 @@ CompDel.exeを初めて実行すると、自動的にインストーラが起動します。
 
 
 .ri 1
-2002 / 11 / 20
+2005 / 06 / 22
 .hl 1
