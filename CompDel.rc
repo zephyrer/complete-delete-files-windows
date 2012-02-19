@@ -1,0 +1,716 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 日本語 resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 17, 1\r\n"
+    "#pragma code_page(932)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\CompDel.rc2""  // Microsoft Visual C++ 以外のツールで編集されたリソース\r\n"
+    "#include ""l.jpn\\afxres.rc""          // 標準のコンポーネント\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\CompDel.ico"
+IDI_ICO_INST            ICON    DISCARDABLE     "res\\ico_inst.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DLG_NORMAL DIALOG DISCARDABLE  0, 0, 274, 79
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "ファイルの完全削除中 / CompleteDelete Working ..."
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,10,10,20,20
+    LTEXT           "",IDC_LFNAME,40,10,220,25
+    LTEXT           "削除中 ...",IDC_STATIC,35,40,55,10
+    LTEXT           "",IDC_MES,115,40,125,10
+    CONTROL         "Progress1",IDC_PRGRESS,"msctls_progress32",WS_BORDER,5,
+                    60,260,8
+END
+
+IDD_DLG_ABOUT DIALOG DISCARDABLE  0, 0, 274, 79
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "CompleteDelete - 完全削除 - バージョン情報"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,10,10,20,20
+    LTEXT           "CompleteDelete (完全削除) for Windows （Multi Language）\n\n\tVersion 1.2 (Freeware / フリーウエア）\n\t(C) 1999-2002 INOUE. Hirokazu\n\tinoue-h@oasis.email.ne.jp\thttp://inoue-h.connect.to/",
+                    IDC_STATIC,44,8,211,45
+    DEFPUSHBUTTON   "OK",IDOK,215,60,50,14
+END
+
+IDD_DLG_CONFF DIALOG DISCARDABLE  0, 0, 274, 79
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "完全削除の確認 / CompleteDelete confirmation"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,10,10,20,20
+    LTEXT           "",IDC_MESSAGE,40,10,225,30
+    DEFPUSHBUTTON   "OK(&K)",IDOK,160,60,50,14
+    PUSHBUTTON      "キャンセル(&C)",IDCANCEL,215,60,50,14
+END
+
+IDD_DLG_PROPDISP DIALOG DISCARDABLE  0, 0, 254, 239
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "表示モード"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    CONTROL         "削除処理の前に確認する（推奨）  (Confirm before Delete)",
+                    IDC_C_DISPF,"Button",BS_AUTOCHECKBOX,15,10,230,10
+    GROUPBOX        "動作中の表示設定  Display Option",IDC_STATIC,10,25,235,
+                    70
+    CONTROL         "動作中の表示をしない  (No Progress Dlg)",IDC_C_NDISPN,
+                    "Button",BS_AUTOCHECKBOX,15,40,225,10
+    CONTROL         "エラー時の表示を表示しない   (No Error Msg)",
+                    IDC_C_NDISPE,"Button",BS_AUTOCHECKBOX,15,60,225,10
+    CONTROL         "消去段階ごとに一旦停止し、ダイアログを表示する (Debug Dlg)",
+                    IDC_C_DISPC,"Button",BS_AUTOCHECKBOX,15,80,225,10
+    CONTROL         "詳細なログ表示 (Log View)",IDC_C_DISPF2,"Button",
+                    BS_AUTOCHECKBOX,15,105,215,10
+END
+
+IDD_DLG_PROPDEL DIALOGEX 0, 0, 254, 239
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "削除方法"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    CONTROL         "ファイルの日付（作成、更新、参照）を変更してから消去する （推奨）\r\n   Change File Timestamp",
+                    IDC_C_DATE,"Button",BS_AUTOCHECKBOX | BS_MULTILINE,15,10,
+                    205,20
+    GROUPBOX        "上書き方法  Overwrite",IDC_STATIC,10,35,235,70
+    CONTROL         "データををヌル値（00h）で上書きする (with NULL)",
+                    IDC_R1_NULL,"Button",BS_AUTORADIOBUTTON | WS_GROUP,15,50,
+                    225,10
+    CONTROL         "データをランダム値で上書きする （推奨） (with Random Char)",
+                    IDC_R1_RND,"Button",BS_AUTORADIOBUTTON,15,70,225,9
+    EDITTEXT        IDC_EDIT_NTIMES,15,85,40,15,ES_AUTOHSCROLL | ES_NUMBER | 
+                    NOT WS_BORDER | NOT WS_TABSTOP,WS_EX_STATICEDGE
+    LTEXT           "回       上書き回数 (1から5)  (Overwrite Times)",
+                    IDC_STATIC,60,85,180,15,SS_CENTERIMAGE
+    GROUPBOX        "ファイルサイズの変更  Truncate File Size",IDC_STATIC,10,
+                    110,235,45
+    CONTROL         "ファイルサイズは変更せずに消去する (OFF)",IDC_R2_ZLEN,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,15,125,225,9
+    CONTROL         "ファイルサイズをゼロにしてから消去する （推奨） (Truncate)",
+                    IDC_R2_RLEN,"Button",BS_AUTORADIOBUTTON,15,140,225,10
+    GROUPBOX        "ファイル名の変更  Change Name",IDC_STATIC,10,160,235,65
+    CONTROL         "ファイル名は変更しない（推奨） (OFF)",IDC_R3_NNAME,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,15,175,225,10
+    CONTROL         "ランダム・ファイル名に変更 (Random Name)",IDC_R3_RNAME,
+                    "Button",BS_AUTORADIOBUTTON,15,190,225,10
+    CONTROL         "ランダム・ファイル名 → Windowsシステムファイル名に変更 (Win Name)",
+                    IDC_R3_SNAME,"Button",BS_AUTORADIOBUTTON,15,205,225,10
+END
+
+IDD_DLG_PROPOTHER DIALOGEX 0, 0, 254, 239
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "その他の設定"
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+BEGIN
+    CONTROL         "フォルダ内のファイルとフォルダを消去対象にする",
+                    IDC_C_RECFOLDER,"Button",BS_AUTOCHECKBOX | WS_DISABLED,
+                    15,10,220,10
+    GROUPBOX        "ダミーファイル削除痕跡による復活妨害  Dummy File Option",
+                    IDC_STATIC,5,25,240,70
+    CONTROL         "消去後、撹乱用のダミーファイルを作成し、消去する  (Dummy File)",
+                    IDC_C_DMY,"Button",BS_AUTOCHECKBOX,15,40,220,10
+    CONTROL         "同じフォルダのときは、最後の消去時にのみダミーファイルを作成する",
+                    IDC_C_DMYSKIP,"Button",BS_AUTOCHECKBOX,15,60,215,10
+    EDITTEXT        IDC_EDIT_NFILES,15,75,40,15,ES_AUTOHSCROLL | ES_NUMBER | 
+                    NOT WS_BORDER | NOT WS_TABSTOP,WS_EX_STATICEDGE
+    LTEXT           "個       ダミーファイルの数（1から99、通常40個）",
+                    IDC_STATIC,60,75,150,15,SS_CENTERIMAGE
+    PUSHBUTTON      "アンインストール作成",IDC_UNINSTALL,10,105,70,15,NOT 
+                    WS_TABSTOP
+    LTEXT           "スタートメニューにアンインストール用のショートカットを作成します\r\n(アンインストール手段を無くした時に使います）",
+                    IDC_STATIC,90,105,150,30
+    GROUPBOX        "クイック実行  Quick Delete",IDC_STATIC,5,140,240,75
+    LTEXT           "パス",IDC_STATIC,10,155,30,15,SS_CENTERIMAGE | 
+                    WS_DISABLED
+    EDITTEXT        IDC_EDIT1,45,155,145,15,ES_AUTOHSCROLL | WS_DISABLED
+    PUSHBUTTON      "参照 ...",IDC_UNINSTALL2,195,155,45,15,WS_DISABLED | 
+                    NOT WS_TABSTOP
+    LTEXT           "ファイル",IDC_STATIC,10,175,30,15,SS_CENTERIMAGE | 
+                    WS_DISABLED
+    EDITTEXT        IDC_EDIT2,45,175,145,15,ES_AUTOHSCROLL | WS_DISABLED
+    PUSHBUTTON      "参照 ...",IDC_UNINSTALL3,195,175,45,15,WS_DISABLED | 
+                    NOT WS_TABSTOP
+    PUSHBUTTON      "クイック実行",IDC_UNINSTALL4,195,195,45,15,WS_DISABLED | 
+                    NOT WS_TABSTOP
+    PUSHBUTTON      "バージョン情報(&V)",IDC_VERINFO,10,220,70,15,NOT 
+                    WS_TABSTOP
+END
+
+IDD_DLG_INSTALL DIALOG DISCARDABLE  0, 0, 259, 169
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "完全削除のインストール / CompleteDelete Install"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    ICON            IDI_ICO_INST,IDC_STATIC,10,5,20,20
+    LTEXT           "通常は、現在選択されているオプションのままインストールしてかまいません。",
+                    IDC_STATIC,35,5,220,20
+    CONTROL         "",IDC_STATIC,"Static",SS_WHITERECT | SS_SUNKEN,5,31,250,
+                    1
+    CONTROL         "デスクトップにショートカットを作る (Shortcut on &Desktop)",
+                    IDC_INST_DESKTOP,"Button",BS_AUTOCHECKBOX,15,40,240,15
+    CONTROL         "右クリックメニュー「送る」にショートカットを作る (Shortcut in &SendTo)",
+                    IDC_INST_CONTEXT,"Button",BS_AUTOCHECKBOX,15,60,240,15
+    CONTROL         "スタートメニューに登録する (Shortcut in Start &Menu)",
+                    IDC_INST_MENU,"Button",BS_AUTOCHECKBOX,15,80,240,15
+    GROUPBOX        "アンインストール方法の設定  (Uninstall shortcut on ...?)",
+                    IDC_STATIC,5,100,250,45
+    CONTROL         "アプリケーションの追加と削除に登録する (from &Control Panel)",
+                    IDC_RADIO_UNIN,"Button",BS_AUTORADIOBUTTON | WS_GROUP,15,
+                    110,215,15
+    CONTROL         "スタートメニューに登録する （推奨） (from Start Men&u)",
+                    IDC_RADIO_UNIN2,"Button",BS_AUTORADIOBUTTON,15,125,215,
+                    15
+    DEFPUSHBUTTON   "OK(&K)",IDOK,95,150,50,14
+    PUSHBUTTON      "キャンセル(&C)",IDCANCEL,150,150,50,14
+    PUSHBUTTON      "ヘルプ(&H)",IDC_INSTHLP,205,150,50,14,NOT WS_TABSTOP
+END
+
+IDD_DLG_HELPDOC DIALOG DISCARDABLE  0, 0, 289, 255
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "完全削除 メッセージ / CompleteDelete Message Viewer"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    EDITTEXT        IDC_EDIT_MAIN,5,5,280,225,ES_MULTILINE | ES_READONLY | 
+                    WS_VSCROLL
+    DEFPUSHBUTTON   "OK(&K)",IDOK,225,235,60,15
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,2,0,1
+ PRODUCTVERSION 1,2,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x21L
+#else
+ FILEFLAGS 0x20L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041104b0"
+        BEGIN
+            VALUE "Comments", "This Program is Free Ware\0"
+            VALUE "CompanyName", "hi soft\0"
+            VALUE "FileDescription", "CompleteDelete for Windows  (Multi Lunguage Pack)\0"
+            VALUE "FileVersion", "1.2\0"
+            VALUE "InternalName", "CompleteDelete for Windows 95/98/Me/NT/2000/XP\0"
+            VALUE "LegalCopyright", "Copyright (C) 1999-2002 INOUE. Hirokazu\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "CompDel.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "完全削除（CompleteDelete） for Windows 95/98/NT/2000 Japanese\0"
+            VALUE "ProductVersion", "version 1.2\0"
+            VALUE "SpecialBuild", "Made with Microsoft Visual C++ 6.0\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x411, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_DLG_NORMAL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 72
+    END
+
+    IDD_DLG_ABOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 72
+    END
+
+    IDD_DLG_CONFF, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 72
+    END
+
+    IDD_DLG_INSTALL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 252
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 162
+    END
+
+    IDD_DLG_HELPDOC, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 282
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 248
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "compdel"
+    AFX_STR_UNINST_CPLNAME  "完全削除"
+    AFX_STR_LINK_UNINST     "\\完全削除アンインストール.LNK"
+    AFX_STR_LINK_STARTUP    "\\完全削除StartUp.LNK"
+    AFX_STR_LINK_PROG       "\\完全削除.LNK"
+    AFX_STR_DBG_ATTR        "ファイル属性解除"
+    AFX_STR_DBG_OVER        "データの上書き消去完了"
+    AFX_STR_DBG_ZEROLEN     "ファイル長ゼロ"
+    AFX_STR_DBG_FNAME       "ファイル名を撹乱（ＬＦＮ上書き）完了"
+    AFX_STR_DBG_WINNAME     "ファイル名を撹乱（Windowsファイル似）完了"
+    AFX_STR_DBG_DATE        "ファイルの日付変更完了"
+    AFX_STR_DBG_DELETE      "ファイル削除完了"
+    AFX_STR_DBG_MKDUMMY     "ダミーファイルを作成"
+    AFX_STR_DBG_DLDUMMY     "ダミーファイルを消去"
+    AFX_STR_LOG_DUMMY       " ダミーファイルの作成 (%d 個)\r\n"
+    AFX_STR_LOG_COMPLETE    "\r\n終了 (成功 %d 個, 失敗+対象外 %d 個)\r\n"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_STR_LOG_SUCCESS     "成功 : %s\r\n"
+    AFX_STR_LOG_FAIL        "失敗 (code=%d) : %s\r\n"
+    AFX_STR_LOG_INIT1       "削除モード :\r\n 日付変更:%s, "
+    AFX_STR_LOG_INIT2       "上書:%s, 上書回数:%d, サイズ変更:%s, "
+    AFX_STR_LOG_INIT3       "リネーム:"
+    AFX_STR_LOG_INIT4       "%d 個のファイルの消去を開始\r\n-----------------------------\r\n\r\n"
+    AFX_STR_DLG_EXCLUDE     "ファイル '%s'\nこのファイルは完全削除対象外です\r\n\r\n(フォルダなどは指定できません）"
+    AFX_STR_LOG_EXCLUDE     "対象外 : %s\r\n"
+    AFX_STR_DLG_PRGRS       "%d/%d 処理中 (エラー %d 件)"
+    AFX_STR_ERR_0           "ファイル属性が得られない"
+    AFX_STR_ERR_1           "ファイル属性を変更できない"
+    AFX_STR_ERR_2           "ファイルを開けない"
+    AFX_STR_ERR_3           "ファイルに書き込めない"
+    AFX_STR_ERR_4           "ファイルの長さを切り捨てられない"
+    AFX_STR_ERR_5           "ファイル名が変えられない"
+    AFX_STR_ERR_6           "ファイルの日付が変更できない"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_STR_ERR_7           "ファイルを削除できない"
+    AFX_STR_ERR_8           "ダミーファイルを作成できない"
+    AFX_STR_ERR_9           "ダミーファイルを削除できない"
+    AFX_STR_ERR_N           "その他のエラー"
+    AFX_STR_DLG_ERRCAUSE    "ファイルの完全削除中にエラー発生\r\n対象ファイル %s\r\n原因 : %s\r\n\r\nファイルの削除は完了しませんでした"
+    AFX_STR_UNIN_CONFERM    "完全削除をアンインストールしますか"
+    AFX_STR_MAINDLG         "完全削除 機能設定"
+    AFX_STR_DLG_CONFIRM     "%d個のファイルを削除します"
+    AFX_STR_DLG_PRGRS_2     "ファイル「%s」の削除処理中\n%s"
+    AFX_STR_DLG_PRGRS_3     "完全削除処理状況"
+    AFX_STR_DLG_MKUNIN      "アンインストール用のショートカットを作成しました"
+END
+
+#endif    // 日本語 resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// 英語 (ｱﾒﾘｶ) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DLG_ABOUT DIALOG DISCARDABLE  0, 0, 274, 79
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "CompleteDelete - Version Information"
+FONT 9, "Arial"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,10,10,20,20
+    LTEXT           "CompleteDelete for Windows (Multi Language Version)\n\n\tVersion 1.2 (Freeware)\n\t(C) 1999-2002 INOUE. Hirokazu\n\tinoue-h@oasis.email.ne.jp\thttp://inoue-h.connect.to/",
+                    IDC_STATIC,44,8,211,45
+    DEFPUSHBUTTON   "OK",IDOK,215,60,50,14
+END
+
+IDD_DLG_CONFF DIALOG DISCARDABLE  0, 0, 274, 79
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "CompleteDelete confirmation"
+FONT 9, "Arial"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,10,10,20,20
+    LTEXT           "",IDC_MESSAGE,40,10,225,30
+    DEFPUSHBUTTON   "OK(&K)",IDOK,160,60,50,14
+    PUSHBUTTON      "Cancel(&C)",IDCANCEL,215,60,50,14
+END
+
+IDD_DLG_HELPDOC DIALOG DISCARDABLE  0, 0, 290, 234
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "CompleteDelete Message Viewer"
+FONT 9, "Arial"
+BEGIN
+    EDITTEXT        IDC_EDIT_MAIN,5,5,280,205,ES_MULTILINE | ES_READONLY | 
+                    WS_VSCROLL
+    DEFPUSHBUTTON   "OK(&K)",IDOK,225,215,60,15
+END
+
+IDD_DLG_INSTALL DIALOG DISCARDABLE  0, 0, 259, 169
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "CompleteDelete Install"
+FONT 9, "Arial"
+BEGIN
+    ICON            IDI_ICO_INST,IDC_STATIC,10,5,20,20
+    LTEXT           "Thank you for using CompleteDelete .\r\nFor normal usage, Please every option set in default .",
+                    IDC_STATIC,35,5,220,20
+    CONTROL         "",IDC_STATIC,"Static",SS_WHITERECT | SS_SUNKEN,5,31,250,
+                    1
+    CONTROL         "Make shortcut on &Desktop",IDC_INST_DESKTOP,"Button",
+                    BS_AUTOCHECKBOX,15,40,240,15
+    CONTROL         "Make shortcut in &SendTo context menu",IDC_INST_CONTEXT,
+                    "Button",BS_AUTOCHECKBOX,15,60,240,15
+    CONTROL         "Make shortcut in Start &Menu",IDC_INST_MENU,"Button",
+                    BS_AUTOCHECKBOX,15,80,240,15
+    GROUPBOX        "Uninstall shortcut place selection",IDC_STATIC,5,100,
+                    250,45
+    CONTROL         """Add and Remoe"" in &Control Panel",IDC_RADIO_UNIN,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,15,110,215,15
+    CONTROL         "Make shortcut in Start Men&u",IDC_RADIO_UNIN2,"Button",
+                    BS_AUTORADIOBUTTON,15,125,215,15
+    DEFPUSHBUTTON   "OK(&K)",IDOK,95,150,50,14
+    PUSHBUTTON      "Cancel(&C)",IDCANCEL,150,150,50,14
+    PUSHBUTTON      "Help(&H)",IDC_INSTHLP,205,150,50,14,NOT WS_TABSTOP
+END
+
+IDD_DLG_NORMAL DIALOG DISCARDABLE  0, 0, 274, 79
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "CompleteDelete Working Progress"
+FONT 9, "Arial"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,10,10,20,20
+    LTEXT           "",IDC_LFNAME,40,10,220,25
+    LTEXT           "Deleting ...",IDC_STATIC,35,40,55,10
+    LTEXT           "",IDC_MES,115,40,125,10
+    CONTROL         "Progress1",IDC_PRGRESS,"msctls_progress32",WS_BORDER,5,
+                    60,260,8
+END
+
+IDD_DLG_PROPDEL DIALOGEX 0, 0, 254, 239
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "General"
+FONT 9, "Arial"
+BEGIN
+    CONTROL         "Change File Timestamp (Create, Write, Refer) before delete (Default)",
+                    IDC_C_DATE,"Button",BS_AUTOCHECKBOX | BS_MULTILINE,15,10,
+                    205,20
+    GROUPBOX        "Overwrite method",IDC_STATIC,10,35,235,70
+    CONTROL         "Overwrite with NULL (00h)",IDC_R1_NULL,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,15,50,225,10
+    CONTROL         "Overwrite with Random code (Default)",IDC_R1_RND,"Button",
+                    BS_AUTORADIOBUTTON,15,70,225,9
+    EDITTEXT        IDC_EDIT_NTIMES,15,85,40,15,ES_AUTOHSCROLL | ES_NUMBER | 
+                    NOT WS_BORDER | NOT WS_TABSTOP,WS_EX_STATICEDGE
+    LTEXT           "Overwrite Count (from 1 to 5)",IDC_STATIC,60,85,180,15,
+                    SS_CENTERIMAGE
+    GROUPBOX        "Truncate File Size before delete",IDC_STATIC,10,110,235,
+                    45
+    CONTROL         "OFF",IDC_R2_ZLEN,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
+                    15,125,225,9
+    CONTROL         "ON (Truncate to Zero) (Default)",IDC_R2_RLEN,"Button",
+                    BS_AUTORADIOBUTTON,15,140,225,10
+    GROUPBOX        "Change Name before delete",IDC_STATIC,10,160,235,65
+    CONTROL         "OFF (Default)",IDC_R3_NNAME,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,15,175,225,10
+    CONTROL         "Change to Random Name",IDC_R3_RNAME,"Button",
+                    BS_AUTORADIOBUTTON,15,190,225,10
+    CONTROL         "Change to Randome Name, and next a Name similar to Windows file",
+                    IDC_R3_SNAME,"Button",BS_AUTORADIOBUTTON,15,205,225,10
+END
+
+IDD_DLG_PROPDISP DIALOG DISCARDABLE  0, 0, 254, 239
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Display"
+FONT 9, "Arial"
+BEGIN
+    CONTROL         "Confirm before Delete (Default)",IDC_C_DISPF,"Button",
+                    BS_AUTOCHECKBOX,15,10,230,10
+    GROUPBOX        "Display Option",IDC_STATIC,10,25,235,70
+    CONTROL         "No Progress Dialog",IDC_C_NDISPN,"Button",
+                    BS_AUTOCHECKBOX,15,40,225,10
+    CONTROL         "No Error Message",IDC_C_NDISPE,"Button",BS_AUTOCHECKBOX,
+                    15,60,225,10
+    CONTROL         "Debug Dialog (Stop on every step of deleting)",
+                    IDC_C_DISPC,"Button",BS_AUTOCHECKBOX,15,80,225,10
+    CONTROL         "Log View",IDC_C_DISPF2,"Button",BS_AUTOCHECKBOX,15,105,
+                    215,10
+END
+
+IDD_DLG_PROPOTHER DIALOGEX 0, 0, 254, 239
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Other"
+FONT 9, "Arial", 0, 0, 0x1
+BEGIN
+    CONTROL         "Delete Folder and File inside",IDC_C_RECFOLDER,"Button",
+                    BS_AUTOCHECKBOX | WS_DISABLED,15,10,220,10
+    GROUPBOX        "Dummy File Option (Hash directory entry)",IDC_STATIC,5,
+                    25,240,70
+    CONTROL         "Make Dummy File after delete step, and erase every dummy file",
+                    IDC_C_DMY,"Button",BS_AUTOCHECKBOX,15,40,220,10
+    CONTROL         "Make dummy file at final delete step of several file",
+                    IDC_C_DMYSKIP,"Button",BS_AUTOCHECKBOX,15,60,215,10
+    EDITTEXT        IDC_EDIT_NFILES,15,75,40,15,ES_AUTOHSCROLL | ES_NUMBER | 
+                    NOT WS_BORDER | NOT WS_TABSTOP,WS_EX_STATICEDGE
+    LTEXT           "Dummy Files  (from 1 to 99) (Default 40)",IDC_STATIC,60,
+                    75,150,15,SS_CENTERIMAGE
+    PUSHBUTTON      "Make Uninst Shortcut",IDC_UNINSTALL,10,105,70,15,NOT 
+                    WS_TABSTOP
+    LTEXT           "Make Uninstall Shortcut in Start Menu\r\n(If you lost uninstall shortcut, please use this button)",
+                    IDC_STATIC,90,105,150,30
+    GROUPBOX        "Quick Delete",IDC_STATIC,5,140,240,75
+    LTEXT           "Path",IDC_STATIC,10,155,30,15,SS_CENTERIMAGE | 
+                    WS_DISABLED
+    EDITTEXT        IDC_EDIT1,45,155,145,15,ES_AUTOHSCROLL | WS_DISABLED
+    PUSHBUTTON      "Browse ...",IDC_UNINSTALL2,195,155,45,15,WS_DISABLED | 
+                    NOT WS_TABSTOP
+    LTEXT           "File",IDC_STATIC,10,175,30,15,SS_CENTERIMAGE | 
+                    WS_DISABLED
+    EDITTEXT        IDC_EDIT2,45,175,145,15,ES_AUTOHSCROLL | WS_DISABLED
+    PUSHBUTTON      "Select ...",IDC_UNINSTALL3,195,175,45,15,WS_DISABLED | 
+                    NOT WS_TABSTOP
+    PUSHBUTTON      "Exec Now",IDC_UNINSTALL4,195,195,45,15,WS_DISABLED | 
+                    NOT WS_TABSTOP
+    PUSHBUTTON      "Version Info(&V)",IDC_VERINFO,10,220,70,15,NOT 
+                    WS_TABSTOP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_DLG_ABOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 72
+    END
+
+    IDD_DLG_CONFF, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 72
+    END
+
+    IDD_DLG_HELPDOC, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 283
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 227
+    END
+
+    IDD_DLG_INSTALL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 252
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 162
+    END
+
+    IDD_DLG_NORMAL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 72
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "compdel"
+    AFX_STR_UNINST_CPLNAME  "CompleteDelete"
+    AFX_STR_LINK_UNINST     "\\CompleteDelete uninstall.LNK"
+    AFX_STR_LINK_STARTUP    "\\CompleteDelete StartUp.LNK"
+    AFX_STR_LINK_PROG       "\\CompleteDelete.LNK"
+    AFX_STR_DBG_ATTR        "Delete Attributes"
+    AFX_STR_DBG_OVER        "Overwrite"
+    AFX_STR_DBG_ZEROLEN     "Truncate File Length"
+    AFX_STR_DBG_FNAME       "Change Name"
+    AFX_STR_DBG_WINNAME     "Change Name (Windows similar)"
+    AFX_STR_DBG_DATE        "Change Date"
+    AFX_STR_DBG_DELETE      "All Delete Process"
+    AFX_STR_DBG_MKDUMMY     "Make Dummy File"
+    AFX_STR_DBG_DLDUMMY     "Delete Dummy File"
+    AFX_STR_LOG_DUMMY       "Make Dummy File (%d files)\r\n"
+    AFX_STR_LOG_COMPLETE    "\r\nComplete (OK %d,  NG+Exclude %d)\r\n"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_STR_LOG_SUCCESS     "OK : %s\r\n"
+    AFX_STR_LOG_FAIL        "NG (code=%d) : %s\r\n"
+    AFX_STR_LOG_INIT1       "Option :\r\n Change Date:%s, "
+    AFX_STR_LOG_INIT2       "OverWrite:%s (%d times), Truncate Size:%s, "
+    AFX_STR_LOG_INIT3       "ChangeName:"
+    AFX_STR_LOG_INIT4       "Process begining ( %d files in queue)\r\n-----------------------------\r\n\r\n"
+    AFX_STR_DLG_EXCLUDE     "'%s'\nExclude this file\r\n\r\n(If you select FOLDER. It is not possible to delete)"
+    AFX_STR_LOG_EXCLUDE     "Exclude : %s\r\n"
+    AFX_STR_DLG_PRGRS       "processing %d/%d (%d errors)"
+    AFX_STR_ERR_0           "Fail to get Attributes"
+    AFX_STR_ERR_1           "Fail to change Attributes"
+    AFX_STR_ERR_2           "Fail to Open"
+    AFX_STR_ERR_3           "Fail to Write Data"
+    AFX_STR_ERR_4           "Fail to Truncate File Size"
+    AFX_STR_ERR_5           "Fail to Change Name"
+    AFX_STR_ERR_6           "Fail to Change Date"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_STR_ERR_7           "Fail to Delete"
+    AFX_STR_ERR_8           "Fail to Make Dummy File"
+    AFX_STR_ERR_9           "Fail to Delete Dummy File"
+    AFX_STR_ERR_N           "Other Error"
+    AFX_STR_DLG_ERRCAUSE    "Error occures during process\r\ncurrent target '%s'\r\nreason : %s\r\n\r\nDelete Process is not completed"
+    AFX_STR_UNIN_CONFERM    "Do you want to Uninstall 'CompleteDelete' ?"
+    AFX_STR_MAINDLG         "CompleteDelete Configuration"
+    AFX_STR_DLG_CONFIRM     "Delete %d Files, OK ?"
+    AFX_STR_DLG_PRGRS_2     "Processing '%s' \n%s"
+    AFX_STR_DLG_PRGRS_3     "CompleteDelete Processing Status"
+    AFX_STR_DLG_MKUNIN      "Uninstall Shortcut is made under Startup Menu"
+END
+
+#endif    // 英語 (ｱﾒﾘｶ) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE 17, 1
+#pragma code_page(932)
+#endif //_WIN32
+#include "res\CompDel.rc2"  // Microsoft Visual C++ 以外のツールで編集されたリソース
+#include "l.jpn\afxres.rc"          // 標準のコンポーネント
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
