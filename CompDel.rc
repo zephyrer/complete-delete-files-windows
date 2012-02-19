@@ -93,7 +93,7 @@ CAPTION "CompleteDelete - 完全削除 - バージョン情報"
 FONT 9, "ＭＳ Ｐゴシック"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,10,10,20,20
-    LTEXT           "CompleteDelete (完全削除) for Windows （Multi Language）\n\n\tVersion 1.3 (Freeware / フリーウエア）\n\t(C) 1999-2002 INOUE. Hirokazu\n\thttp://www.ne.jp/asahi/oasis/inoue-h/\n\thttp://inoue-h.connect.to/",
+    LTEXT           "CompleteDelete (完全削除) for Windows （Multi Language）\n\n\tVersion 1.36beta (Freeware / フリーウエア）\n\t(C) 1999-2002 INOUE. Hirokazu\n\thttp://www.ne.jp/asahi/oasis/inoue-h/\n\thttp://inoue-h.connect.to/",
                     IDC_STATIC,44,8,211,57
     DEFPUSHBUTTON   "OK",IDOK,215,70,50,14
 END
@@ -130,72 +130,63 @@ END
 
 IDD_DLG_PROPDEL DIALOGEX 0, 0, 254, 239
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "削除方法"
+CAPTION "基本設定"
 FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
 BEGIN
-    CONTROL         "ファイルの日付（作成、更新、参照）を変更してから消去する （推奨）\r\n   Change File Timestamp",
-                    IDC_C_DATE,"Button",BS_AUTOCHECKBOX | BS_MULTILINE,15,10,
-                    205,20
-    GROUPBOX        "上書き方法  Overwrite",IDC_STATIC,10,35,235,70
+    GROUPBOX        "上書き方法  Overwrite",IDC_STATIC,10,5,235,80
     CONTROL         "データををヌル値（00h）で上書きする (with NULL)",
-                    IDC_R1_NULL,"Button",BS_AUTORADIOBUTTON | WS_GROUP,15,50,
+                    IDC_R1_NULL,"Button",BS_AUTORADIOBUTTON | WS_GROUP,15,20,
                     225,10
     CONTROL         "データをランダム値で上書きする （推奨） (with Random Char)",
-                    IDC_R1_RND,"Button",BS_AUTORADIOBUTTON,15,70,225,9
-    EDITTEXT        IDC_EDIT_NTIMES,15,85,40,15,ES_AUTOHSCROLL | ES_NUMBER | 
+                    IDC_R1_RND,"Button",BS_AUTORADIOBUTTON,15,35,225,9
+    CONTROL         "DOD 5220.22-M < 8-306 Magnetic Disk METHOD D >",
+                    IDC_R1_DOD,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,15,
+                    50,225,9
+    EDITTEXT        IDC_EDIT_NTIMES,15,65,40,15,ES_AUTOHSCROLL | ES_NUMBER | 
                     NOT WS_BORDER | NOT WS_TABSTOP,WS_EX_STATICEDGE
-    LTEXT           "回       上書き回数 (1から5)  (Overwrite Times)",
-                    IDC_STATIC,60,85,180,15,SS_CENTERIMAGE
+    LTEXT           "回       上書き回数 (1から50)  (Overwrite Times)",
+                    IDC_STATIC,60,65,180,15,SS_CENTERIMAGE
+    CONTROL         "ファイルの日付（作成、更新、参照）を変更してから消去する （推奨）\r\n   Change File Timestamp",
+                    IDC_C_DATE,"Button",BS_AUTOCHECKBOX | BS_MULTILINE,15,90,
+                    230,20
     GROUPBOX        "ファイルサイズの変更  Truncate File Size",IDC_STATIC,10,
-                    110,235,45
+                    120,235,45
     CONTROL         "ファイルサイズは変更せずに消去する (OFF)",IDC_R2_ZLEN,
-                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,15,125,225,9
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,15,135,225,9
     CONTROL         "ファイルサイズをゼロにしてから消去する （推奨） (Truncate)",
-                    IDC_R2_RLEN,"Button",BS_AUTORADIOBUTTON,15,140,225,10
-    GROUPBOX        "ファイル名の変更  Change Name",IDC_STATIC,10,160,235,65
+                    IDC_R2_RLEN,"Button",BS_AUTORADIOBUTTON,15,150,225,10
+    GROUPBOX        "ファイル名の変更  Change Name",IDC_STATIC,10,170,235,65
     CONTROL         "ファイル名は変更しない（推奨） (OFF)",IDC_R3_NNAME,
-                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,15,175,225,10
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,15,185,225,10
     CONTROL         "ランダム・ファイル名に変更 (Random Name)",IDC_R3_RNAME,
-                    "Button",BS_AUTORADIOBUTTON,15,190,225,10
+                    "Button",BS_AUTORADIOBUTTON,15,200,225,10
     CONTROL         "ランダム・ファイル名 → Windowsシステムファイル名に変更 (Win Name)",
-                    IDC_R3_SNAME,"Button",BS_AUTORADIOBUTTON,15,205,225,10
+                    IDC_R3_SNAME,"Button",BS_AUTORADIOBUTTON,15,215,225,10
 END
 
-IDD_DLG_PROPOTHER DIALOGEX 0, 0, 254, 239
+IDD_DLG_PROPOTHER DIALOG DISCARDABLE  0, 0, 254, 239
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "その他の設定"
-FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+CAPTION "詳細設定 3"
+FONT 9, "ＭＳ Ｐゴシック"
 BEGIN
-    CONTROL         "フォルダ内のファイルとフォルダを消去対象にする",
-                    IDC_C_RECFOLDER,"Button",BS_AUTOCHECKBOX | WS_DISABLED,
-                    15,10,220,10
-    GROUPBOX        "ダミーファイル削除痕跡による復活妨害  Dummy File Option",
-                    IDC_STATIC,5,25,240,70
-    CONTROL         "消去後、撹乱用のダミーファイルを作成し、消去する  (Dummy File)",
-                    IDC_C_DMY,"Button",BS_AUTOCHECKBOX,15,40,220,10
-    CONTROL         "同じフォルダのときは、最後の消去時にのみダミーファイルを作成する",
-                    IDC_C_DMYSKIP,"Button",BS_AUTOCHECKBOX,15,60,215,10
-    EDITTEXT        IDC_EDIT_NFILES,15,75,40,15,ES_AUTOHSCROLL | ES_NUMBER | 
-                    NOT WS_BORDER | NOT WS_TABSTOP,WS_EX_STATICEDGE
-    LTEXT           "個       ダミーファイルの数（1から99、通常40個）",
-                    IDC_STATIC,60,75,150,15,SS_CENTERIMAGE
-    PUSHBUTTON      "アンインストール作成",IDC_UNINSTALL,10,105,70,15,NOT 
+    GROUPBOX        "クイック実行  Quick Delete",IDC_STATIC,10,5,235,75
+    LTEXT           "ファイル",IDC_STATIC,15,20,30,15,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_QUICK_FNAME,50,21,140,15,ES_AUTOHSCROLL
+    PUSHBUTTON      "参照 ...",IDC_BTN_QFILE_BROWSE,195,21,45,15,NOT 
+                    WS_TABSTOP
+    PUSHBUTTON      "クイック実行",IDC_BTN_QEXEC,195,40,45,15,NOT WS_TABSTOP
+    LTEXT           "設定を変更した場合は、一旦このダイアログを閉じて設定をレジストリに保存した後、クイック実行を行ってください。",
+                    IDC_STATIC,15,60,225,15
+    GROUPBOX        "データ・ビュア（テキストエディタ等）の指定  Data Viewer",
+                    IDC_STATIC,10,85,235,30,WS_DISABLED
+    EDITTEXT        IDC_EDIT_TEXTEDITOR,15,95,175,15,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    PUSHBUTTON      "参照 ...",IDC_BTN_QFILE_BROWSE2,195,95,45,15,
+                    WS_DISABLED | NOT WS_TABSTOP
+    PUSHBUTTON      "アンインストール作成",IDC_UNINSTALL,10,125,70,15,NOT 
                     WS_TABSTOP
     LTEXT           "スタートメニューにアンインストール用のショートカットを作成します\r\n(アンインストール手段を無くした時に使います）",
-                    IDC_STATIC,90,105,150,30
-    GROUPBOX        "クイック実行  Quick Delete",IDC_STATIC,5,140,240,75
-    LTEXT           "パス",IDC_STATIC,10,155,30,15,SS_CENTERIMAGE | 
-                    WS_DISABLED
-    EDITTEXT        IDC_EDIT1,45,155,145,15,ES_AUTOHSCROLL | WS_DISABLED
-    PUSHBUTTON      "参照 ...",IDC_UNINSTALL2,195,155,45,15,WS_DISABLED | 
-                    NOT WS_TABSTOP
-    LTEXT           "ファイル",IDC_STATIC,10,175,30,15,SS_CENTERIMAGE | 
-                    WS_DISABLED
-    EDITTEXT        IDC_EDIT2,45,175,145,15,ES_AUTOHSCROLL | WS_DISABLED
-    PUSHBUTTON      "参照 ...",IDC_UNINSTALL3,195,175,45,15,WS_DISABLED | 
-                    NOT WS_TABSTOP
-    PUSHBUTTON      "クイック実行",IDC_UNINSTALL4,195,195,45,15,WS_DISABLED | 
-                    NOT WS_TABSTOP
+                    IDC_STATIC,90,125,150,30
     PUSHBUTTON      "バージョン情報(&V)",IDC_VERINFO,10,220,70,15,NOT 
                     WS_TABSTOP
 END
@@ -239,6 +230,74 @@ BEGIN
     DEFPUSHBUTTON   "OK(&K)",IDOK,225,235,60,15
 END
 
+IDD_DLG_PROPDEL2 DIALOGEX 0, 0, 255, 239
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "詳細設定 1"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    GROUPBOX        "書込バッファ  Write Buffer",IDC_STATIC,10,10,235,30
+    EDITTEXT        IDC_EDIT_BUFFER,15,20,55,15,ES_AUTOHSCROLL | ES_NUMBER | 
+                    NOT WS_BORDER | NOT WS_TABSTOP,WS_EX_STATICEDGE
+    LTEXT           "Bytes (1～2048 Bytes) (標準は2048)",IDC_STATIC,75,20,
+                    165,15,SS_CENTERIMAGE
+    GROUPBOX        "オーバーラン書き込みサイズ Overrun write size",
+                    IDC_STATIC,10,45,235,30
+    EDITTEXT        IDC_EDIT_OVERRUN,15,55,55,15,ES_AUTOHSCROLL | ES_NUMBER | 
+                    NOT WS_BORDER | NOT WS_TABSTOP,WS_EX_STATICEDGE
+    LTEXT           "Bytes (0～65536 Bytes) (標準は 0)",IDC_STATIC,75,55,165,
+                    15,SS_CENTERIMAGE
+    GROUPBOX        "DOD 5220.22-M で用いる指定文字  fill char",IDC_STATIC,
+                    10,80,235,30,WS_DISABLED
+    EDITTEXT        IDC_EDIT_DODCHAR,15,90,55,15,ES_AUTOHSCROLL | ES_NUMBER | 
+                    WS_DISABLED | NOT WS_BORDER | NOT WS_TABSTOP,
+                    WS_EX_STATICEDGE
+    LTEXT           " (0～255の10進数) (標準 65 'A')",IDC_STATIC,75,90,165,
+                    15,SS_CENTERIMAGE | WS_DISABLED
+    CONTROL         "全処理終了後、ファイルを残して終了（削除しない）  Leave file, not remove",
+                    IDC_C_NOTREMOVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,
+                    120,235,15
+END
+
+IDD_DLG_PROPDEL3 DIALOGEX 0, 0, 255, 239
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "詳細設定 2"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    GROUPBOX        "空き領域の追加削除  Additional Wipe",IDC_STATIC,10,5,
+                    235,140
+    LTEXT           "データ領域に対する撹乱 (target : data area)",IDC_STATIC,
+                    15,20,225,10,SS_SUNKEN
+    CONTROL         "追加削除機能の使用  (Enable additional wipe function)",
+                    IDC_C_ANTICACHE,"Button",BS_AUTOCHECKBOX,15,35,225,15
+    CONTROL         "対象ファイルと同じボリュームに一時ファイルを作る (at same volume)",
+                    IDC_R1_ANTIDIR,"Button",BS_AUTORADIOBUTTON | WS_GROUP,15,
+                    55,225,15
+    CONTROL         "テンポラリフォルダに一時ファイルを作る (at temp folder)",
+                    IDC_R1_ANTIDIR2,"Button",BS_AUTORADIOBUTTON,15,75,225,15
+    EDITTEXT        IDC_EDIT_ANTISIZE,15,95,55,15,ES_AUTOHSCROLL | ES_NUMBER | 
+                    NOT WS_BORDER | NOT WS_TABSTOP,WS_EX_STATICEDGE
+    LTEXT           "MBytes (1～100 MBytes) (標準は20 MBytes)",IDC_STATIC,75,
+                    95,165,15,SS_CENTERIMAGE
+    CONTROL         "最終上書き後１回のみ  (Only one time after last overwrite process)",
+                    IDC_C_ANTI_ONETIME,"Button",BS_AUTOCHECKBOX,15,110,225,
+                    15
+    LTEXT           "フロッピーディスクや遅いメディアではこの機能の設定に注意してください",
+                    IDC_STATIC,15,130,225,10
+    GROUPBOX        "ダミーファイル削除痕跡による復活妨害  Dummy File Option",
+                    IDC_STATIC,10,150,235,85
+    LTEXT           "ファイル名領域に対する撹乱 (target : file name entry)",
+                    IDC_STATIC,15,165,225,10,SS_SUNKEN
+    CONTROL         "消去後、撹乱用のダミーファイルを作成し、消去する  (Dummy File)",
+                    IDC_C_DMY,"Button",BS_AUTOCHECKBOX,15,180,220,10
+    CONTROL         "同じフォルダのときは、最後の消去時にのみダミーファイルを作成する",
+                    IDC_C_DMYSKIP,"Button",BS_AUTOCHECKBOX,15,200,215,10
+    EDITTEXT        IDC_EDIT_DUMMY_NFILES,15,215,40,15,ES_AUTOHSCROLL | 
+                    ES_NUMBER | NOT WS_BORDER | NOT WS_TABSTOP,
+                    WS_EX_STATICEDGE
+    LTEXT           "個       ダミーファイルの数（1から99、通常40個）",
+                    IDC_STATIC,60,215,150,15,SS_CENTERIMAGE
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -247,8 +306,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,3,0,1
- PRODUCTVERSION 1,3,0,1
+ FILEVERSION 1,3,6,1
+ PRODUCTVERSION 1,3,6,1
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x21L
@@ -266,14 +325,14 @@ BEGIN
             VALUE "Comments", "This Program is Free Ware\0"
             VALUE "CompanyName", "hi soft\0"
             VALUE "FileDescription", "CompleteDelete for Windows  (Multi Lunguage Pack)\0"
-            VALUE "FileVersion", "1.3\0"
+            VALUE "FileVersion", "1.36b\0"
             VALUE "InternalName", "CompleteDelete for Windows 95/98/Me/NT/2000/XP\0"
             VALUE "LegalCopyright", "Copyright (C) 1999-2002 INOUE. Hirokazu\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "CompDel.EXE\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "完全削除（CompleteDelete） for Windows 95/98/NT/2000 Japanese\0"
-            VALUE "ProductVersion", "version 1.3\0"
+            VALUE "ProductVersion", "version 1.36b\0"
             VALUE "SpecialBuild", "Made with Microsoft Visual C++ 6.0\0"
         END
     END
@@ -332,6 +391,22 @@ BEGIN
         RIGHTMARGIN, 282
         TOPMARGIN, 7
         BOTTOMMARGIN, 248
+    END
+
+    IDD_DLG_PROPDEL2, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 248
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 232
+    END
+
+    IDD_DLG_PROPDEL3, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 248
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 232
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -395,6 +470,9 @@ BEGIN
     AFX_STR_DLG_PRGRS_2     "ファイル「%s」の削除処理中\n%s"
     AFX_STR_DLG_PRGRS_3     "完全削除処理状況"
     AFX_STR_DLG_MKUNIN      "アンインストール用のショートカットを作成しました"
+    AFX_STR_DBG_OVERRUN     "ファイルのオーバーラン書き込み終了"
+    AFX_STR_DBG_ANTICACHE   "空き領域追加削除用テンポラリファイルを作成"
+    AFX_STR_ERR_ANTICACHE   "空き領域追加削除用テンポラリファイルを作成できません"
 END
 
 #endif    // 日本語 resources
@@ -421,7 +499,7 @@ CAPTION "CompleteDelete - Version Information"
 FONT 9, "Arial"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,10,10,20,20
-    LTEXT           "CompleteDelete for Windows (Multi Language Version)\n\n\tVersion 1.3 (Freeware)\n\t(C) 1999-2002 INOUE. Hirokazu\n\thttp://www.ne.jp/asahi/oasis/inoue-h/\n\thttp://inoue-h.connect.to/",
+    LTEXT           "CompleteDelete for Windows (Multi Language Version)\n\n\tVersion 1.36beta (Freeware)\n\t(C) 1999-2002 INOUE. Hirokazu\n\thttp://www.ne.jp/asahi/oasis/inoue-h/\n\thttp://inoue-h.connect.to/",
                     IDC_STATIC,44,8,211,57
     DEFPUSHBUTTON   "OK",IDOK,215,70,50,14
 END
@@ -490,20 +568,20 @@ END
 IDD_DLG_PROPDEL DIALOGEX 0, 0, 254, 239
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "General"
-FONT 9, "Arial", 0, 0, 0x1
+FONT 9, "Arial"
 BEGIN
-    CONTROL         "Change File Timestamp (Create, Write, Refer) before delete (Default)",
-                    IDC_C_DATE,"Button",BS_AUTOCHECKBOX | BS_MULTILINE,15,10,
-                    205,20
-    GROUPBOX        "Overwrite method",IDC_STATIC,10,35,235,70
+    GROUPBOX        "Overwrite method",IDC_STATIC,10,5,235,70
     CONTROL         "Overwrite with NULL (00h)",IDC_R1_NULL,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,15,50,225,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,15,20,225,10
     CONTROL         "Overwrite with Random code (Default)",IDC_R1_RND,"Button",
-                    BS_AUTORADIOBUTTON,15,70,225,9
-    EDITTEXT        IDC_EDIT_NTIMES,15,85,40,15,ES_AUTOHSCROLL | ES_NUMBER | 
+                    BS_AUTORADIOBUTTON,15,39,225,9
+    EDITTEXT        IDC_EDIT_NTIMES,15,54,40,15,ES_AUTOHSCROLL | ES_NUMBER | 
                     NOT WS_BORDER | NOT WS_TABSTOP,WS_EX_STATICEDGE
-    LTEXT           "Overwrite Count (from 1 to 5)",IDC_STATIC,60,85,180,15,
+    LTEXT           "Overwrite Count (from 1 to 50)",IDC_STATIC,60,54,180,15,
                     SS_CENTERIMAGE
+    CONTROL         "Change File Timestamp (Create, Write, Refer) before delete (Default)",
+                    IDC_C_DATE,"Button",BS_AUTOCHECKBOX | BS_MULTILINE,10,85,
+                    205,20
     GROUPBOX        "Truncate File Size before delete",IDC_STATIC,10,110,235,
                     45
     CONTROL         "OFF",IDC_R2_ZLEN,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
@@ -537,42 +615,95 @@ BEGIN
                     215,10
 END
 
-IDD_DLG_PROPOTHER DIALOGEX 0, 0, 254, 239
+IDD_DLG_PROPOTHER DIALOG DISCARDABLE  0, 0, 254, 239
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "Other"
-FONT 9, "Arial", 0, 0, 0x1
+CAPTION "Detail 3/3"
+FONT 9, "Arial"
 BEGIN
-    CONTROL         "Delete Folder and File inside",IDC_C_RECFOLDER,"Button",
-                    BS_AUTOCHECKBOX | WS_DISABLED,15,10,220,10
-    GROUPBOX        "Dummy File Option (Hash directory entry)",IDC_STATIC,5,
-                    25,240,70
-    CONTROL         "Make Dummy File after delete step, and erase every dummy file",
-                    IDC_C_DMY,"Button",BS_AUTOCHECKBOX,15,40,220,10
-    CONTROL         "Make dummy file at final delete step of several file",
-                    IDC_C_DMYSKIP,"Button",BS_AUTOCHECKBOX,15,60,215,10
-    EDITTEXT        IDC_EDIT_NFILES,15,75,40,15,ES_AUTOHSCROLL | ES_NUMBER | 
-                    NOT WS_BORDER | NOT WS_TABSTOP,WS_EX_STATICEDGE
-    LTEXT           "Dummy Files  (from 1 to 99) (Default 40)",IDC_STATIC,60,
-                    75,150,15,SS_CENTERIMAGE
-    PUSHBUTTON      "Make Uninst Shortcut",IDC_UNINSTALL,10,105,70,15,NOT 
+    GROUPBOX        "Quick Delete",IDC_STATIC,10,5,235,75
+    LTEXT           "File",IDC_STATIC,15,20,30,15,SS_CENTERIMAGE
+    EDITTEXT        IDC_EDIT_QUICK_FNAME,50,20,140,15,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse ...",IDC_BTN_QFILE_BROWSE,195,20,45,15,NOT 
+                    WS_TABSTOP
+    PUSHBUTTON      "Delete Now",IDC_BTN_QEXEC,195,40,45,15,NOT WS_TABSTOP
+    LTEXT           "If you change settings of this dialog, close this dialog for saving these settings FIRST .",
+                    IDC_STATIC,15,60,225,15
+    GROUPBOX        "Data Viewer (Text Editor)",IDC_STATIC,10,85,235,30,
+                    WS_DISABLED
+    EDITTEXT        IDC_EDIT_TEXTEDITOR,15,95,175,12,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    PUSHBUTTON      "Browse ...",IDC_BTN_QFILE_BROWSE2,195,95,45,12,
+                    WS_DISABLED | NOT WS_TABSTOP
+    PUSHBUTTON      "Make Uninst Shortcut",IDC_UNINSTALL,10,125,70,15,NOT 
                     WS_TABSTOP
     LTEXT           "Make Uninstall Shortcut in Start Menu\r\n(If you lost uninstall shortcut, please use this button)",
-                    IDC_STATIC,90,105,150,30
-    GROUPBOX        "Quick Delete",IDC_STATIC,5,140,240,75
-    LTEXT           "Path",IDC_STATIC,10,155,30,15,SS_CENTERIMAGE | 
-                    WS_DISABLED
-    EDITTEXT        IDC_EDIT1,45,155,145,15,ES_AUTOHSCROLL | WS_DISABLED
-    PUSHBUTTON      "Browse ...",IDC_UNINSTALL2,195,155,45,15,WS_DISABLED | 
-                    NOT WS_TABSTOP
-    LTEXT           "File",IDC_STATIC,10,175,30,15,SS_CENTERIMAGE | 
-                    WS_DISABLED
-    EDITTEXT        IDC_EDIT2,45,175,145,15,ES_AUTOHSCROLL | WS_DISABLED
-    PUSHBUTTON      "Select ...",IDC_UNINSTALL3,195,175,45,15,WS_DISABLED | 
-                    NOT WS_TABSTOP
-    PUSHBUTTON      "Exec Now",IDC_UNINSTALL4,195,195,45,15,WS_DISABLED | 
-                    NOT WS_TABSTOP
+                    IDC_STATIC,90,125,150,30
     PUSHBUTTON      "Version Info(&V)",IDC_VERINFO,10,220,70,15,NOT 
                     WS_TABSTOP
+END
+
+IDD_DLG_PROPDEL2 DIALOGEX 0, 0, 255, 239
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Detail 1/3"
+FONT 9, "Arial"
+BEGIN
+    GROUPBOX        "Write Buffer size",IDC_STATIC,10,5,235,30
+    EDITTEXT        IDC_EDIT_BUFFER,15,14,55,15,ES_AUTOHSCROLL | ES_NUMBER | 
+                    NOT WS_BORDER | NOT WS_TABSTOP,WS_EX_STATICEDGE
+    LTEXT           "Bytes (1 - 2048 Bytes) (Default 2048)",IDC_STATIC,75,14,
+                    165,15,SS_CENTERIMAGE
+    GROUPBOX        "Over Run Write size",IDC_STATIC,10,39,235,30
+    EDITTEXT        IDC_EDIT_OVERRUN,15,50,55,15,ES_AUTOHSCROLL | ES_NUMBER | 
+                    NOT WS_BORDER | NOT WS_TABSTOP,WS_EX_STATICEDGE
+    LTEXT           "Bytes (0 - 65536 Bytes) (Default 0)",IDC_STATIC,75,50,
+                    165,15,SS_CENTERIMAGE
+    GROUPBOX        "DOD 5220.22-M  fill char",IDC_STATIC,10,75,235,30,
+                    WS_DISABLED
+    EDITTEXT        IDC_EDIT_DODCHAR,15,85,55,15,ES_AUTOHSCROLL | ES_NUMBER | 
+                    WS_DISABLED | NOT WS_BORDER | NOT WS_TABSTOP,
+                    WS_EX_STATICEDGE
+    LTEXT           " (0 - 255 decimal) (Default 65 'A')",IDC_STATIC,75,85,
+                    165,15,SS_CENTERIMAGE | WS_DISABLED
+    CONTROL         "Leave file after every process (bypass remove stage)",
+                    IDC_C_NOTREMOVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,
+                    115,235,12
+END
+
+IDD_DLG_PROPDEL3 DIALOGEX 0, 0, 255, 239
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "Detail 2/3"
+FONT 9, "Arial"
+BEGIN
+    GROUPBOX        "Additional Wipe Space",IDC_STATIC,10,5,235,140
+    LTEXT           "Make Dummy Space on Data Area",IDC_STATIC,15,20,225,10,
+                    SS_SUNKEN
+    CONTROL         "Enable Additional Wipe Space Function",IDC_C_ANTICACHE,
+                    "Button",BS_AUTOCHECKBOX,15,35,225,15
+    CONTROL         "Make Dummy File on Same Folder",IDC_R1_ANTIDIR,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,15,55,225,15
+    CONTROL         "Make Dummy FIle on Temporary Folder",IDC_R1_ANTIDIR2,
+                    "Button",BS_AUTORADIOBUTTON,15,75,225,15
+    EDITTEXT        IDC_EDIT_ANTISIZE,15,95,55,15,ES_AUTOHSCROLL | ES_NUMBER | 
+                    NOT WS_BORDER | NOT WS_TABSTOP,WS_EX_STATICEDGE
+    LTEXT           "MBytes (1~100 MBytes) (default 20 MBytes)",IDC_STATIC,
+                    75,95,165,15,SS_CENTERIMAGE
+    CONTROL         "Only one time after last overwrite process",
+                    IDC_C_ANTI_ONETIME,"Button",BS_AUTOCHECKBOX,15,110,225,
+                    15
+    LTEXT           "If the Target is Floppy Disk or Slow Media, Do not use this Option",
+                    IDC_STATIC,15,130,225,10
+    GROUPBOX        "Dummy File Entry",IDC_STATIC,10,150,235,85
+    LTEXT           "Make Dummy File Entry on same Folder",IDC_STATIC,15,165,
+                    225,10,SS_SUNKEN
+    CONTROL         "Enable Additional File Entry Wipe Function",IDC_C_DMY,
+                    "Button",BS_AUTOCHECKBOX,15,180,220,10
+    CONTROL         "Only one time after multiple delete files process",
+                    IDC_C_DMYSKIP,"Button",BS_AUTOCHECKBOX,15,200,215,10
+    EDITTEXT        IDC_EDIT_DUMMY_NFILES,15,215,40,15,ES_AUTOHSCROLL | 
+                    ES_NUMBER | NOT WS_BORDER | NOT WS_TABSTOP,
+                    WS_EX_STATICEDGE
+    LTEXT           "number of dummy files (1 to 99) (default:40)",
+                    IDC_STATIC,60,215,165,15,SS_CENTERIMAGE
 END
 
 
@@ -622,6 +753,22 @@ BEGIN
         RIGHTMARGIN, 267
         TOPMARGIN, 7
         BOTTOMMARGIN, 72
+    END
+
+    IDD_DLG_PROPDEL2, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 248
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 232
+    END
+
+    IDD_DLG_PROPDEL3, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 248
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 232
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -685,6 +832,9 @@ BEGIN
     AFX_STR_DLG_PRGRS_2     "Processing '%s' \n%s"
     AFX_STR_DLG_PRGRS_3     "CompleteDelete Processing Status"
     AFX_STR_DLG_MKUNIN      "Uninstall Shortcut is made under Startup Menu"
+    AFX_STR_DBG_OVERRUN     "Overrun write complete"
+    AFX_STR_DBG_ANTICACHE   "Make Additional Wipe temporary file"
+    AFX_STR_ERR_ANTICACHE   "Fail to make Anticache temporary file"
 END
 
 #endif    // 英語 (ｱﾒﾘｶ) resources

@@ -28,6 +28,7 @@ void CDlgHelpDoc::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CDlgHelpDoc)
+	DDX_Control(pDX, IDC_EDIT_MAIN, m_ctrl_edit_main);
 	DDX_Text(pDX, IDC_EDIT_MAIN, m_edit_main);
 	//}}AFX_DATA_MAP
 }
@@ -35,9 +36,22 @@ void CDlgHelpDoc::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CDlgHelpDoc, CDialog)
 	//{{AFX_MSG_MAP(CDlgHelpDoc)
-		// メモ - ClassWizard はこの位置にマッピング用のマクロを追加または削除します。
+	ON_WM_SHOWWINDOW()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CDlgHelpDoc メッセージ ハンドラ
+
+// *********************************
+// ウインドウが表示されるときに、エディットコントロールのテキストが
+//   全て選択されている状態を解除する\
+// *********************************
+void CDlgHelpDoc::OnShowWindow(BOOL bShow, UINT nStatus) 
+{
+	CDialog::OnShowWindow(bShow, nStatus);
+	
+	// TODO: この位置にメッセージ ハンドラ用のコードを追加してください
+	m_ctrl_edit_main.SetSel(-1,0,FALSE);
+	
+}

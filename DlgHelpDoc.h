@@ -19,6 +19,7 @@ public:
 // ダイアログ データ
 	//{{AFX_DATA(CDlgHelpDoc)
 	enum { IDD = IDD_DLG_HELPDOC };
+	CEdit	m_ctrl_edit_main;
 	CString	m_edit_main;
 	//}}AFX_DATA
 
@@ -35,7 +36,7 @@ protected:
 
 	// 生成されたメッセージ マップ関数
 	//{{AFX_MSG(CDlgHelpDoc)
-		// メモ: ClassWizard はこの位置にメンバ関数を追加します。
+	afx_msg void OnShowWindow(BOOL bShow, UINT nStatus);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

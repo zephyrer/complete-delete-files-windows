@@ -12,6 +12,15 @@
 class CFileman  
 {
 public:
+	BOOL AntiCacheTempWrite(const char *fname);
+	int n_DodChar;
+	int n_Overrun;
+	UINT n_BufferSize;
+	UINT n_UnticacheSize;
+	int n_UntiFolder;
+	BOOL b_AntiCache;
+	BOOL n_bAntiOneShot;
+	BOOL b_NotRemove;
 	BOOL DeleteMain(LPCSTR buf);
 	CString GetLFName();
 	BOOL SetFullPath(LPCSTR buf);

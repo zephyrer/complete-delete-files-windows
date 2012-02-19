@@ -69,6 +69,7 @@ BOOL CCompDelApp::InitInstance()
 	// m_pszAppName = "compdel" としてはいけない！ ASSERTION エラーとなる
 	SetRegistryKey((LPCTSTR)"hi soft");
 
+
 	// コマンドライン引数の解析と処理実行
 	ProcessCommandline();
 	// ダイアログが閉じられてからアプリケーションのメッセージ ポンプを開始するよりは、
@@ -113,6 +114,35 @@ BOOL CCompDelApp::ProcessCommandline()
 		}
 		else return FALSE;	// インストール却下
 	}
+
+	// ************************************************************
+	// 動作モードをレジストリより読み込む
+	// ************************************************************
+	MyFile.n_NDispN = GetProfileInt("Settings","NDispN",0);
+	MyFile.n_NDispE = GetProfileInt("Settings","NDispE",0);
+	MyFile.n_Dummy = GetProfileInt("Settings","Dummy",0);
+	MyFile.n_DummySkip = GetProfileInt("Settings","DummySkip",1);
+	MyFile.n_Date = GetProfileInt("Settings","Date",1);
+	MyFile.n_rNull = GetProfileInt("Settings","rNull",1);
+	MyFile.n_rZLen = GetProfileInt("Settings","rZLen",1);
+	MyFile.n_rRen = GetProfileInt("Settings","rRen",1);
+	MyFile.n_nOvwr = GetProfileInt("Settings","nOvwr",5);
+	MyFile.n_nFiles = GetProfileInt("Settings","nFiles",40);
+	MyFile.n_Confirm = GetProfileInt("Settings","Confirm",0);
+	MyFile.n_DispF = GetProfileInt("Settings","DispF",1);
+	MyFile.n_Log = GetProfileInt("Settings","Log",1);
+
+	MyFile.b_AntiCache = GetProfileInt("Settings","AddWipe",0);
+	MyFile.n_UntiFolder = GetProfileInt("Settings","rAntiFolder",0);
+	MyFile.n_UnticacheSize = GetProfileInt("Settings","nAnticacheSize",20);
+	MyFile.n_bAntiOneShot = GetProfileInt("Settings","bAntiOneShot",1);
+	MyFile.n_BufferSize = GetProfileInt("Settings","m_nBufferSize",2048);
+	MyFile.n_Overrun = GetProfileInt("Settings","m_nOverrun",0);
+	MyFile.n_DodChar = GetProfileInt("Settings","m_nDodChar",(int)'A');
+
+	MyFile.b_NotRemove = GetProfileInt("Settings","bNotDel",0);
+
+
 	// ************************************************************
 	// 設定ダイアログ表示。
 	// ************************************************************
@@ -123,27 +153,39 @@ BOOL CCompDelApp::ProcessCommandline()
 		CPropertySheet dlg((LPCSTR)sAfxMsg);	// ダイアログのベース
 		// プロパティーシート
 		CDlgPDel dlgPDel;
+		CDlgPDel2 dlgPDel2;
+		CDlgPDel3 dlgPDel3;
 		CDlgPDisp dlgPDisp;
 		CDlgPOther dlgPOther;
 
 		m_pMainWnd = &dlg;	// このダイアログをメインフレームとする
-		dlgPDisp.m_NDispN = GetProfileInt("Settings","NDispN",0);
-		dlgPDisp.m_NDispE = GetProfileInt("Settings","NDispE",0);
-		dlgPOther.m_Dummy = GetProfileInt("Settings","Dummy",0);
-		dlgPOther.m_DummySkip = GetProfileInt("Settings","DummySkip",1);
-		dlgPOther.m_nFiles = GetProfileInt("Settings","nFiles",40);
-		dlgPDel.m_Date = GetProfileInt("Settings","Date",1);
-		dlgPDel.m_rNull = GetProfileInt("Settings","rNull",1);
-		dlgPDel.m_rZLen = GetProfileInt("Settings","rZLen",1);
-		dlgPDel.m_rRen = GetProfileInt("Settings","rRen",1);
-		dlgPDel.m_nOvwr = GetProfileInt("Settings","nOvwr",2);
-		dlgPDisp.m_Confirm = GetProfileInt("Settings","Confirm",0);
-		dlgPDisp.m_DispF = GetProfileInt("Settings","DispF",1);
-		dlgPDisp.m_Log = GetProfileInt("Settings","Log",1);
+		dlgPDisp.m_NDispN = MyFile.n_NDispN;
+		dlgPDisp.m_NDispE = MyFile.n_NDispE;
+		dlgPDel3.m_bDummy = MyFile.n_Dummy;
+		dlgPDel3.m_bDummySkip = MyFile.n_DummySkip;
+		dlgPDel3.m_nFiles = MyFile.n_nFiles;
+		dlgPDel.m_Date = MyFile.n_Date;
+		dlgPDel.m_rNull = MyFile.n_rNull;
+		dlgPDel.m_rZLen = MyFile.n_rZLen;
+		dlgPDel.m_rRen = MyFile.n_rRen;
+		dlgPDel.m_nOvwr = MyFile.n_nOvwr;
+		dlgPDel3.m_AntiCache = MyFile.b_AntiCache;
+		dlgPDel3.m_rAntiFolder = MyFile.n_UntiFolder;
+		dlgPDel3.m_nAnticacheSize = MyFile.n_UnticacheSize;
+		dlgPDel3.m_bAntiOneShot = MyFile.n_bAntiOneShot;
+		dlgPDel2.m_nBufferSize = MyFile.n_BufferSize;
+		dlgPDel2.m_nOverrun = MyFile.n_Overrun;
+		dlgPDel2.m_nDodChar = MyFile.n_DodChar;
+		dlgPDisp.m_Confirm = MyFile.n_Confirm;
+		dlgPDisp.m_DispF = MyFile.n_DispF;
+		dlgPDisp.m_Log = MyFile.n_Log;
+		dlgPDel2.m_bNotRemove = MyFile.b_NotRemove;
 
 		// プロパティーページの連結
 		dlg.AddPage(&dlgPDel);
 		dlg.AddPage(&dlgPDisp);
+		dlg.AddPage(&dlgPDel2);
+		dlg.AddPage(&dlgPDel3);
 		dlg.AddPage(&dlgPOther);
 		// プロパティーシートの属性変更
 		dlg.m_psh.dwFlags=(dlg.m_psh.dwFlags|PSH_NOAPPLYNOW);// &(~PSH_HASHELP);
@@ -153,12 +195,12 @@ BOOL CCompDelApp::ProcessCommandline()
 				WriteProfileInt("Settings","NDispN",dlgPDisp.m_NDispN);	
 			if(dlgPDisp.m_NDispE != (int)GetProfileInt("Settings","NDispE",0))
 				WriteProfileInt("Settings","NDispE",dlgPDisp.m_NDispE);	
-			if(dlgPOther.m_Dummy != (int)GetProfileInt("Settings","Dummy",0))
-				WriteProfileInt("Settings","Dummy",dlgPOther.m_Dummy);	
-			if(dlgPOther.m_DummySkip != (int)GetProfileInt("Settings","DummySkip",1))
-				WriteProfileInt("Settings","DummySkip",dlgPOther.m_DummySkip);	
-			if(dlgPOther.m_nFiles != (int)GetProfileInt("Settings","nFiles",40))
-				WriteProfileInt("Settings","nFiles",dlgPOther.m_nFiles);	
+			if(dlgPDel3.m_bDummy != (int)GetProfileInt("Settings","Dummy",0))
+				WriteProfileInt("Settings","Dummy",dlgPDel3.m_bDummy);	
+			if(dlgPDel3.m_bDummySkip != (int)GetProfileInt("Settings","DummySkip",1))
+				WriteProfileInt("Settings","DummySkip",dlgPDel3.m_bDummySkip);	
+			if(dlgPDel3.m_nFiles != (int)GetProfileInt("Settings","nFiles",40))
+				WriteProfileInt("Settings","nFiles",dlgPDel3.m_nFiles);	
 			if(dlgPDel.m_Date != (int)GetProfileInt("Settings","Date",1))
 				WriteProfileInt("Settings","Date",dlgPDel.m_Date);	
 			if(dlgPDel.m_rNull != (int)GetProfileInt("Settings","rNull",1))
@@ -167,14 +209,30 @@ BOOL CCompDelApp::ProcessCommandline()
 				WriteProfileInt("Settings","rZLen",dlgPDel.m_rZLen);
 			if(dlgPDel.m_rRen != (int)GetProfileInt("Settings","rRen",1))
 				WriteProfileInt("Settings","rRen",dlgPDel.m_rRen);
-			if(dlgPDel.m_nOvwr != (int)GetProfileInt("Settings","nOvwr",2))
+			if(dlgPDel.m_nOvwr != (int)GetProfileInt("Settings","nOvwr",5))
 				WriteProfileInt("Settings","nOvwr",dlgPDel.m_nOvwr);
+			if(dlgPDel3.m_AntiCache != (int)GetProfileInt("Settings","AddWipe",0))
+				WriteProfileInt("Settings","AddWipe",dlgPDel3.m_AntiCache);
+			if(dlgPDel3.m_rAntiFolder != (int)GetProfileInt("Settings","rAntiFolder",0))
+				WriteProfileInt("Settings","rAntiFolder",dlgPDel3.m_rAntiFolder);
+			if(dlgPDel3.m_nAnticacheSize != (int)GetProfileInt("Settings","nAnticacheSize",20))
+				WriteProfileInt("Settings","nAnticacheSize",dlgPDel3.m_nAnticacheSize);
+			if(dlgPDel3.m_bAntiOneShot != (int)GetProfileInt("Settings","bAntiOneShot",1))
+				WriteProfileInt("Settings","bAntiOneShot",dlgPDel3.m_bAntiOneShot);
+			if(dlgPDel2.m_nOverrun != (int)GetProfileInt("Settings","m_nOverrun",1024))
+				WriteProfileInt("Settings","m_nOverrun",dlgPDel2.m_nOverrun);
+			if(dlgPDel2.m_nDodChar != GetProfileInt("Settings","m_nDodChar",(int)'A'))
+				WriteProfileInt("Settings","m_nDodChar",dlgPDel2.m_nDodChar);
+			if(dlgPDel2.m_nBufferSize != (int)GetProfileInt("Settings","m_nBufferSize",2048))
+				WriteProfileInt("Settings","m_nBufferSize",dlgPDel2.m_nBufferSize);
 			if(dlgPDisp.m_Confirm != (int)GetProfileInt("Settings","Confirm",0))
 				WriteProfileInt("Settings","Confirm",dlgPDisp.m_Confirm);
 			if(dlgPDisp.m_DispF != (int)GetProfileInt("Settings","DispF",1))
 				WriteProfileInt("Settings","DispF",dlgPDisp.m_DispF);
 			if(dlgPDisp.m_Log != (int)GetProfileInt("Settings","Log",1))
 				WriteProfileInt("Settings","Log",dlgPDisp.m_Log);
+			if(dlgPDel2.m_bNotRemove != (int)GetProfileInt("Settings","bNotDel",0))
+				WriteProfileInt("Settings","bNotDel",dlgPDel2.m_bNotRemove);
 
 		}
 	}
@@ -200,20 +258,6 @@ BOOL CCompDelApp::ProcessCommandline()
 	// ************************************************************
 	else
 	{
-		// 動作モードをレジストリより読み込む
-		MyFile.n_NDispN = GetProfileInt("Settings","NDispN",0);
-		MyFile.n_NDispE = GetProfileInt("Settings","NDispE",0);
-		MyFile.n_Dummy = GetProfileInt("Settings","Dummy",0);
-		MyFile.n_DummySkip = GetProfileInt("Settings","DummySkip",1);
-		MyFile.n_Date = GetProfileInt("Settings","Date",1);
-		MyFile.n_rNull = GetProfileInt("Settings","rNull",1);
-		MyFile.n_rZLen = GetProfileInt("Settings","rZLen",1);
-		MyFile.n_rRen = GetProfileInt("Settings","rRen",1);
-		MyFile.n_nOvwr = GetProfileInt("Settings","nOvwr",2);
-		MyFile.n_nFiles = GetProfileInt("Settings","nFiles",40);
-		MyFile.n_Confirm = GetProfileInt("Settings","Confirm",0);
-		MyFile.n_DispF = GetProfileInt("Settings","DispF",1);
-		MyFile.n_Log = GetProfileInt("Settings","Log",1);
 
 		// ログ用CStringポインタの引渡し
 		sLogStr = "";
@@ -232,3 +276,49 @@ BOOL CCompDelApp::ProcessCommandline()
 	return TRUE;
 }
 
+
+BOOL CCompDelApp::QuickDeleteExec(CString sFileName)
+{
+	char f_path_buffer[_MAX_PATH];
+
+	// " ... " で囲まれたファイル名形式にする
+	sprintf(f_path_buffer, "\"%s\"", sFileName);
+
+	// 動作モードをレジストリより読み込む
+	MyFile.n_NDispN = GetProfileInt("Settings","NDispN",0);
+	MyFile.n_NDispE = GetProfileInt("Settings","NDispE",0);
+	MyFile.n_Dummy = GetProfileInt("Settings","Dummy",0);
+	MyFile.n_DummySkip = GetProfileInt("Settings","DummySkip",1);
+	MyFile.n_Date = GetProfileInt("Settings","Date",1);
+	MyFile.n_rNull = GetProfileInt("Settings","rNull",1);
+	MyFile.n_rZLen = GetProfileInt("Settings","rZLen",1);
+	MyFile.n_rRen = GetProfileInt("Settings","rRen",1);
+	MyFile.n_nOvwr = GetProfileInt("Settings","nOvwr",5);
+	MyFile.n_nFiles = GetProfileInt("Settings","nFiles",40);
+	MyFile.n_Confirm = GetProfileInt("Settings","Confirm",0);
+	MyFile.n_DispF = GetProfileInt("Settings","DispF",1);
+	MyFile.n_Log = GetProfileInt("Settings","Log",1);
+
+	MyFile.b_AntiCache = GetProfileInt("Settings","AddWipe",0);
+	MyFile.n_UntiFolder = GetProfileInt("Settings","rAntiFolder",0);
+	MyFile.n_UnticacheSize = GetProfileInt("Settings","nAnticacheSize",20);
+	MyFile.n_bAntiOneShot = GetProfileInt("Settings","bAntiOneShot",1);
+	MyFile.n_BufferSize = GetProfileInt("Settings","m_nBufferSize",2048);
+	MyFile.n_Overrun = GetProfileInt("Settings","m_nOverrun",1024);
+	MyFile.n_DodChar = GetProfileInt("Settings","m_nDodChar",(int)'A');
+
+	// ログ用CStringポインタの引渡し
+	sLogStr = "";
+	MyFile.sLogStr = &sLogStr;
+	// 削除メインルーチン
+	MyFile.DeleteMain(f_path_buffer);
+
+	// ログの表示
+	if(MyFile.n_Log)
+	{
+		CDlgHelpDoc dlgHelp;
+		dlgHelp.m_edit_main = sLogStr;
+		dlgHelp.DoModal();
+	}
+	return TRUE;
+}

@@ -14,6 +14,8 @@
 #define IDD_DLG_INSTALL                 149
 #define IDI_ICO_INST                    150
 #define IDD_DLG_HELPDOC                 151
+#define IDD_DLG_PROPDEL2                152
+#define IDD_DLG_PROPDEL3                154
 #define IDC_C_NDISPN                    1002
 #define IDC_C_NDISPE                    1003
 #define IDC_C_DATE                      1004
@@ -26,6 +28,7 @@
 #define IDC_C_DMY                       1011
 #define IDC_R3_NNAME                    1011
 #define IDC_C_DISPC                     1012
+#define IDC_R1_DOD                      1012
 #define IDC_LFNAME                      1014
 #define IDC_PRGRESS                     1015
 #define IDC_C_DMYSKIP                   1015
@@ -49,7 +52,26 @@
 #define IDC_EDIT_MAIN                   1037
 #define IDC_INST_MENU                   1038
 #define IDC_EDIT1                       1038
+#define IDC_EDIT_TEXTEDITOR             1038
 #define IDC_EDIT2                       1039
+#define IDC_C_UNTICACHE                 1040
+#define IDC_R1_UNTIDIR                  1041
+#define IDC_R1_UNTIDIR2                 1042
+#define IDC_EDIT_UNTISIZE               1043
+#define IDC_EDIT_BUFFER                 1044
+#define IDC_EDIT_OVERRUN                1045
+#define IDC_EDIT_DODCHAR                1046
+#define IDC_C_ANTICACHE                 1047
+#define IDC_R1_ANTIDIR                  1048
+#define IDC_R1_ANTIDIR2                 1049
+#define IDC_EDIT_ANTISIZE               1050
+#define IDC_EDIT_DUMMY_NFILES           1051
+#define IDC_EDIT_QUICK_FNAME            1052
+#define IDC_C_ANTI_ONETIME              1052
+#define IDC_BTN_QFILE_BROWSE            1053
+#define IDC_BTN_QEXEC                   1054
+#define IDC_BTN_QFILE_BROWSE2           1055
+#define IDC_C_NOTREMOVE                 1056
 #define AFX_STR_UNINST_CPLNAME          57345
 #define AFX_STR_LINK_UNINST             57346
 #define AFX_STR_LINK_STARTUP            57347
@@ -92,14 +114,17 @@
 #define AFX_STR_DLG_PRGRS_2             57384
 #define AFX_STR_DLG_PRGRS_3             57385
 #define AFX_STR_DLG_MKUNIN              57386
+#define AFX_STR_DBG_OVERRUN             57387
+#define AFX_STR_DBG_ANTICACHE           57388
+#define AFX_STR_ERR_ANTICACHE           57389
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        152
+#define _APS_NEXT_RESOURCE_VALUE        155
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1040
+#define _APS_NEXT_CONTROL_VALUE         1057
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

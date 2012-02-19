@@ -5,7 +5,7 @@
 
 .ce 2
 完全削除 (CompleteDelete)
-version 1.3 for Windows
+version 1.36beta for Windows
 
 .ri 4
 http://www.ne.jp/asahi/oasis/inoue-h/
@@ -54,7 +54,7 @@ NTFS (制限事項あり）
 削除するファイルの上書き、消去が出来る環境であること
 
 
-最新の MFC40.DLL および MSVCRT.DLL がシステムフォルダに存在すること
+最新の MFC42.DLL および MSVCRT.DLL がシステムフォルダに存在すること
 .in 0
 .sp 3
 ２．インストール
@@ -92,5 +92,5 @@ CompDel.exeを初めて実行すると、自動的にインストーラが起動します。
 
 
 .ri 1
-2002 / 05 / 08
+2002 / 11 / 20
 .hl 1

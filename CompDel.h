@@ -13,6 +13,7 @@
 #endif
 
 #include "resource.h"		// ÉÅÉCÉì ÉVÉìÉ{Éã
+#include "Fileman.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CCompDelApp:
@@ -22,6 +23,7 @@
 class CCompDelApp : public CWinApp
 {
 public:
+	BOOL QuickDeleteExec(CString sFileName);
 	CString sLogStr;
 	CCompDelApp();
 

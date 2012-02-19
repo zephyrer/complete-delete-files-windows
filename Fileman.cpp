@@ -9,6 +9,7 @@
 #include "DlgConfirm.h"
 
 #include "PharseCmdline.h"
+#include <io.h>		// _mktemp
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -327,16 +328,20 @@ BOOL CFileman::DeleteOneFile()
 	CFile fp;				// ファイル
 	CFileStatus fStatus;	// ファイル情報取得、日付変更に使用
 	char buf[2050];			// 書き込みデータのバッファ
-	long li;				// ファイルポインタとして使用
+	long li;				// ファイルポインタとして使用 (2,147,483,647 バイトまで対応可能)
 	int si;					// int ループカウンタ用
 	nErrTrace = 0;
 	CString sAfxMsg;		// 多言語対応用 メッセージをリソースより読み込む
 
 	srand( (unsigned)time( NULL ));
 
+	if(n_BufferSize > 2048 || n_BufferSize < 1) n_BufferSize = 2048;	// 書き込みバッファサイズ
+
 	try
 	{
-// 属性変更（全属性を解除)
+		//****************************
+		// 属性変更（全属性を解除)
+		//****************************
 		if(!CFile::GetStatus(GetFullPath(), fStatus))
 			return FALSE;	// 失敗
 		nErrTrace = 1;
@@ -353,42 +358,66 @@ BOOL CFileman::DeleteOneFile()
 		if(!CFile::GetStatus(GetFullPath(), fStatus))
 			return FALSE;	// 失敗
 		// 毎回オープンして、クローズするのは、強制書き込みさせるため
-		if(n_rNull)
-		{	// ランダム値で２回上書き
-			srand((unsigned)time(NULL));
-			for(int i=0; i<n_nOvwr; i++)
-			{	// i回繰り返して上書きする
-				if(!fp.Open(GetFullPath(), CFile::modeReadWrite|CFile::shareExclusive|CFile::typeBinary, NULL))
-					return FALSE;
-				nErrTrace = 3;
-				for(li=0; li<(fStatus.m_size/2048)+1; li++)
-				{
-					for(int j=0; j<2048; j++)
-						buf[j] = (unsigned char)rand();
-					fp.Write(buf, 2048);
-				}
-				fp.Flush();
-				fp.Close();
-			}
-		}
-		else
-		{
-			for(int j=0; j<2048; j++) buf[j] = 0x0;
-			for(int i=0; i<n_nOvwr; i++)
+
+		//****************************
+		// 上書き
+		//****************************
+		srand((unsigned)time(NULL));
+		for(int i=0; i<n_nOvwr; i++)
+		{	// i回繰り返して上書きする
+			if(!fp.Open(GetFullPath(), CFile::modeReadWrite|CFile::shareExclusive|CFile::typeBinary, NULL))
+				return FALSE;
+			nErrTrace = 3;
+/********* 以前のルーチン 2002/08/11 変更
+			for(li=0; li<(fStatus.m_size/2048)+1; li++)
 			{
-				if(!fp.Open(GetFullPath(), CFile::modeReadWrite|CFile::shareExclusive|CFile::typeBinary, NULL))
-					return FALSE;
-				nErrTrace = 3;
-				for(li=0; li<(fStatus.m_size/2048)+1; li++)
-					fp.Write(buf, 2048);
-				fp.Flush();
-				fp.Close();
+				for(int j=0; j<2048; j++)
+					buf[j] = (unsigned char)rand();
+				fp.Write(buf, 2048);
+			}
+***********/
+			if(!n_rNull)
+			{	// 書き込みバッファをゼロクリア
+				for(int j=0; j<(int)n_BufferSize; j++) buf[j] = 0x0;
+			}
+			for(li=0; li<fStatus.m_size; li+=n_BufferSize)
+			{
+				if(n_rNull)
+				{	// 書き込みバッファの内容を乱数文字列に
+					for(int j=0; j<(int)n_BufferSize; j++)
+						buf[j] = (unsigned char)rand();
+				}
+				if(fStatus.m_size - li >= (long)n_BufferSize)
+					fp.Write(buf, n_BufferSize);	// バッファサイズまで書き込み
+				else
+					fp.Write(buf, fStatus.m_size - li);	// 残りのサイズを書き込み
+			}
+
+			fp.Flush();
+			fp.Close();
+
+			// ****************** デバックメッセージのロードと表示 ******************
+			sAfxMsg.Format("Overwrite Done ! (Pass %d/%d)", i+1, n_nOvwr);	//
+			ConfirmMsgbox((LPCSTR)sAfxMsg);
+
+			// 空きデータ領域撹乱のための、ダミー書き込み
+			// （ダミー書き込みするかどうかの判断は、関数中で行っている）
+			if(n_bAntiOneShot)
+			{
+				// 最後の１回のみ、実行
+				if(i == n_nOvwr-1) AntiCacheTempWrite((LPCSTR)GetFullPath());
+			}
+			else
+			{
+				// 毎回実行
+				AntiCacheTempWrite((LPCSTR)GetFullPath());
 			}
 		}
+
 		// バッファを強制的にフラッシュさせるため、ダミーデータを書き込む
 		if(!fp.Open(GetFullPath(), CFile::modeReadWrite|CFile::shareExclusive|CFile::typeBinary, NULL))
 			return FALSE;
-		fp.Write("X", 1);
+		fp.Write("X", 1);		// 先頭一文字 「X」を書き込む
 		fp.Flush();
 		fp.Close();
 		// ****************** 多言語対応 デバックメッセージのロードと表示 ******************
@@ -396,7 +425,43 @@ BOOL CFileman::DeleteOneFile()
 		ConfirmMsgbox((LPCSTR)sAfxMsg);
 		nErrTrace = 4;
 		// データ上書き ここまで
-// ファイル長さをゼロに切り捨てる
+		//****************************
+		// データ書き込みのオーバーラン
+		//****************************
+		if(n_Overrun < 0 || n_Overrun >65536) n_Overrun = 0;
+		if(n_Overrun)
+		{
+			if(!fp.Open(GetFullPath(), CFile::modeReadWrite|CFile::shareExclusive|CFile::typeBinary, NULL))
+				return FALSE;
+			fp.Seek(0, CFile::end);		// ファイルの末尾へ
+			if(!n_rNull)
+			{	// 書き込みバッファをゼロクリア
+				for(int j=0; j<2048; j++) buf[j] = 0x0;
+			}
+			else
+			{	// 書き込みバッファの内容を乱数文字列に
+				for(int j=0; j<2048; j++)
+					buf[j] = (unsigned char)rand();
+			}
+			// 書き込み
+			for(li=0; li<n_Overrun; li+=2048)
+			{
+				if(n_Overrun - li >= 2048L)
+					fp.Write(buf, 2048);	// バッファサイズまで書き込み
+				else
+					fp.Write(buf, n_Overrun - li);	// 残りのサイズを書き込み
+			}
+
+			fp.Flush();
+			fp.Close();
+			// ****************** 多言語対応 デバックメッセージのロードと表示 ******************
+			sAfxMsg.LoadString(AFX_STR_DBG_OVERRUN);	// 「オーバーラン書き込み完了」
+			ConfirmMsgbox((LPCSTR)sAfxMsg);
+		}
+
+		//****************************
+		// ファイル長さをゼロに切り捨てる
+		//****************************
 		if(n_rZLen)
 		{
 			if(!fp.Open(GetFullPath(), CFile::modeCreate|CFile::modeReadWrite|CFile::shareExclusive|CFile::typeBinary, NULL))
@@ -503,12 +568,16 @@ BOOL CFileman::DeleteOneFile()
 		}
 		nErrTrace = 7;
 		// ファイルの日付を変更する ここまで
+
 // ファイルを削除する
-		CFile::Remove(GetFullPath());
-		// ****************** 多言語対応 デバックメッセージのロードと表示 ******************
-		sAfxMsg.LoadString(AFX_STR_DBG_DELETE);	// 「ファイル削除完了」
-		ConfirmMsgbox((LPCSTR)sAfxMsg);
-		nErrTrace = 8;
+		if(!b_NotRemove)
+		{
+			CFile::Remove(GetFullPath());
+			// ****************** 多言語対応 デバックメッセージのロードと表示 ******************
+			sAfxMsg.LoadString(AFX_STR_DBG_DELETE);	// 「ファイル削除完了」
+			ConfirmMsgbox((LPCSTR)sAfxMsg);
+			nErrTrace = 8;
+		}
 		// ファイルを削除する ここまで
 	}
 	catch(CFileException *e)
@@ -518,6 +587,7 @@ BOOL CFileman::DeleteOneFile()
 		{
 			::MessageBox(NULL, "File I/O Error (Hardware Error)", "Error", MB_OK|MB_ICONSTOP|MB_TOPMOST);
 		}
+		fp.Close();		// 一応クローズする Ver1.36
 		return FALSE;
 	}
 	return TRUE;
@@ -562,6 +632,7 @@ BOOL CFileman::DummyfileProcess()
 	char sNewLFName[MAX_PATH];
 	char buf[MAX_PATH];
 	CString sTmp, sAfxMsg, dlgMes;
+	CString sDummyString = "*************** THIS IS COMPDEL DUMMY FILE ***************\r\n";
 
 // 撹乱ファイルを多数作成する
 	try
@@ -589,7 +660,23 @@ BOOL CFileman::DummyfileProcess()
 			sprintf(buf, "%s%02d.tmp", sNewLFName, i);
 			dmyFname = GetPath() + buf;
 			if(!fp.Open(dmyFname, CFile::modeCreate|CFile::modeReadWrite|CFile::shareExclusive|CFile::typeBinary, NULL))
+			{
+				::MessageBox(NULL, "Dummy File I/O Error (Hardware Error)", "Error", MB_OK|MB_ICONSTOP|MB_TOPMOST);
 				return FALSE;
+			}
+			try{
+				// Ver 1.36 で追加。（NTFSのMFT 撹乱用)
+				fp.Write(sDummyString,sDummyString.GetLength());
+			}
+			catch(CFileException *e)
+			{	// ファイル処理中のエラー
+				if(e->m_cause==CFileException::hardIO)
+				{
+					::MessageBox(NULL, "Dummy File I/O Error (Hardware Error)", "Error", MB_OK|MB_ICONSTOP|MB_TOPMOST);
+				}
+				fp.Close();
+				return FALSE;
+			}
 			fp.Close();
 		}
 		// ****************** 多言語対応 デバックメッセージのロードと表示 ******************
@@ -633,5 +720,102 @@ BOOL CFileman::DummyfileProcess()
 		}
 		return FALSE;
 	}
+	return TRUE;
+}
+
+// ************************************************************
+// キャッシュ機構を無効にするための、テンポラリファイルアクセス
+// 
+//
+// ************************************************************
+BOOL CFileman::AntiCacheTempWrite(const char *fname)
+{
+	CFile fp;				// ファイル
+	CFileStatus fStatus;	// ファイルの存在の確認用
+	char f_path_buffer[_MAX_PATH];	// 出来上がったテンポラリファイル名
+	char f_drive[_MAX_DRIVE];		// ドライブ
+	char f_dir[_MAX_DIR];			// フォルダ
+	char f_body[10];				// ファイル名（ボディ）
+	char buf[2050];			// 書き込みデータのバッファ
+	long li;				// 書き込みループ カウンタ
+	long tempsize = (long)n_UnticacheSize*1024L*1024L;	// テンポラリファイルのサイズ
+	CString sAfxMsg;		// 多言語対応用 メッセージをリソースより読み込む
+
+	if(!b_AntiCache) return TRUE;
+
+	//****************************
+	// テンポラリファイル名を作成
+	//****************************
+	while(1)
+	{
+		srand((unsigned)time(NULL));
+		strcpy(f_body, "_c");	// 先頭2文字 
+		for(int j=0; j<6; j++)
+			f_body[j+2] = (unsigned char)GenerateRandom(0x30,0x39);		// 0 ～ 9 の文字
+		f_body[8] = (char)NULL;	// 文字列最後
+
+		if(n_UntiFolder == 0)
+		{	// 削除対象ファイルのフォルダ
+			_splitpath(fname, f_drive, f_dir, NULL, NULL);
+			_makepath(f_path_buffer, f_drive, f_dir, f_body,".tmp");
+		}
+		else
+		{	// システムのテンポラリフォルダ
+			::GetTempPath(_MAX_DIR, f_dir);
+			if(f_dir[strlen(f_dir)-1] == '\\')
+				sprintf(f_path_buffer, "%s%s.tmp",f_dir, f_body);
+			else
+				sprintf(f_path_buffer, "%s\\%s.tmp",f_dir, f_body);
+		}
+		if(!CFile::GetStatus(f_path_buffer, fStatus))
+			break;		// ファイルが存在していなければ、ファイル名確定。ループ抜け
+
+	}
+
+	//****************************
+	// テンポラリファイルに書き込み
+	//****************************
+	srand((unsigned)time(NULL));
+	try
+	{
+
+		for(int i=0; i<2; i++)
+		{	// 2回繰り返して上書きする
+			if(!fp.Open(f_path_buffer, CFile::modeCreate|CFile::modeWrite|CFile::shareExclusive|CFile::typeBinary, NULL))
+				return FALSE;
+			nErrTrace = 3;
+			for(li=0; li<tempsize; li+=2048)
+			{
+				// 書き込みバッファの内容を乱数文字列に
+				for(int j=0; j<2048; j++)
+					buf[j] = (unsigned char)rand();
+				if(tempsize - li >= (long)2048)
+					fp.Write(buf, 2048);	// バッファサイズまで書き込み
+				else
+					fp.Write(buf, tempsize - li);	// 残りのサイズを書き込み
+			}
+
+			fp.Flush();
+			fp.Close();
+		}
+	}
+	catch(CFileException *e)
+	{	// ファイル処理中のエラー
+		
+		if(e->m_cause==CFileException::hardIO)
+		{
+			// ****************** 多言語対応 デバックメッセージのロードと表示 ******************
+			sAfxMsg.LoadString(AFX_STR_ERR_ANTICACHE);	// 「アンチ・キャッシュ用テンポラリファイルを作成できません」
+			ConfirmMsgbox((LPCSTR)sAfxMsg);
+		}
+		return FALSE;
+	}
+	// ****************** 多言語対応 デバックメッセージのロードと表示 ******************
+	sAfxMsg.LoadString(AFX_STR_DBG_ANTICACHE);	// 「アンチ・キャッシュ用テンポラリファイルを作成」
+	ConfirmMsgbox((LPCSTR)sAfxMsg);
+
+	// テンポラリファイルの消去
+	CFile::Remove(f_path_buffer);
+
 	return TRUE;
 }

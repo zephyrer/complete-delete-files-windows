@@ -16,5 +16,7 @@ HIDD_DLG_PROPDEL                        0x20093
 HIDD_DLG_PROPOTHER                      0x20094
 HIDD_DLG_INSTALL                        0x20095
 HIDD_DLG_HELPDOC                        0x20097
+HIDD_DLG_PROPDEL2                       0x20098
+HIDD_DLG_PROPDEL3                       0x2009A
  
 // Frame Controls (IDW_*) 

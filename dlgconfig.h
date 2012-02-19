@@ -49,6 +49,98 @@ protected:
 };
 
 /////////////////////////////////////////////////////////////////////////////
+// CDlgPDel2 ダイアログ
+
+class CDlgPDel2 : public CPropertyPage
+{
+	DECLARE_DYNCREATE(CDlgPDel2)
+
+// コンストラクション
+public:
+	CDlgPDel2();
+	~CDlgPDel2();
+
+// ダイアログ データ
+	//{{AFX_DATA(CDlgPDel2)
+	enum { IDD = IDD_DLG_PROPDEL2 };
+	UINT	m_nBufferSize;
+	UINT	m_nOverrun;
+	UINT	m_nDodChar;
+	BOOL	m_bNotRemove;
+	//}}AFX_DATA
+
+
+// オーバーライド
+	// ClassWizard は仮想関数のオーバーライドを生成します。
+
+	//{{AFX_VIRTUAL(CDlgPDel2)
+	protected:
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV サポート
+	//}}AFX_VIRTUAL
+
+// インプリメンテーション
+protected:
+	// 生成されたメッセージ マップ関数
+	//{{AFX_MSG(CDlgPDel2)
+	//}}AFX_MSG
+	DECLARE_MESSAGE_MAP()
+
+};
+
+/////////////////////////////////////////////////////////////////////////////
+// CDlgPDel3 ダイアログ
+
+class CDlgPDel3 : public CPropertyPage
+{
+	DECLARE_DYNCREATE(CDlgPDel3)
+
+// コンストラクション
+public:
+	CDlgPDel3();
+	~CDlgPDel3();
+
+// ダイアログ データ
+	//{{AFX_DATA(CDlgPDel3)
+	enum { IDD = IDD_DLG_PROPDEL3 };
+	CButton	m_ctrl_bAntiOneShot;
+	CButton	m_ctrl_bDummySkip;
+	CEdit	m_ctrl_nFiles;
+	CEdit	m_ctrl_nAnticacheSize;
+	CButton	m_ctrl_rAntiFolder2;		// 手動で追加
+	CButton	m_ctrl_rAntiFolder;
+	BOOL	m_AntiCache;
+	int		m_rAntiFolder;
+	UINT	m_nAnticacheSize;
+	BOOL	m_bDummy;
+	BOOL	m_bDummySkip;
+	UINT	m_nFiles;
+	BOOL	m_bAntiOneShot;
+	//}}AFX_DATA
+
+
+// オーバーライド
+	// ClassWizard は仮想関数のオーバーライドを生成します。
+
+	//{{AFX_VIRTUAL(CDlgPDel3)
+	protected:
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV サポート
+	//}}AFX_VIRTUAL
+
+// インプリメンテーション
+protected:
+	// 生成されたメッセージ マップ関数
+	//{{AFX_MSG(CDlgPDel3)
+	afx_msg void OnCAnticache();
+	virtual BOOL OnInitDialog();
+	afx_msg void OnCDmy();
+	//}}AFX_MSG
+	DECLARE_MESSAGE_MAP()
+
+};
+
+
+
+/////////////////////////////////////////////////////////////////////////////
 // CDlgPDisp ダイアログ
 
 class CDlgPDisp : public CPropertyPage
@@ -107,11 +199,6 @@ public:
 // ダイアログ データ
 	//{{AFX_DATA(CDlgPOther)
 	enum { IDD = IDD_DLG_PROPOTHER };
-	CEdit	m_ctrl_nFiles;
-	CButton	m_ctrl_dmyskip;
-	BOOL	m_Dummy;
-	BOOL	m_DummySkip;
-	int		m_nFiles;
 	//}}AFX_DATA
 
 
@@ -129,13 +216,14 @@ protected:
 	//{{AFX_MSG(CDlgPOther)
 	afx_msg void OnUninstall();
 	afx_msg void OnVerinfo();
-	afx_msg void OnCDmy();
-	virtual BOOL OnInitDialog();
+	afx_msg void OnBtnQfileBrowse();
+	afx_msg void OnBtnQexec();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
 };
 /////////////////////////////////////////////////////////////////////////////
+
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ は前行の直前に追加の宣言を挿入します。
